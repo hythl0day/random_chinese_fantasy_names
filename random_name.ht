@@ -1,0 +1,44 @@
+import 'character_names/family.json' as family
+import 'character_names/female.json' as female
+import 'character_names/male.json' as male
+import 'character_names/middle.json' as middle
+
+fun getRandomName({nameStyle, isFemale = false}) {
+  final familyIndex = Math.randomInt(family.length + 1) % family.length;
+  final familyName = family[familyIndex];
+
+  var name = '';
+
+  final style = Math.random();
+  if (nameStyle == 'single' || style < 0.33333333) {
+    if (!isFemale) {
+      final nameIndex = Math.randomInt(female.length + 1) % female.length;
+      name = female[nameIndex];
+    } else {
+      final nameIndex = Math.randomInt(male.length + 1) % male.length;
+      name = male[nameIndex];
+    }
+  } else if (nameStyle == 'double' || style < 0.66666666) {
+    if (!isFemale) {
+      final nameIndex1 = Math.randomInt(female.length + 1) % female.length;
+      final nameIndex2 = Math.randomInt(female.length + 1) % female.length;
+      name = '${female[nameIndex1]}${female[nameIndex2]}';
+    } else {
+      final nameIndex1 = Math.randomInt(male.length + 1) % male.length;
+      final nameIndex2 = Math.randomInt(male.length + 1) % male.length;
+      name = '${male[nameIndex1]}${male[nameIndex2]}';
+    }
+  } else {
+    if (!isFemale) {
+      final nameIndex1 = Math.randomInt(middle.length + 1) % middle.length;
+      final nameIndex2 = Math.randomInt(female.length + 1) % female.length;
+      name = '${middle[nameIndex1]}${female[nameIndex2]}';
+    } else {
+      final nameIndex1 = Math.randomInt(middle.length + 1) % middle.length;
+      final nameIndex2 = Math.randomInt(male.length + 1) % male.length;
+      name = '${middle[nameIndex1]}${male[nameIndex2]}';
+    }
+  }
+
+  return '${familyName}${name}';
+}
