@@ -23,3 +23,5 @@ hetu random_names.ht
 ```
 getRandomName()
 ```
+
+![image](https://user-images.githubusercontent.com/2274141/146657539-16fc53ab-096f-4d1a-9976-69ba576e09a0.png)
