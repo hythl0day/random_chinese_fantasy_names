@@ -6,7 +6,7 @@
 
 ## 使用方法
 
-需要电脑上已经安装了Dart SDK，并配置好了Dart的环境参数。
+需要电脑上已经安装了[Dart SDK](https://gekorm.com/dart-windows/)，并配置好了Dart的环境参数。
 
 安装河图脚本运行库：
 
