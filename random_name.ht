@@ -1,7 +1,10 @@
-import 'l10n/zh_name/family.json' as family
-import 'l10n/zh_name/female.json' as female
-import 'l10n/zh_name/male.json' as male
-import 'l10n/zh_name/middle.json' as middle
+import 'character_names/family.json' as family
+import 'character_names/female.json' as female
+import 'character_names/male.json' as male
+import 'character_names/middle.json' as middle
+import 'character_names/dao.json' as dao
+import 'character_names/dao_title_male.json' as daoTitleFemale
+import 'character_names/dao_title_female.json' as daoTitleMale
 
 fun getRandomNames({nameStyle, isFemale, number = 1}) {
   var name = ''
@@ -9,10 +12,10 @@ fun getRandomNames({nameStyle, isFemale, number = 1}) {
   for (var i = 0; i < number; ++i) {
     final familyIndex = Math.randomInt(family.length + 1) % family.length
     final familyName = family[familyIndex]
+    final isF = isFemale ?? Math.randomInt(10) % 2 == 0
     final style = Math.random()
-    final sex = isFemale ?? Math.randomInt(10) % 2 == 0
     if (nameStyle == 'single' || style < 0.33333333) {
-      if (isFemale) {
+      if (isF) {
         final nameIndex = Math.randomInt(female.length + 1) % female.length
         name = female[nameIndex]
       } else {
@@ -20,7 +23,7 @@ fun getRandomNames({nameStyle, isFemale, number = 1}) {
         name = male[nameIndex]
       }
     } else if (nameStyle == 'double' || style < 0.66666666) {
-      if (isFemale) {
+      if (isF) {
         final nameIndex1 = Math.randomInt(female.length + 1) % female.length
         final nameIndex2 = Math.randomInt(female.length + 1) % female.length
         name = '${female[nameIndex1]}${female[nameIndex2]}'
@@ -30,7 +33,7 @@ fun getRandomNames({nameStyle, isFemale, number = 1}) {
         name = '${male[nameIndex1]}${male[nameIndex2]}'
       }
     } else {
-      if (isFemale) {
+      if (isF) {
         final nameIndex1 = Math.randomInt(middle.length + 1) % middle.length
         final nameIndex2 = Math.randomInt(female.length + 1) % female.length
         name = '${middle[nameIndex1]}${female[nameIndex2]}'
@@ -41,6 +44,69 @@ fun getRandomNames({nameStyle, isFemale, number = 1}) {
       }
     }
     names.add('${familyName}${name}')
+  }
+
+  return names
+}
+
+final rarityLevels = {
+  common: 0.4, // common 白
+  rare: 0.16, // rare 蓝
+  epic: 0.064, // epic 紫
+  legendary: 0.025, // legendary 橙
+  mythic: 0.01, // mythic 金
+  exotic: 0.004, // exotic 虹
+}
+
+fun getRandomDaoNames({titleRarity, isFemale, number = 1}) {
+  final names = []
+  for (var i = 0; i < number; ++i) {
+    final nameIndex1 = Math.randomInt(dao.length + 1) % dao.length
+    final nameIndex2 = Math.randomInt(dao.length + 1) % dao.length
+    final name = '${dao[nameIndex1]}${dao[nameIndex2]}'
+    final isF = isFemale ?? Math.randomInt(10) % 2 == 0
+    var title = ''
+
+    var titleIndex = -1
+    if (!titleRarity) {
+      final rarity = Math.random()
+      if (rarity < rarityLevels.exotic) {
+        titleIndex = 13
+      } else if (rarity < rarityLevels.mythic) {
+        titleIndex = 10 + Math.randomInt(2)
+      } else if (rarity < rarityLevels.legendary) {
+        titleIndex = 7 + Math.randomInt(3)
+      } else if (rarity < rarityLevels.epic) {
+        titleIndex = 3 + Math.randomInt(4)
+      } else if (rarity < rarityLevels.rare) {
+        titleIndex = 1 + Math.randomInt(3)
+      } else if (rarity < rarityLevels.common) {
+        titleIndex = 0
+      }
+    } else {
+      if (titleRarity == 'exotic') {
+        titleIndex = 13
+      } else if (titleRarity == 'mythic') {
+        titleIndex = 10 + Math.randomInt(2)
+      } else if (titleRarity == 'legendary') {
+        titleIndex = 7 + Math.randomInt(3)
+      } else if (titleRarity == 'epic') {
+        titleIndex = 3 + Math.randomInt(4)
+      } else if (titleRarity == 'rare') {
+        titleIndex = 1 + Math.randomInt(3)
+      } else if (titleRarity == 'common') {
+        titleIndex = 0
+      }
+    }
+    if (titleIndex >= 0) {
+      if (isF) {
+        title = daoTitleFemale[titleIndex]
+      } else {
+        title = daoTitleMale[titleIndex]
+      }
+    }
+
+    names.add('${name}${title}')
   }
 
   return names
