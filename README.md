@@ -30,6 +30,8 @@ getRandomName()
 
 ## 随机中文姓名
 
+![~0@KN0G B0J%`FJ496M~ZCC](https://user-images.githubusercontent.com/2274141/146690222-67eb44ba-64ff-45f0-8412-72f058d95b96.png)
+
 ```
 fun getRandomNames({nameStyle, isFemale, number = 1})
 ```
@@ -41,6 +43,8 @@ isFemale: 是否是女名，默认随机。
 number: 生成名字的数量，默认 1 个。
 
 ## 随机法号
+
+![81)DZV44L%_H@94W@OUK2VH](https://user-images.githubusercontent.com/2274141/146690224-b6b6b9f5-78fb-498d-b5b6-7f0e36dfb394.png)
 
 ```
 fun getRandomDaoNames({titleRarity, isFemale, number = 1})
