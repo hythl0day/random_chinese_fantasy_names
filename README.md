@@ -1,5 +1,7 @@
 # 仙侠小说专有名词随机生成器
 
+网页版：[https://hetu.dev/random-names/](https://hetu.dev/random-names/)
+
 随机生成人名、法号、功法、秘籍等。
 
 目前项目还未完工，正在开发法宝、材料、丹药、地名、门派名的生成。
