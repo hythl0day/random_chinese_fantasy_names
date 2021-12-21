@@ -1,10 +1,12 @@
 # random_chinese_fantasy_names
 
-随机生成人名、法号、地名、门派名、法宝名等。
+随机生成人名、法号、功法、神通、法宝、材料、丹药、地名、门派名、等。
 
-这是个[河图脚本语言](https://github.com/hetu-script/hetu-script)的库。
+提供两种代码：[河图脚本语言](https://github.com/hetu-script/hetu-script)和 Javascript。功能完全相同。
 
-## 安装
+关于 Javascript 的使用这里不再赘述。
+
+## 河图脚本的安装和使用
 
 需要电脑上已经安装了[Dart SDK](https://gekorm.com/dart-windows/)，并配置好了 Dart 的环境参数。
 
@@ -19,13 +21,13 @@ dart pub global activate hetu_script_dev_tools
 然后在本项目目录下的命令行输入：
 
 ```
-hetu random_names.ht
+hetu hetu/name.ht
 ```
 
-进入 REPL 界面后，输入函数名字获得随机名：
+进入 REPL 界面后，输入函数名字和数量获得随机名：
 
 ```
-getRandomName()
+getName(10) // 生成 10 个名字
 ```
 
 ## 随机中文姓名
@@ -33,35 +35,54 @@ getRandomName()
 ![~0@KN0G B0J%`FJ496M~ZCC](https://user-images.githubusercontent.com/2274141/146690222-67eb44ba-64ff-45f0-8412-72f058d95b96.png)
 
 ```
-fun getRandomNames({nameStyle, isFemale, number = 1})
+fun getName(number, {isFemale, style})
 ```
 
-函数可以接受三个命名参数：
+函数可以接受三个参数：
 
-nameStyle: （名字样式，一个实字，两个实字，或者一个虚字+一个实字），默认随机。
-isFemale: 是否是女名，默认随机。
-number: 生成名字的数量，默认 1 个。
+number（必填）: 生成名字的数量。
+
+isFemale（命名参数）: 是否是女名，默认随机。
+
+style（命名参数）: （名字样式，一个实字，两个实字，或者一个虚字+一个实字），默认随机。
 
 ## 随机法号
 
 ![81)DZV44L%_H@94W@OUK2VH](https://user-images.githubusercontent.com/2274141/146690224-b6b6b9f5-78fb-498d-b5b6-7f0e36dfb394.png)
 
 ```
-fun getRandomDaoNames({titleRarity, isFemale, number = 1})
+fun getDao(number, {isFemale, rarity})
 ```
 
-函数可以接受三个命名参数：
+函数可以接受三个参数：
 
-titleRarity: 称号稀有度，默认随机，可选值包括：
+number（必填）: 生成名字的数量。
 
-| 稀有度字符串 | 概率  |                称号                |
-| :----------- | :---- | :--------------------------------: |
-| "common"     | 0.4   |                 子                 |
-| "rare"       | 0.16  |     仙，童子，道人，童女，道姑     |
-| "epic"       | 0.064 |    真人，上人，洞主，公主，法师    |
-| "legendary"  | 0.025 | 仙人，仙师，仙翁，仙子，仙女，圣女 |
-| "mythic"     | 0.01  |       教主，真君，教母，圣母       |
-| "exotic"     | 0.004 |             天尊，娘娘             |
+isFemale（命名参数）: 是否是女性称号，默认随机。
 
-isFemale: 是否是女性称号，默认随机。
-number: 生成名字的数量，默认 1 个。
+rarity（命名参数）: 称号稀有度，默认随机，可选值包括：
+
+| 稀有度字符串 | 概率  |                  称号                  |
+| :----------- | :---- | :------------------------------------: |
+| "common"     | 0.25  |             子，道人，道姑             |
+| "rare"       | 0.15  |               真人，法师               |
+| "epic"       | 0.075 |            上人，洞主，公主            |
+| "legendary"  | 0.025 |         教主，真君，教母，圣母         |
+| "mythic"     | 0.01  | 仙，仙人，仙师，仙翁，仙子，仙女，圣女 |
+| "exotic"     | 0.005 |               天尊，娘娘               |
+
+## 技能
+
+```
+fun getSkill(number, {length, kind})
+```
+
+函数可以接受三个参数：
+
+number（必填）: 生成名字的数量。
+
+length: 技能描述词语堆砌的数量，默认随机，最小 1。
+
+kind 代表技能的种类，例如"遁术"，"内功"，"剑法"等，默认随机。
+
+随机时，可能会在名字最前面或者种类文字前面，或者整个名字最后，加上"小"，"大"或者数字。这个数字只会在名字中出现一次。如果是出现在最后，则会补上一个"式"字。
