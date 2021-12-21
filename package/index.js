@@ -1,18 +1,18 @@
-const family = require('../data/name/family.json');
-const female = require('../data/name/female.json');
-const male = require('../data/name/male.json');
-const middle = require('../data/name/middle.json');
-const dao = require('../data/dao/dao.json');
-const daoTitleFemale = require('../data/dao/title_male.json');
-const daoTitleMale = require('../data/dao/title_female.json');
-const skill = require('../data/skill/skill.json');
-const skillPrefix = require('../data/skill/prefix.json');
-const skillKind = require('../data/skill/kind.json');
-const skillPostfix = require('../data/skill/postfix.json');
-const bookDef = require('../data/book/def.json');
-const bookEpicKind = require('../data/book/epic_kind.json');
+const family = require('./data/name/family.json');
+const female = require('./data/name/female.json');
+const male = require('./data/name/male.json');
+const middle = require('./data/name/middle.json');
+const dao = require('./data/dao/dao.json');
+const daoTitleFemale = require('./data/dao/title_male.json');
+const daoTitleMale = require('./data/dao/title_female.json');
+const skill = require('./data/skill/skill.json');
+const skillPrefix = require('./data/skill/prefix.json');
+const skillKind = require('./data/skill/kind.json');
+const skillPostfix = require('./data/skill/postfix.json');
+const bookDef = require('./data/book/def.json');
+const bookEpicKind = require('./data/book/epic_kind.json');
 
-const rarityLevels = {
+const _rarityLevels = {
   common: 1.0, // common 灰
   uncommon: 0.35, // uncommon 白
   rare: 0.15, // rare 蓝
@@ -22,20 +22,20 @@ const rarityLevels = {
   exotic: 0.005, // exotic 虹
 };
 
-function getRarity() {
+function _getRarity() {
   let rarity;
   let value = Math.random();
-  if (value < rarityLevels.exotic) {
+  if (value < _rarityLevels.exotic) {
     rarity = 'exotic';
-  } else if (value < rarityLevels.mythic) {
+  } else if (value < _rarityLevels.mythic) {
     rarity = 'mythic';
-  } else if (value < rarityLevels.legendary) {
+  } else if (value < _rarityLevels.legendary) {
     rarity = 'legendary';
-  } else if (value < rarityLevels.epic) {
+  } else if (value < _rarityLevels.epic) {
     rarity = 'epic';
-  } else if (value < rarityLevels.rare) {
+  } else if (value < _rarityLevels.rare) {
     rarity = 'rare';
-  } else if (value < rarityLevels.uncommon) {
+  } else if (value < _rarityLevels.uncommon) {
     rarity = 'uncommon';
   } else {
     rarity = 'common';
@@ -43,7 +43,7 @@ function getRarity() {
   return { rarity, value };
 }
 
-function getName(number, isFemale, style) {
+exports.getName = function (number, isFemale, style) {
   let names = [];
   for (let i = 0; i < number; ++i) {
     let familyIndex =
@@ -73,9 +73,9 @@ function getName(number, isFemale, style) {
     names.push(`${familyName}${name}`);
   }
   return names;
-}
+};
 
-function getDao(number, isFemale, rarity) {
+exports.getDao = function (number, isFemale, rarity) {
   let names = [];
   for (let i = 0; i < number; ++i) {
     let nameIndex1 = Math.floor(Math.random() * dao.length + 1) % dao.length;
@@ -86,7 +86,7 @@ function getDao(number, isFemale, rarity) {
         ? daoTitleFemale
         : daoTitleMale;
     let title = '';
-    let r = rarity ?? getRarity().rarity;
+    let r = rarity ?? _getRarity().rarity;
     if (r == 'exotic') {
       title =
         titleGroup.exotic[Math.floor(Math.random() * titleGroup.exotic.length)];
@@ -113,17 +113,17 @@ function getDao(number, isFemale, rarity) {
     names.push(`${name}${title}`);
   }
   return names;
-}
+};
 
 const _kNumberEndSupplement = '式';
 
 function _getSkillName(kind, length) {
   let l = length;
   if (!l) {
-    let rarity = getRarity().value;
-    if (rarity < rarityLevels.rare) {
+    let rarity = _getRarity().value;
+    if (rarity < _rarityLevels.rare) {
       l = 3;
-    } else if (rarity < rarityLevels.common) {
+    } else if (rarity < _rarityLevels.common) {
       l = 2;
     } else {
       l = 1;
@@ -134,11 +134,11 @@ function _getSkillName(kind, length) {
     name += skill[Math.floor(Math.random() * skill.length)];
   }
   let end = kind ?? skillKind[Math.floor(Math.random() * skillKind.length)];
-  if (getRarity().value < rarityLevels.epic) {
+  if (_getRarity().value < _rarityLevels.epic) {
     let prefix = skillPrefix[Math.floor(Math.random() * skillPrefix.length)];
     name = `${prefix}${name}`;
   }
-  if (getRarity().value < rarityLevels.epic) {
+  if (_getRarity().value < _rarityLevels.epic) {
     let postfix = skillPostfix[Math.floor(Math.random() * skillPostfix.length)];
     if (end.length > 1) {
       name = `${name}${end}${postfix}${_kNumberEndSupplement}`;
@@ -151,21 +151,21 @@ function _getSkillName(kind, length) {
   return name;
 }
 
-function getSkill(number, kind, length) {
+exports.getSkill = function (number, kind, length) {
   let names = [];
   for (let i = 0; i < number; ++i) {
     let name = _getSkillName(kind, length);
     names.push(name);
   }
   return names;
-}
+};
 
-function getBook(number, kind, length, rarity) {
+exports.getBook = function (number, kind, length, rarity) {
   let names = [];
   for (let i = 0; i < number; ++i) {
     let name = '';
     let skillname = _getSkillName(kind, length);
-    let r = rarity ?? getRarity().rarity;
+    let r = rarity ?? _getRarity().rarity;
     if (r == 'exotic') {
       let prefix =
         bookDef.exotic[Math.floor(Math.random() * bookDef.exotic.length)];
@@ -189,7 +189,7 @@ function getBook(number, kind, length, rarity) {
     } else if (r == 'rare') {
       name = skillname;
     } else if (r == 'uncommon') {
-      let isBroken = Math.random() < rarityLevels.uncommon;
+      let isBroken = Math.random() < _rarityLevels.uncommon;
       if (isBroken) {
         let postfix =
           bookDef.uncommon[Math.floor(Math.random() * bookDef.uncommon.length)];
@@ -198,7 +198,7 @@ function getBook(number, kind, length, rarity) {
         name = skillname;
       }
     } else if (r == 'common') {
-      let isBroken = Math.random() < rarityLevels.common;
+      let isBroken = Math.random() < _rarityLevels.common;
       if (isBroken) {
         let postfix =
           bookDef.common[Math.floor(Math.random() * bookDef.common.length)];
@@ -210,12 +210,4 @@ function getBook(number, kind, length, rarity) {
     names.push(`《${name}》`);
   }
   return names;
-}
-
-console.log(getName(10));
-
-console.log(getDao(10));
-
-console.log(getSkill(10));
-
-console.log(getBook(10));
+};

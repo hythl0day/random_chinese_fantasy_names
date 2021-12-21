@@ -1,8 +1,8 @@
 {
   "name": "random_chinese_fantasy_names",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A Generator for random Chinese Fantasy Name to be used in internet novels.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +23,7 @@
     "url": "https://github.com/hetu-script/random_chinese_fantasy_names/issues"
   },
   "homepage": "https://github.com/hetu-script/random_chinese_fantasy_names#readme",
-  "dependencies": {
-    "vue": "^3.2.26"
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
