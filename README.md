@@ -4,7 +4,7 @@
 
 目前项目还未完工，正在开发法宝、材料、丹药、地名、门派名的随机生成。
 
-提供两种代码：[河图脚本语言](https://github.com/hetu-script/hetu-script)和 javascript。功能完全相同，只是 javascript 版本的函数参数列表以 object 形式提供。
+提供两种代码：[河图脚本语言](https://github.com/hetu-script/hetu-script)和 javascript。功能完全相同，只是 javascript 版本的函数参数列表都以位置参数形式提供。
 
 关于 Javascript 的使用这里不再赘述。
 

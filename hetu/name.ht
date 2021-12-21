@@ -129,6 +129,7 @@ fun _getSkillName({kind, length}) {
   } else {
       name = '${name}${end}'
   }
+  return name
 }
 
 fun getSkill(number, {kind, length}) {
