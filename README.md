@@ -1,10 +1,13 @@
-# random_chinese_fantasy_names
+# 仙侠世界名词随机生成器
 
 随机生成人名、法号、功法、神通、法宝、材料、丹药、地名、门派名、等。
 
 提供两种代码：[河图脚本语言](https://github.com/hetu-script/hetu-script)和 Javascript。功能完全相同。
 
 关于 Javascript 的使用这里不再赘述。
+
+效果截图(命令行测试)
+![image](https://user-images.githubusercontent.com/2274141/146925353-ffe6c271-b86a-454b-a0d7-dc8ba4a729b6.png)
 
 ## 河图脚本的安装和使用
 
@@ -32,8 +35,6 @@ getName(10) // 生成 10 个名字
 
 ## 随机中文姓名
 
-![~0@KN0G B0J%`FJ496M~ZCC](https://user-images.githubusercontent.com/2274141/146690222-67eb44ba-64ff-45f0-8412-72f058d95b96.png)
-
 ```
 fun getName(number, {isFemale, style})
 ```
@@ -47,8 +48,6 @@ isFemale（命名参数）: 是否是女名，默认随机。
 style（命名参数）: （名字样式，一个实字，两个实字，或者一个虚字+一个实字），默认随机。
 
 ## 随机法号
-
-![81)DZV44L%_H@94W@OUK2VH](https://user-images.githubusercontent.com/2274141/146690224-b6b6b9f5-78fb-498d-b5b6-7f0e36dfb394.png)
 
 ```
 fun getDao(number, {isFemale, rarity})
