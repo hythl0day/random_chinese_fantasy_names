@@ -7,7 +7,8 @@
 关于 Javascript 的使用这里不再赘述。
 
 效果截图(命令行测试)
-![image](https://user-images.githubusercontent.com/2274141/146925353-ffe6c271-b86a-454b-a0d7-dc8ba4a729b6.png)
+
+![image](https://user-images.githubusercontent.com/2274141/146952590-ad2593e5-f5d7-4c66-aa7e-8678dcc2c170.png)
 
 ## 河图脚本的安装和使用
 
