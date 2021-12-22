@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getBook, bookKind, bookPrefixes, bookPostfixes } from "../generator/index.js";
-import { numberValues, lengthValues } from './shared.js';
+import { getBook, bookKind, bookPrefixes, bookPostfixes } from "../../random_names/index.js";
+import { numberValues, lengthValues, rarityColors } from '../shared/constants.js';
 
 defineProps({
   
@@ -50,10 +50,10 @@ function generate() {
 </script>
 
 <template>
-  <div class="pt-5">
+  <div class="pt-3">
     <div class="row justify-content-center">
       <div class="col-4 text-end">
-        <div class="btn-group mb-4 dropup">
+        <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
             数量：{{ number }}
@@ -66,7 +66,7 @@ function generate() {
         </div>
       </div>
       <div class="col-4">
-        <div class="btn-group mb-4 dropup">
+        <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
             长度：{{ length ?? '随机' }}
@@ -79,7 +79,7 @@ function generate() {
         </div>
       </div>
       <div class="col-4 text-start">
-        <div class="btn-group mb-4 dropup">
+        <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
             前缀：{{ prefix ?? '随机' }}
@@ -92,7 +92,7 @@ function generate() {
         </div>
       </div>
       <div class="col-4 text-end">
-        <div class="btn-group mb-4 dropup">
+        <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
             种类：{{ kind ?? '随机' }}
@@ -105,7 +105,7 @@ function generate() {
         </div>
       </div>
       <div class="col-4 text-start">
-        <div class="btn-group mb-4 dropup">
+        <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
             后缀：{{ postfix ?? '随机' }}
@@ -120,23 +120,23 @@ function generate() {
     </div>
   </div>
   
-  <div class="pt-5">
-    <button data-mdb-ripple-color="primary" type="button" class="btn btn-info" @click="generate">生成</button>
+  <div class="pt-3">
+    <button data-mdb-ripple-color="primary" type="button" class="btn btn-success fs-6" @click="generate">生成</button>
   </div>
 
-  <div class="pt-5">
-    <div v-for="item of nameList">
-      {{ item }}
+  <div class="pt-3">
+    <div v-for="item of nameList"  >
+      <p :style="{color: rarityColors[item.rarity]}">{{ item.name }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .fixed-width120 {
-    width: 120px !important;
+  width: 120px !important;
 }
 .fixed-width140 {
-    width: 140px !important;
+  width: 140px !important;
 }
 .force-scroll {
   overflow-y: scroll;

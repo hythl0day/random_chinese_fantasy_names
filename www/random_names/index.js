@@ -1,35 +1,36 @@
-import family from '../data/name/family.json';
-import female from '../data/name/female.json';
-import male from '../data/name/male.json';
-import middle from '../data/name/middle.json';
-import dao from '../data/dao/dao.json';
-import daoTitleMale from '../data/dao/title_male.json';
-import daoTitleFemale from '../data/dao/title_female.json';
-import skill from '../data/skill/skill.json';
-import skillPrefix from '../data/skill/prefix.json';
-import skillKind from '../data/skill/kind.json';
-import skillPostfix from '../data/skill/postfix.json';
-import bookPrefix from '../data/book/prefix.json';
-import bookKind from '../data/book/kind.json';
-import bookPostfix from '../data/book/postfix.json';
-import talismanKind from '../data/talisman/kind.json';
+import family from './data/name/family.json';
+import female from './data/name/female.json';
+import male from './data/name/male.json';
+import middle from './data/name/middle.json';
+import dao from './data/dao/dao.json';
+import daoTitleMale from './data/dao/title_male.json';
+import daoTitleFemale from './data/dao/title_female.json';
+import common from './data/common.json';
+import skillPrefix from './data/skill/prefix.json';
+import skillKind from './data/skill/kind.json';
+import skillPostfix from './data/skill/postfix.json';
+import bookPrefix from './data/book/prefix.json';
+import bookKind from './data/book/kind.json';
+import bookPostfix from './data/book/postfix.json';
+import talismanKind from './data/talisman/kind.json';
+import talismanPrefix from './data/talisman/prefix.json';
 
 export { skillPrefix, skillKind, skillPostfix, bookKind };
 
 export const daoTitles = [
   ...new Set([
-    daoTitleMale.uncommon,
-    daoTitleMale.rare,
-    daoTitleMale.epic,
-    daoTitleMale.legendary,
-    daoTitleMale.mythic,
-    daoTitleMale.exotic,
-    daoTitleFemale.uncommon,
-    daoTitleFemale.rare,
-    daoTitleFemale.epic,
-    daoTitleFemale.legendary,
-    daoTitleFemale.mythic,
-    daoTitleFemale.exotic,
+    ...daoTitleMale.uncommon,
+    ...daoTitleMale.rare,
+    ...daoTitleMale.epic,
+    ...daoTitleMale.legendary,
+    ...daoTitleMale.mythic,
+    ...daoTitleMale.exotic,
+    ...daoTitleFemale.uncommon,
+    ...daoTitleFemale.rare,
+    ...daoTitleFemale.epic,
+    ...daoTitleFemale.legendary,
+    ...daoTitleFemale.mythic,
+    ...daoTitleFemale.exotic,
   ]),
 ];
 
@@ -40,9 +41,20 @@ export const bookPrefixes = [
   ...bookPrefix.exotic,
 ];
 
+export const talismanKinds = [
+  ...talismanKind.common,
+  ...talismanKind.uncommon,
+  ...talismanKind.rare,
+  ...talismanKind.epic,
+  ...talismanKind.legendary,
+  ...talismanKind.mythic,
+  ...talismanKind.exotic,
+];
+
 export const bookPostfixes = [...bookPostfix.uncommon, ...bookPostfix.rare];
 
 const _rarityLevels = {
+  // handmade 绿
   common: 1.0, // common 灰
   uncommon: 0.35, // uncommon 白
   rare: 0.15, // rare 蓝
@@ -78,8 +90,7 @@ export function getName(number, isFemale, style, familyName, middleCharacter) {
   for (let i = 0; i < number; ++i) {
     let theFamilyName;
     if (!familyName) {
-      let familyIndex =
-        Math.floor(Math.random() * family.length + 1) % family.length;
+      let familyIndex = Math.floor(Math.random() * family.length);
       theFamilyName = family[familyIndex];
     } else {
       theFamilyName = familyName;
@@ -98,9 +109,7 @@ export function getName(number, isFemale, style, familyName, middleCharacter) {
       if (middleCharacter) {
         name = middleCharacter;
       } else {
-        let nameIndex =
-          Math.floor(Math.random() * namesOfASex.length + 1) %
-          namesOfASex.length;
+        let nameIndex = Math.floor(Math.random() * namesOfASex.length);
         name = namesOfASex[nameIndex];
       }
     } else if (ss == 'double') {
@@ -108,13 +117,10 @@ export function getName(number, isFemale, style, familyName, middleCharacter) {
       if (middleCharacter) {
         theMiddleCharacter = middleCharacter;
       } else {
-        let nameIndex =
-          Math.floor(Math.random() * namesOfASex.length + 1) %
-          namesOfASex.length;
+        let nameIndex = Math.floor(Math.random() * namesOfASex.length);
         theMiddleCharacter = namesOfASex[nameIndex];
       }
-      let nameIndex =
-        Math.floor(Math.random() * namesOfASex.length + 1) % namesOfASex.length;
+      let nameIndex = Math.floor(Math.random() * namesOfASex.length);
       let theLastCharacter = namesOfASex[nameIndex];
       name = `${theMiddleCharacter}${theLastCharacter}`;
     } else {
@@ -122,12 +128,10 @@ export function getName(number, isFemale, style, familyName, middleCharacter) {
       if (middleCharacter) {
         theMiddleCharacter = middleCharacter;
       } else {
-        let nameIndex =
-          Math.floor(Math.random() * middle.length + 1) % middle.length;
+        let nameIndex = Math.floor(Math.random() * middle.length);
         theMiddleCharacter = middle[nameIndex];
       }
-      let nameIndex =
-        Math.floor(Math.random() * namesOfASex.length + 1) % namesOfASex.length;
+      let nameIndex = Math.floor(Math.random() * namesOfASex.length);
       let theLastCharacter = namesOfASex[nameIndex];
       name = `${theMiddleCharacter}${theLastCharacter}`;
     }
@@ -143,10 +147,10 @@ export function getDao(number, isFemale, title, firstCharacter) {
     if (firstCharacter) {
       theFirstCharacter = firstCharacter;
     } else {
-      let nameIndex1 = Math.floor(Math.random() * dao.length + 1) % dao.length;
+      let nameIndex1 = Math.floor(Math.random() * dao.length);
       theFirstCharacter = dao[nameIndex1];
     }
-    let nameIndex2 = Math.floor(Math.random() * dao.length + 1) % dao.length;
+    let nameIndex2 = Math.floor(Math.random() * dao.length);
     let name = `${theFirstCharacter}${dao[nameIndex2]}`;
     let titleGroup =
       isFemale ?? Math.floor(Math.random() * 10) % 2 == 0
@@ -154,27 +158,27 @@ export function getDao(number, isFemale, title, firstCharacter) {
         : daoTitleMale;
     let t = title ?? '';
     if (!title) {
-      let r = _getRarity().rarity;
-      if (r == 'exotic') {
+      let rarity = _getRarity().rarity;
+      if (rarity == 'exotic') {
         t =
           titleGroup.exotic[
             Math.floor(Math.random() * titleGroup.exotic.length)
           ];
-      } else if (r == 'mythic') {
+      } else if (rarity == 'mythic') {
         t =
           titleGroup.mythic[
             Math.floor(Math.random() * titleGroup.mythic.length)
           ];
-      } else if (r == 'legendary') {
+      } else if (rarity == 'legendary') {
         t =
           titleGroup.legendary[
             Math.floor(Math.random() * titleGroup.legendary.length)
           ];
-      } else if (r == 'epic') {
+      } else if (rarity == 'epic') {
         t = titleGroup.epic[Math.floor(Math.random() * titleGroup.epic.length)];
-      } else if (r == 'rare') {
+      } else if (rarity == 'rare') {
         t = titleGroup.rare[Math.floor(Math.random() * titleGroup.rare.length)];
-      } else if (r == 'uncommon') {
+      } else if (rarity == 'uncommon') {
         t =
           titleGroup.uncommon[
             Math.floor(Math.random() * titleGroup.uncommon.length)
@@ -190,27 +194,29 @@ const _kNumberEndSupplement = '式';
 
 function _getSkillName(length, kind, prefix, postfix) {
   let l = length;
+  let rarity = 'handmade';
   if (!l) {
-    let rarity = _getRarity().value;
-    if (rarity < _rarityLevels.rare) {
+    let r = _getRarity();
+    if (r.value < _rarityLevels.rare) {
       l = 3;
-    } else if (rarity < _rarityLevels.uncommon) {
+    } else if (r.value < _rarityLevels.uncommon) {
       l = 2;
     } else {
       l = 1;
     }
+    rarity = r.rarity;
   }
   let name = '';
   let pre = prefix ?? '';
   let post = postfix ?? '';
   let k = kind ?? skillKind[Math.floor(Math.random() * skillKind.length)];
   for (let i = 0; i < l; ++i) {
-    name += skill[Math.floor(Math.random() * skill.length)];
+    name += common[Math.floor(Math.random() * common.length)];
   }
-  if (_getRarity().value < _rarityLevels.epic) {
+  if (Math.random() < _rarityLevels.epic) {
     pre = skillPrefix[Math.floor(Math.random() * skillPrefix.length)];
   }
-  if (_getRarity().value < _rarityLevels.epic) {
+  if (Math.random() < _rarityLevels.epic) {
     post = skillPostfix[Math.floor(Math.random() * skillPostfix.length)];
   }
   if (k.length > 1) {
@@ -218,7 +224,7 @@ function _getSkillName(length, kind, prefix, postfix) {
   } else {
     name = `${pre}${name}${post}${k}`;
   }
-  return name;
+  return { name, rarity };
 }
 
 export function getSkill(number, length, kind, prefix, postfix) {
@@ -233,29 +239,28 @@ export function getSkill(number, length, kind, prefix, postfix) {
 export function getBook(number, length, prefix, kind, postfix) {
   let names = [];
   for (let i = 0; i < number; ++i) {
-    let name = '';
+    let rarity = 'handmade';
     let skillname = _getSkillName(kind, length);
     let pre = prefix ?? '';
     let k = kind ?? '';
     let post = postfix ?? '';
     if (!prefix) {
-      let r = _getRarity().rarity;
-      if (r == 'exotic') {
+      if (skillname.rarity == 'exotic') {
         pre =
           bookPrefix.exotic[
             Math.floor(Math.random() * bookPrefix.exotic.length)
           ];
-      } else if (r == 'mythic') {
+      } else if (skillname.rarity == 'mythic') {
         pre =
           bookPrefix.mythic[
             Math.floor(Math.random() * bookPrefix.mythic.length)
           ];
-      } else if (r == 'legendary') {
+      } else if (skillname.rarity == 'legendary') {
         pre =
           bookPrefix.legendary[
             Math.floor(Math.random() * bookPrefix.legendary.length)
           ];
-      } else if (r == 'epic') {
+      } else if (skillname.rarity == 'epic') {
         pre =
           bookPrefix.epic[Math.floor(Math.random() * bookPrefix.epic.length)];
       }
@@ -268,11 +273,15 @@ export function getBook(number, length, prefix, kind, postfix) {
         let r1 = Math.random();
         let r2 = Math.random();
         if (r1 < _rarityLevels.rare && r2 < _rarityLevels.rare) {
+          rarity = 'uncommon';
           post =
+            '（' +
             bookPostfix.rare[
               Math.floor(Math.random() * bookPostfix.rare.length)
-            ];
+            ] +
+            '）';
         } else if (r1 < _rarityLevels.uncommon && r2 < _rarityLevels.uncommon) {
+          rarity = 'common';
           post =
             '（' +
             bookPostfix.uncommon[
@@ -281,8 +290,13 @@ export function getBook(number, length, prefix, kind, postfix) {
             '）';
         }
       }
+    } else {
+      rarity = 'rare';
     }
-    names.push(`《${skillname}${pre}${k}${post}》`);
+    names.push({
+      name: `《${skillname.name}${pre}${k}${post}》`,
+      rarity: skillname.rarity,
+    });
   }
   return names;
 }
@@ -290,12 +304,60 @@ export function getBook(number, length, prefix, kind, postfix) {
 export function getTalisman(number, kind) {
   let names = [];
   for (let i = 0; i < number; ++i) {
-    let name = skill[Math.floor(Math.random() * skill.length)];
+    let name = common[Math.floor(Math.random() * common.length)];
     let k = kind;
+    let rarity = 'handmade';
+    let prefix = '';
     if (!k) {
-      k = talismanKind[Math.floor(Math.random() * talismanKind.length)];
+      rarity = _getRarity().rarity;
+      if (rarity == 'exotic') {
+        prefix =
+          talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
+        k =
+          talismanKind.exotic[
+            Math.floor(Math.random() * talismanKind.exotic.length)
+          ];
+      } else if (rarity == 'mythic') {
+        prefix =
+          talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
+        k =
+          talismanKind.mythic[
+            Math.floor(Math.random() * talismanKind.mythic.length)
+          ];
+      } else if (rarity == 'legendary') {
+        prefix =
+          talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
+        k =
+          talismanKind.legendary[
+            Math.floor(Math.random() * talismanKind.legendary.length)
+          ];
+      } else if (rarity == 'epic') {
+        prefix =
+          talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
+        k =
+          talismanKind.epic[
+            Math.floor(Math.random() * talismanKind.epic.length)
+          ];
+      } else if (rarity == 'rare') {
+        prefix =
+          talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
+        k =
+          talismanKind.rare[
+            Math.floor(Math.random() * talismanKind.rare.length)
+          ];
+      } else if (rarity == 'uncommon') {
+        k =
+          talismanKind.uncommon[
+            Math.floor(Math.random() * talismanKind.uncommon.length)
+          ];
+      } else if (rarity == 'common') {
+        k =
+          talismanKind.common[
+            Math.floor(Math.random() * talismanKind.common.length)
+          ];
+      }
     }
-    names.push(`《${name}${k}》`);
+    names.push({ name: `${name}${prefix}${k}`, rarity: rarity });
   }
   return names;
 }

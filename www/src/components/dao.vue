@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getName } from "../generator/index.js";
-import { numberValues, sexValues } from './shared.js';
+import { getDao, daoTitles } from "../../random_names/index.js";
+import { numberValues, sexValues } from '../shared/constants.js';
 
 defineProps({
   
@@ -11,27 +11,20 @@ const numberOptions = ref(numberValues);
 
 const sexOptions = ref(sexValues);
 
-const styleOptions = ref([
-  {text: '随机', value: null},
-  {text: '一个实字', value: 'single'},
-  {text: '两个实字', value: 'double'},
-  {text: '虚字+实字', value: 'combine'},
-]);
+const titleOptions = ref(daoTitles);
 
 const nameList = ref([]);
 const number = ref(10);
 const sex = ref(sexValues[0])
-const nameStyle = ref({})
-const familyName = ref('')
-const middleCharacter = ref('')
+const title = ref('')
+const firstCharacter = ref('')
 
 function generate() {
-  let list = getName(
+  let list = getDao(
     number.value,
     sex.value.value,
-    nameStyle.value.value,
-    familyName.value,
-    middleCharacter.value,
+    title.value,
+    firstCharacter.value,
   )
   nameList.value.splice(0, nameList.value.length)
   for (let name of list) {
@@ -42,10 +35,10 @@ function generate() {
 </script>
 
 <template>
-  <div class="pt-5">
+  <div class="pt-3">
     <div class="row justify-content-center">
       <div class="col-4 text-end">
-        <div class="btn-group mb-4 dropup">
+        <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
             数量：{{ number }}
@@ -58,7 +51,7 @@ function generate() {
         </div>
       </div>
       <div class="col-4">
-        <div class="btn-group mb-4 dropup">
+        <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
             性别：{{ sex?.text ?? '随机' }}
@@ -71,51 +64,47 @@ function generate() {
         </div>
       </div>
       <div class="col-4 text-start">
-        <div class="btn-group mb-4 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width140 text-start" type="button" data-mdb-toggle="dropdown"
+        <div class="btn-group mb-3 dropup">
+          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
-            样式：{{ nameStyle?.text ?? '随机' }}
+            称号：{{ title == '' ? '随机' : title }}
           </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li v-for="item of styleOptions">
-              <a class="dropdown-item" @click="nameStyle = item">{{ item.text }}</a>
+          <ul class="dropdown-menu dropdown-menu-end force-scroll">
+            <li v-for="item of titleOptions">
+              <a class="dropdown-item" @click="title = item == '随机' ? '' : item">{{ item }}</a>
             </li>
           </ul>
         </div>
       </div>
-      <div class="col-3 text-end">
+      <div class="col-4">
         <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">姓</span>
-          <input type="text" class="form-control" aria-label="Username"
-            aria-describedby="basic-addon1" v-model="familyName" />
-        </div>
-      </div>
-      <div class="col-3 text-start">
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">辈分</span>
-          <input type="text" class="form-control" aria-label="Username"
-            aria-describedby="basic-addon1" v-model="middleCharacter" />
+          <span class="input-group-text">辈分</span>
+          <input type="text" class="form-control" v-model="firstCharacter" />
         </div>
       </div>
     </div>
   </div>
   
-  <div class="pt-5">
-    <button data-mdb-ripple-color="primary" type="button" class="btn btn-info" @click="generate">生成</button>
+  <div class="pt-3">
+    <button data-mdb-ripple-color="primary" type="button" class="btn btn-success fs-6" @click="generate">生成</button>
   </div>
 
-  <div class="pt-5">
+  <div class="pt-3">
     <div v-for="item of nameList">
-      {{ item }}
+      <p style="color: #a1bec1">{{ item }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .fixed-width120 {
-    width: 120px !important;
+  width: 120px !important;
 }
 .fixed-width140 {
-    width: 140px !important;
+  width: 140px !important;
+}
+.force-scroll {
+  overflow-y: scroll;
+  height: 200px;
 }
 </style>
