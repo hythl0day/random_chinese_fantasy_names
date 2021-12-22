@@ -1,8 +1,8 @@
 {
   "name": "random_chinese_fantasy_names",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A Generator for random Chinese Fantasy Name to be used in internet novels.",
-  "main": "index.js",
+  "main": "src/index.js",
   "type": "module",
   "scripts": {
     "build": "npx babel src --out-dir commonjs",
@@ -32,5 +32,6 @@
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5"
-  }
+  },
+  "dependencies": {}
 }

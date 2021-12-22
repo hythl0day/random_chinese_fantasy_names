@@ -1,0 +1,15 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 error pnpm": {
+    "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+    "hint": "Available dependencies: @babel/cli, @babel/core, @babel/preset-env",
+    "err": {
+      "name": "pnpm",
+      "message": "Cannot remove 'babel': no such dependency found",
+      "code": "ERR_PNPM_CANNOT_REMOVE_MISSING_DEPS",
+      "stack": "pnpm: Cannot remove 'babel': no such dependency found\n    at Object.handler (C:\\Users\\aleph42\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:119581:15)\n    at async C:\\Users\\aleph42\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:183629:21\n    at async run (C:\\Users\\aleph42\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:183603:34)\n    at async runPnpm (C:\\Users\\aleph42\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:183815:5)\n    at async C:\\Users\\aleph42\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:183807:7"
+    }
+  }
+}

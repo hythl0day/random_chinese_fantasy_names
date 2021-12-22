@@ -1,153 +1,107 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
-  value: true,
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-Object.defineProperty(exports, 'bookKind', {
+Object.defineProperty(exports, "bookKind", {
   enumerable: true,
   get: function get() {
-    return _kind2['default'];
-  },
+    return _kind2["default"];
+  }
 });
-exports.daoTitles = exports.bookPrefixes = exports.bookPostfixes = void 0;
+exports.bookPrefixes = exports.bookPostfixes = void 0;
+Object.defineProperty(exports, "clanKind", {
+  enumerable: true,
+  get: function get() {
+    return _kind4["default"];
+  }
+});
+exports.daoTitles = void 0;
 exports.getBook = getBook;
+exports.getClan = getClan;
 exports.getDao = getDao;
 exports.getName = getName;
 exports.getSkill = getSkill;
 exports.getTalisman = getTalisman;
-Object.defineProperty(exports, 'skillKind', {
+Object.defineProperty(exports, "skillKind", {
   enumerable: true,
   get: function get() {
-    return _kind['default'];
-  },
-});
-Object.defineProperty(exports, 'skillPostfix', {
-  enumerable: true,
-  get: function get() {
-    return _postfix['default'];
-  },
-});
-Object.defineProperty(exports, 'skillPrefix', {
-  enumerable: true,
-  get: function get() {
-    return _prefix['default'];
-  },
-});
-
-var _family = _interopRequireDefault(require('../data/name/family.json'));
-
-var _female = _interopRequireDefault(require('../data/name/female.json'));
-
-var _male = _interopRequireDefault(require('../data/name/male.json'));
-
-var _middle = _interopRequireDefault(require('../data/name/middle.json'));
-
-var _dao = _interopRequireDefault(require('../data/dao/dao.json'));
-
-var _title_male = _interopRequireDefault(
-  require('../data/dao/title_male.json')
-);
-
-var _title_female = _interopRequireDefault(
-  require('../data/dao/title_female.json')
-);
-
-var _skill = _interopRequireDefault(require('../data/common.json'));
-
-var _prefix = _interopRequireDefault(require('../data/skill/prefix.json'));
-
-var _kind = _interopRequireDefault(require('../data/skill/kind.json'));
-
-var _postfix = _interopRequireDefault(require('../data/skill/numfix.json'));
-
-var _prefix2 = _interopRequireDefault(require('../data/book/prefix.json'));
-
-var _kind2 = _interopRequireDefault(require('../data/book/kind.json'));
-
-var _postfix2 = _interopRequireDefault(require('../data/book/postfix.json'));
-
-var _kind3 = _interopRequireDefault(require('../data/talisman/kind.json'));
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-function _toConsumableArray(arr) {
-  return (
-    _arrayWithoutHoles(arr) ||
-    _iterableToArray(arr) ||
-    _unsupportedIterableToArray(arr) ||
-    _nonIterableSpread()
-  );
-}
-
-function _nonIterableSpread() {
-  throw new TypeError(
-    'Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.'
-  );
-}
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === 'string') return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === 'Object' && o.constructor) n = o.constructor.name;
-  if (n === 'Map' || n === 'Set') return Array.from(o);
-  if (n === 'Arguments' || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-    return _arrayLikeToArray(o, minLen);
-}
-
-function _iterableToArray(iter) {
-  if (
-    (typeof Symbol !== 'undefined' && iter[Symbol.iterator] != null) ||
-    iter['@@iterator'] != null
-  )
-    return Array.from(iter);
-}
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-}
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
+    return _kind["default"];
   }
-  return arr2;
-}
+});
+Object.defineProperty(exports, "skillNumfix", {
+  enumerable: true,
+  get: function get() {
+    return _numfix["default"];
+  }
+});
+Object.defineProperty(exports, "skillPrefix", {
+  enumerable: true,
+  get: function get() {
+    return _prefix["default"];
+  }
+});
+exports.talismanKinds = void 0;
 
-var daoTitles = _toConsumableArray(
-  new Set([
-    _title_male['default'].uncommon,
-    _title_male['default'].rare,
-    _title_male['default'].epic,
-    _title_male['default'].legendary,
-    _title_male['default'].mythic,
-    _title_male['default'].exotic,
-    _title_female['default'].uncommon,
-    _title_female['default'].rare,
-    _title_female['default'].epic,
-    _title_female['default'].legendary,
-    _title_female['default'].mythic,
-    _title_female['default'].exotic,
-  ])
-);
+var _family = _interopRequireDefault(require("./data/name/family.json"));
+
+var _female = _interopRequireDefault(require("./data/name/female.json"));
+
+var _male = _interopRequireDefault(require("./data/name/male.json"));
+
+var _middle = _interopRequireDefault(require("./data/name/middle.json"));
+
+var _dao = _interopRequireDefault(require("./data/dao/dao.json"));
+
+var _title_male = _interopRequireDefault(require("./data/dao/title_male.json"));
+
+var _title_female = _interopRequireDefault(require("./data/dao/title_female.json"));
+
+var _common = _interopRequireDefault(require("./data/common.json"));
+
+var _prefix = _interopRequireDefault(require("./data/skill/prefix.json"));
+
+var _kind = _interopRequireDefault(require("./data/skill/kind.json"));
+
+var _numfix = _interopRequireDefault(require("./data/skill/numfix.json"));
+
+var _prefix2 = _interopRequireDefault(require("./data/book/prefix.json"));
+
+var _kind2 = _interopRequireDefault(require("./data/book/kind.json"));
+
+var _postfix = _interopRequireDefault(require("./data/book/postfix.json"));
+
+var _kind3 = _interopRequireDefault(require("./data/talisman/kind.json"));
+
+var _prefix3 = _interopRequireDefault(require("./data/talisman/prefix.json"));
+
+var _kind4 = _interopRequireDefault(require("./data/clan/kind.json"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var daoTitles = _toConsumableArray(new Set([].concat(_toConsumableArray(_title_male["default"].uncommon), _toConsumableArray(_title_male["default"].rare), _toConsumableArray(_title_male["default"].epic), _toConsumableArray(_title_male["default"].legendary), _toConsumableArray(_title_male["default"].mythic), _toConsumableArray(_title_male["default"].exotic), _toConsumableArray(_title_female["default"].uncommon), _toConsumableArray(_title_female["default"].rare), _toConsumableArray(_title_female["default"].epic), _toConsumableArray(_title_female["default"].legendary), _toConsumableArray(_title_female["default"].mythic), _toConsumableArray(_title_female["default"].exotic))));
 
 exports.daoTitles = daoTitles;
-var bookPrefixes = [].concat(
-  _toConsumableArray(_prefix2['default'].epic),
-  _toConsumableArray(_prefix2['default'].legendary),
-  _toConsumableArray(_prefix2['default'].mythic),
-  _toConsumableArray(_prefix2['default'].exotic)
-);
+var bookPrefixes = [].concat(_toConsumableArray(_prefix2["default"].epic), _toConsumableArray(_prefix2["default"].legendary), _toConsumableArray(_prefix2["default"].mythic), _toConsumableArray(_prefix2["default"].exotic));
 exports.bookPrefixes = bookPrefixes;
-var bookPostfixes = [].concat(
-  _toConsumableArray(_postfix2['default'].uncommon),
-  _toConsumableArray(_postfix2['default'].rare)
-);
+var talismanKinds = [].concat(_toConsumableArray(_kind3["default"].common), _toConsumableArray(_kind3["default"].uncommon), _toConsumableArray(_kind3["default"].rare), _toConsumableArray(_kind3["default"].epic), _toConsumableArray(_kind3["default"].legendary), _toConsumableArray(_kind3["default"].mythic), _toConsumableArray(_kind3["default"].exotic));
+exports.talismanKinds = talismanKinds;
+var bookPostfixes = [].concat(_toConsumableArray(_postfix["default"].uncommon), _toConsumableArray(_postfix["default"].rare));
 exports.bookPostfixes = bookPostfixes;
 var _rarityLevels = {
+  // handmade 绿
   common: 1.0,
   // common 灰
   uncommon: 0.35,
@@ -160,7 +114,8 @@ var _rarityLevels = {
   // legendary 橙
   mythic: 0.01,
   // mythic 金
-  exotic: 0.005, // exotic 虹
+  exotic: 0.005 // exotic 虹
+
 };
 
 function _getRarity() {
@@ -185,7 +140,7 @@ function _getRarity() {
 
   return {
     rarity: rarity,
-    value: value,
+    value: value
   };
 }
 
@@ -196,20 +151,14 @@ function getName(number, isFemale, style, familyName, middleCharacter) {
     var theFamilyName = void 0;
 
     if (!familyName) {
-      var familyIndex =
-        Math.floor(Math.random() * _family['default'].length + 1) %
-        _family['default'].length;
-
-      theFamilyName = _family['default'][familyIndex];
+      var familyIndex = Math.floor(Math.random() * _family["default"].length);
+      theFamilyName = _family["default"][familyIndex];
     } else {
       theFamilyName = familyName;
     }
 
-    var f =
-      isFemale !== null && isFemale !== void 0
-        ? isFemale
-        : Math.floor(Math.random() * 10) % 2 == 0;
-    var namesOfASex = f ? _female['default'] : _male['default'];
+    var f = isFemale !== null && isFemale !== void 0 ? isFemale : Math.floor(Math.random() * 10) % 2 == 0;
+    var namesOfASex = f ? _female["default"] : _male["default"];
     var r = Math.random();
     var ss = void 0;
 
@@ -225,9 +174,7 @@ function getName(number, isFemale, style, familyName, middleCharacter) {
       if (middleCharacter) {
         name = middleCharacter;
       } else {
-        var nameIndex =
-          Math.floor(Math.random() * namesOfASex.length + 1) %
-          namesOfASex.length;
+        var nameIndex = Math.floor(Math.random() * namesOfASex.length);
         name = namesOfASex[nameIndex];
       }
     } else if (ss == 'double') {
@@ -236,39 +183,33 @@ function getName(number, isFemale, style, familyName, middleCharacter) {
       if (middleCharacter) {
         theMiddleCharacter = middleCharacter;
       } else {
-        var _nameIndex2 =
-          Math.floor(Math.random() * namesOfASex.length + 1) %
-          namesOfASex.length;
+        var _nameIndex2 = Math.floor(Math.random() * namesOfASex.length);
 
         theMiddleCharacter = namesOfASex[_nameIndex2];
       }
 
-      var _nameIndex =
-        Math.floor(Math.random() * namesOfASex.length + 1) % namesOfASex.length;
+      var _nameIndex = Math.floor(Math.random() * namesOfASex.length);
 
       var theLastCharacter = namesOfASex[_nameIndex];
-      name = ''.concat(theMiddleCharacter).concat(theLastCharacter);
+      name = "".concat(theMiddleCharacter).concat(theLastCharacter);
     } else {
       var _theMiddleCharacter = void 0;
 
       if (middleCharacter) {
         _theMiddleCharacter = middleCharacter;
       } else {
-        var _nameIndex4 =
-          Math.floor(Math.random() * _middle['default'].length + 1) %
-          _middle['default'].length;
+        var _nameIndex4 = Math.floor(Math.random() * _middle["default"].length);
 
-        _theMiddleCharacter = _middle['default'][_nameIndex4];
+        _theMiddleCharacter = _middle["default"][_nameIndex4];
       }
 
-      var _nameIndex3 =
-        Math.floor(Math.random() * namesOfASex.length + 1) % namesOfASex.length;
+      var _nameIndex3 = Math.floor(Math.random() * namesOfASex.length);
 
       var _theLastCharacter = namesOfASex[_nameIndex3];
-      name = ''.concat(_theMiddleCharacter).concat(_theLastCharacter);
+      name = "".concat(_theMiddleCharacter).concat(_theLastCharacter);
     }
 
-    names.push(''.concat(theFamilyName).concat(name));
+    names.push("".concat(theFamilyName).concat(name));
   }
 
   return names;
@@ -283,123 +224,102 @@ function getDao(number, isFemale, title, firstCharacter) {
     if (firstCharacter) {
       theFirstCharacter = firstCharacter;
     } else {
-      var nameIndex1 =
-        Math.floor(Math.random() * _dao['default'].length + 1) %
-        _dao['default'].length;
-
-      theFirstCharacter = _dao['default'][nameIndex1];
+      var nameIndex1 = Math.floor(Math.random() * _dao["default"].length);
+      theFirstCharacter = _dao["default"][nameIndex1];
     }
 
-    var nameIndex2 =
-      Math.floor(Math.random() * _dao['default'].length + 1) %
-      _dao['default'].length;
-
-    var name = ''.concat(theFirstCharacter).concat(_dao['default'][nameIndex2]);
-    var titleGroup = (
-      isFemale !== null && isFemale !== void 0
-        ? isFemale
-        : Math.floor(Math.random() * 10) % 2 == 0
-    )
-      ? _title_female['default']
-      : _title_male['default'];
+    var nameIndex2 = Math.floor(Math.random() * _dao["default"].length);
+    var name = "".concat(theFirstCharacter).concat(_dao["default"][nameIndex2]);
+    var titleGroup = (isFemale !== null && isFemale !== void 0 ? isFemale : Math.floor(Math.random() * 10) % 2 == 0) ? _title_female["default"] : _title_male["default"];
     var t = title !== null && title !== void 0 ? title : '';
+    var rarity = 'common';
 
     if (!title) {
-      var r = _getRarity().rarity;
+      rarity = _getRarity().rarity;
 
-      if (r == 'exotic') {
-        t =
-          titleGroup.exotic[
-            Math.floor(Math.random() * titleGroup.exotic.length)
-          ];
-      } else if (r == 'mythic') {
-        t =
-          titleGroup.mythic[
-            Math.floor(Math.random() * titleGroup.mythic.length)
-          ];
-      } else if (r == 'legendary') {
-        t =
-          titleGroup.legendary[
-            Math.floor(Math.random() * titleGroup.legendary.length)
-          ];
-      } else if (r == 'epic') {
+      if (rarity == 'exotic') {
+        t = titleGroup.exotic[Math.floor(Math.random() * titleGroup.exotic.length)];
+      } else if (rarity == 'mythic') {
+        t = titleGroup.mythic[Math.floor(Math.random() * titleGroup.mythic.length)];
+      } else if (rarity == 'legendary') {
+        t = titleGroup.legendary[Math.floor(Math.random() * titleGroup.legendary.length)];
+      } else if (rarity == 'epic') {
         t = titleGroup.epic[Math.floor(Math.random() * titleGroup.epic.length)];
-      } else if (r == 'rare') {
+      } else if (rarity == 'rare') {
         t = titleGroup.rare[Math.floor(Math.random() * titleGroup.rare.length)];
-      } else if (r == 'uncommon') {
-        t =
-          titleGroup.uncommon[
-            Math.floor(Math.random() * titleGroup.uncommon.length)
-          ];
+      } else if (rarity == 'uncommon') {
+        t = titleGroup.uncommon[Math.floor(Math.random() * titleGroup.uncommon.length)];
       }
     }
 
-    names.push(''.concat(name).concat(t));
+    names.push({
+      name: "".concat(name).concat(t),
+      rarity: rarity
+    });
   }
 
   return names;
 }
 
+var _kNumberBeginSupplement = '路';
 var _kNumberEndSupplement = '式';
 
-function _getSkillName(length, kind, prefix, postfix) {
+function _getSkillName(length, kind, prefix, numfix) {
   var l = length;
+  var rarity = 'common';
 
   if (!l) {
-    var rarity = _getRarity().value;
+    var r = _getRarity();
 
-    if (rarity < _rarityLevels.rare) {
+    if (r.value < _rarityLevels.rare) {
       l = 3;
-    } else if (rarity < _rarityLevels.uncommon) {
+    } else if (r.value < _rarityLevels.uncommon) {
       l = 2;
     } else {
       l = 1;
     }
+
+    rarity = r.rarity;
   }
 
   var name = '';
   var pre = prefix !== null && prefix !== void 0 ? prefix : '';
-  var post = postfix !== null && postfix !== void 0 ? postfix : '';
-  var k =
-    kind !== null && kind !== void 0
-      ? kind
-      : _kind['default'][Math.floor(Math.random() * _kind['default'].length)];
+  var n = numfix !== null && numfix !== void 0 ? numfix : '';
+  var k = kind !== null && kind !== void 0 ? kind : _kind["default"][Math.floor(Math.random() * _kind["default"].length)];
 
   for (var i = 0; i < l; ++i) {
-    name +=
-      _skill['default'][Math.floor(Math.random() * _skill['default'].length)];
+    name += _common["default"][Math.floor(Math.random() * _common["default"].length)];
   }
 
-  if (_getRarity().value < _rarityLevels.epic) {
-    pre =
-      _prefix['default'][Math.floor(Math.random() * _prefix['default'].length)];
+  if (Math.random() < _rarityLevels.epic) {
+    pre = _prefix["default"][Math.floor(Math.random() * _prefix["default"].length)];
   }
 
-  if (_getRarity().value < _rarityLevels.epic) {
-    post =
-      _postfix['default'][
-        Math.floor(Math.random() * _postfix['default'].length)
-      ];
+  if (Math.random() < _rarityLevels.epic) {
+    n = _numfix["default"][Math.floor(Math.random() * _numfix["default"].length)];
   }
 
-  if (k.length > 1) {
-    name = ''
-      .concat(pre)
-      .concat(name)
-      .concat(k)
-      .concat(post != '' ? post + _kNumberEndSupplement : '');
+  if (Math.random() < 0.5) {
+    name = "".concat(n != '' ? n + _kNumberBeginSupplement : '').concat(pre).concat(name).concat(k);
   } else {
-    name = ''.concat(pre).concat(name).concat(post).concat(k);
+    if (k.length > 1) {
+      name = "".concat(pre).concat(name).concat(k).concat(n != '' ? n + _kNumberEndSupplement : '');
+    } else {
+      name = "".concat(pre).concat(name).concat(n).concat(k);
+    }
   }
 
-  return name;
+  return {
+    name: name,
+    rarity: rarity
+  };
 }
 
-function getSkill(number, length, kind, prefix, postfix) {
+function getSkill(number, length, kind, prefix, numfix) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = _getSkillName(length, kind, prefix, postfix);
+    var name = _getSkillName(length, kind, prefix, numfix);
 
     names.push(name);
   }
@@ -411,43 +331,28 @@ function getBook(number, length, prefix, kind, postfix) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = '';
+    var rarity = 'common';
 
-    var skillname = _getSkillName(kind, length);
+    var skillname = _getSkillName(length);
 
     var pre = prefix !== null && prefix !== void 0 ? prefix : '';
     var k = kind !== null && kind !== void 0 ? kind : '';
     var post = postfix !== null && postfix !== void 0 ? postfix : '';
 
     if (!prefix) {
-      var r = _getRarity().rarity;
-
-      if (r == 'exotic') {
-        pre =
-          _prefix2['default'].exotic[
-            Math.floor(Math.random() * _prefix2['default'].exotic.length)
-          ];
-      } else if (r == 'mythic') {
-        pre =
-          _prefix2['default'].mythic[
-            Math.floor(Math.random() * _prefix2['default'].mythic.length)
-          ];
-      } else if (r == 'legendary') {
-        pre =
-          _prefix2['default'].legendary[
-            Math.floor(Math.random() * _prefix2['default'].legendary.length)
-          ];
-      } else if (r == 'epic') {
-        pre =
-          _prefix2['default'].epic[
-            Math.floor(Math.random() * _prefix2['default'].epic.length)
-          ];
+      if (skillname.rarity == 'exotic') {
+        pre = _prefix2["default"].exotic[Math.floor(Math.random() * _prefix2["default"].exotic.length)];
+      } else if (skillname.rarity == 'mythic') {
+        pre = _prefix2["default"].mythic[Math.floor(Math.random() * _prefix2["default"].mythic.length)];
+      } else if (skillname.rarity == 'legendary') {
+        pre = _prefix2["default"].legendary[Math.floor(Math.random() * _prefix2["default"].legendary.length)];
+      } else if (skillname.rarity == 'epic') {
+        pre = _prefix2["default"].epic[Math.floor(Math.random() * _prefix2["default"].epic.length)];
       }
     }
 
     if (pre && !kind) {
-      k =
-        _kind2['default'][Math.floor(Math.random() * _kind2['default'].length)];
+      k = _kind2["default"][Math.floor(Math.random() * _kind2["default"].length)];
     }
 
     if (!prefix && !kind) {
@@ -456,24 +361,21 @@ function getBook(number, length, prefix, kind, postfix) {
         var r2 = Math.random();
 
         if (r1 < _rarityLevels.rare && r2 < _rarityLevels.rare) {
-          post =
-            _postfix2['default'].rare[
-              Math.floor(Math.random() * _postfix2['default'].rare.length)
-            ];
+          rarity = 'uncommon';
+          post = '（' + _postfix["default"].rare[Math.floor(Math.random() * _postfix["default"].rare.length)] + '）';
         } else if (r1 < _rarityLevels.uncommon && r2 < _rarityLevels.uncommon) {
-          post =
-            '（' +
-            _postfix2['default'].uncommon[
-              Math.floor(Math.random() * _postfix2['default'].uncommon.length)
-            ] +
-            '）';
+          rarity = 'common';
+          post = '（' + _postfix["default"].uncommon[Math.floor(Math.random() * _postfix["default"].uncommon.length)] + '）';
         }
       }
+    } else {
+      rarity = 'rare';
     }
 
-    names.push(
-      '\u300A'.concat(skillname).concat(pre).concat(k).concat(post, '\u300B')
-    );
+    names.push({
+      name: "\u300A".concat(skillname.name).concat(pre).concat(k).concat(post, "\u300B"),
+      rarity: skillname.rarity
+    });
   }
 
   return names;
@@ -483,17 +385,59 @@ function getTalisman(number, kind) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name =
-      _skill['default'][Math.floor(Math.random() * _skill['default'].length)];
+    var name = _common["default"][Math.floor(Math.random() * _common["default"].length)];
+
+    var k = kind;
+    var rarity = 'common';
+    var prefix = '';
+
+    if (!k) {
+      rarity = _getRarity().rarity;
+
+      if (rarity == 'exotic') {
+        prefix = _prefix3["default"][Math.floor(Math.random() * _prefix3["default"].length)];
+        k = _kind3["default"].exotic[Math.floor(Math.random() * _kind3["default"].exotic.length)];
+      } else if (rarity == 'mythic') {
+        prefix = _prefix3["default"][Math.floor(Math.random() * _prefix3["default"].length)];
+        k = _kind3["default"].mythic[Math.floor(Math.random() * _kind3["default"].mythic.length)];
+      } else if (rarity == 'legendary') {
+        prefix = _prefix3["default"][Math.floor(Math.random() * _prefix3["default"].length)];
+        k = _kind3["default"].legendary[Math.floor(Math.random() * _kind3["default"].legendary.length)];
+      } else if (rarity == 'epic') {
+        prefix = _prefix3["default"][Math.floor(Math.random() * _prefix3["default"].length)];
+        k = _kind3["default"].epic[Math.floor(Math.random() * _kind3["default"].epic.length)];
+      } else if (rarity == 'rare') {
+        prefix = _prefix3["default"][Math.floor(Math.random() * _prefix3["default"].length)];
+        k = _kind3["default"].rare[Math.floor(Math.random() * _kind3["default"].rare.length)];
+      } else if (rarity == 'uncommon') {
+        k = _kind3["default"].uncommon[Math.floor(Math.random() * _kind3["default"].uncommon.length)];
+      } else if (rarity == 'common') {
+        k = _kind3["default"].common[Math.floor(Math.random() * _kind3["default"].common.length)];
+      }
+    }
+
+    names.push({
+      name: "".concat(name).concat(prefix).concat(k),
+      rarity: rarity
+    });
+  }
+
+  return names;
+}
+
+function getClan(number, kind) {
+  var names = [];
+
+  for (var i = 0; i < number; ++i) {
+    var name = _common["default"][Math.floor(Math.random() * _common["default"].length)];
 
     var k = kind;
 
     if (!k) {
-      k =
-        _kind3['default'][Math.floor(Math.random() * _kind3['default'].length)];
+      k = _kind4["default"][Math.floor(Math.random() * _kind4["default"].length)];
     }
 
-    names.push('\u300A'.concat(name).concat(k, '\u300B'));
+    names.push("".concat(name).concat(k));
   }
 
   return names;
