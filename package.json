@@ -1,6 +1,6 @@
 {
   "name": "random_chinese_fantasy_names",
-  "version": "0.1.1",
+  "version": "0.1.6",
   "description": "A Generator for random Chinese Fantasy Name to be used in internet novels.",
   "main": "src/index.js",
   "type": "module",

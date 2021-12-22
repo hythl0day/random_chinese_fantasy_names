@@ -3,11 +3,94 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+Object.defineProperty(exports, "bookKind", {
+  enumerable: true,
+  get: function get() {
+    return _kind2["default"];
+  }
+});
+Object.defineProperty(exports, "bookPostfix", {
+  enumerable: true,
+  get: function get() {
+    return _postfix2["default"];
+  }
+});
+Object.defineProperty(exports, "bookPrefix", {
+  enumerable: true,
+  get: function get() {
+    return _prefix2["default"];
+  }
+});
+Object.defineProperty(exports, "dao", {
+  enumerable: true,
+  get: function get() {
+    return _dao["default"];
+  }
+});
+Object.defineProperty(exports, "daoTitleFemale", {
+  enumerable: true,
+  get: function get() {
+    return _title_female["default"];
+  }
+});
+Object.defineProperty(exports, "daoTitleMale", {
+  enumerable: true,
+  get: function get() {
+    return _title_male["default"];
+  }
+});
+Object.defineProperty(exports, "family", {
+  enumerable: true,
+  get: function get() {
+    return _family["default"];
+  }
+});
+Object.defineProperty(exports, "female", {
+  enumerable: true,
+  get: function get() {
+    return _female["default"];
+  }
+});
 exports.getBook = getBook;
 exports.getDao = getDao;
 exports.getName = getName;
 exports.getSkill = getSkill;
+Object.defineProperty(exports, "male", {
+  enumerable: true,
+  get: function get() {
+    return _male["default"];
+  }
+});
+Object.defineProperty(exports, "middle", {
+  enumerable: true,
+  get: function get() {
+    return _middle["default"];
+  }
+});
+Object.defineProperty(exports, "skill", {
+  enumerable: true,
+  get: function get() {
+    return _skill["default"];
+  }
+});
+Object.defineProperty(exports, "skillKind", {
+  enumerable: true,
+  get: function get() {
+    return _kind["default"];
+  }
+});
+Object.defineProperty(exports, "skillPostfix", {
+  enumerable: true,
+  get: function get() {
+    return _postfix["default"];
+  }
+});
+Object.defineProperty(exports, "skillPrefix", {
+  enumerable: true,
+  get: function get() {
+    return _prefix["default"];
+  }
+});
 
 var _family = _interopRequireDefault(require("../data/name/family.json"));
 
@@ -39,13 +122,6 @@ var _postfix2 = _interopRequireDefault(require("../data/book/postfix.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var _default = {
-  getName: getName,
-  getDao: getDao,
-  getSkill: getSkill,
-  getBook: getBook
-};
-exports["default"] = _default;
 var _rarityLevels = {
   common: 1.0,
   // common 灰
@@ -178,7 +254,7 @@ function getDao(number, isFemale, title, firstCharacter) {
     var nameIndex2 = Math.floor(Math.random() * _dao["default"].length + 1) % _dao["default"].length;
 
     var name = "".concat(theFirstCharacter).concat(_dao["default"][nameIndex2]);
-    var titleGroup = (isFemale !== null && isFemale !== void 0 ? isFemale : Math.floor(Math.random() * 10) % 2 == 0) ? _title_male["default"] : _title_female["default"];
+    var titleGroup = (isFemale !== null && isFemale !== void 0 ? isFemale : Math.floor(Math.random() * 10) % 2 == 0) ? _title_female["default"] : _title_male["default"];
     var t = title !== null && title !== void 0 ? title : '';
 
     if (!title) {
@@ -207,7 +283,7 @@ function getDao(number, isFemale, title, firstCharacter) {
 
 var _kNumberEndSupplement = '式';
 
-function _getSkillName(kind, length) {
+function _getSkillName(length, kind, prefix, postfix) {
   var l = length;
 
   if (!l) {
@@ -223,39 +299,36 @@ function _getSkillName(kind, length) {
   }
 
   var name = '';
+  var pre = prefix !== null && prefix !== void 0 ? prefix : '';
+  var post = postfix !== null && postfix !== void 0 ? postfix : '';
+  var k = kind !== null && kind !== void 0 ? kind : _kind["default"][Math.floor(Math.random() * _kind["default"].length)];
 
   for (var i = 0; i < l; ++i) {
     name += _skill["default"][Math.floor(Math.random() * _skill["default"].length)];
   }
 
-  var end = kind !== null && kind !== void 0 ? kind : _kind["default"][Math.floor(Math.random() * _kind["default"].length)];
-
   if (_getRarity().value < _rarityLevels.epic) {
-    var prefix = _prefix["default"][Math.floor(Math.random() * _prefix["default"].length)];
-
-    name = "".concat(prefix).concat(name);
+    pre = _prefix["default"][Math.floor(Math.random() * _prefix["default"].length)];
   }
 
   if (_getRarity().value < _rarityLevels.epic) {
-    var postfix = _postfix["default"][Math.floor(Math.random() * _postfix["default"].length)];
+    post = _postfix["default"][Math.floor(Math.random() * _postfix["default"].length)];
+  }
 
-    if (end.length > 1) {
-      name = "".concat(name).concat(end).concat(postfix).concat(_kNumberEndSupplement);
-    } else {
-      name = "".concat(name).concat(postfix).concat(end);
-    }
+  if (k.length > 1) {
+    name = "".concat(pre).concat(name).concat(k).concat(post).concat(_kNumberEndSupplement);
   } else {
-    name = "".concat(name).concat(end);
+    name = "".concat(pre).concat(name).concat(post).concat(k);
   }
 
   return name;
 }
 
-function getSkill(number, kind, length) {
+function getSkill(number, length, kind, prefix, postfix) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = _getSkillName(kind, length);
+    var name = _getSkillName(length, kind, prefix, postfix);
 
     names.push(name);
   }

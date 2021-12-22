@@ -259,7 +259,7 @@ export function getBook(number, length, prefix, kind, postfix) {
           bookPrefix.epic[Math.floor(Math.random() * bookPrefix.epic.length)];
       }
     }
-    if (!kind) {
+    if (pre && !kind) {
       k = bookKind[Math.floor(Math.random() * bookKind.length)];
     }
     if (!prefix && !kind) {
@@ -273,9 +273,11 @@ export function getBook(number, length, prefix, kind, postfix) {
             ];
         } else if (r1 < _rarityLevels.uncommon && r2 < _rarityLevels.uncommon) {
           post =
+            '（' +
             bookPostfix.uncommon[
               Math.floor(Math.random() * bookPostfix.uncommon.length)
-            ];
+            ] +
+            '）';
         }
       }
     }
