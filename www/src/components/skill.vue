@@ -28,7 +28,7 @@ const number = ref(10);
 const length = ref(null);
 const kind = ref(null);
 const prefix = ref(null);
-const postfix = ref(null);
+const numfix = ref(null);
 
 function generate() {
   let list = getSkill(
@@ -36,7 +36,7 @@ function generate() {
     length.value,
     kind.value,
     prefix.value,
-    postfix.value,
+    numfix.value,
   )
   nameList.value.splice(0, nameList.value.length)
   for (let name of list) {
@@ -105,11 +105,11 @@ function generate() {
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
-            后缀：{{ postfix ?? '随机' }}
+            后缀：{{ numfix ?? '随机' }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
-            <li v-for="item of postfixOptions">
-              <a class="dropdown-item" @click="postfix = item == '随机' ? null : item">{{ item }}</a>
+            <li v-for="item of numfixOptions">
+              <a class="dropdown-item" @click="numfix = item == '随机' ? null : item">{{ item }}</a>
             </li>
           </ul>
         </div>

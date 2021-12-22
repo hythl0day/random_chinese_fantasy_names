@@ -234,10 +234,10 @@ function _getSkillName(length, kind, prefix, numfix) {
   return { name, rarity };
 }
 
-export function getSkill(number, length, kind, prefix, postfix) {
+export function getSkill(number, length, kind, prefix, numfix) {
   let names = [];
   for (let i = 0; i < number; ++i) {
-    let name = _getSkillName(length, kind, prefix, postfix);
+    let name = _getSkillName(length, kind, prefix, numfix);
     names.push(name);
   }
   return names;
@@ -247,7 +247,7 @@ export function getBook(number, length, prefix, kind, postfix) {
   let names = [];
   for (let i = 0; i < number; ++i) {
     let rarity = 'common';
-    let skillname = _getSkillName(kind, length);
+    let skillname = _getSkillName(length);
     let pre = prefix ?? '';
     let k = kind ?? '';
     let post = postfix ?? '';

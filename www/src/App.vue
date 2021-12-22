@@ -117,7 +117,7 @@ import Clan from './components/clan.vue';
         <Talisman />
       </div>
       <div
-        class="tab-pane fade show active"
+        class="tab-pane fade"
         id="ex3-tabs-6"
         role="tabpanel"
         aria-labelledby="ex3-tab-6"
