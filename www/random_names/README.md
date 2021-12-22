@@ -10,22 +10,39 @@
 
 ## NPM Package
 
-安装
+### 安装
 
 ```
 npm i random_chinese_fantasy_names
 ```
 
-使用
+### 导入
 
-```
-import { getName } from "random_chinese_fantasy_names"
-
-console.log(getName(10))
+```javascript
+import { getName } from 'random_chinese_fantasy_names';
 ```
 
-如果你使用 common js 包管理：
+### Common js module:
 
+```javascript
+const { getName } = require('random_chinese_fantasy_names/commonjs');
 ```
-const { getName } = require("random_chinese_fantasy_names/commonjs")
+
+### 接口
+
+```javascript
+// 获取人名
+export function getName(number, isFemale, style, familyName, middleCharacter)
+
+// 获取法号
+export function getDao(number, isFemale, title, firstCharacter)
+
+// 获取功法
+export function getSkill(number, length, kind, prefix, postfix)
+
+// 获取秘籍
+export function getBook(number, length, prefix, kind, postfix)
+
+// 获取法宝
+export function getTalisman(number, kind)
 ```
