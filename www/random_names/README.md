@@ -1,8 +1,8 @@
 # 仙侠小说专有名词随机生成器
 
-随机生成人名、法号、功法、秘籍等。
+随机生成仙侠风格的人名、法号、功法、秘籍、法宝、门派。
 
-目前项目还未完工，正在开发法宝、材料、丹药、地名、门派名的生成。
+尚在开发中的功能包括：材料、丹药、地名……
 
 ## 在线版本
 
@@ -45,4 +45,7 @@ export function getBook(number, length, prefix, kind, postfix)
 
 // 获取法宝
 export function getTalisman(number, kind)
+
+// 获取门派
+export function getClan(number, kind)
 ```

@@ -58,7 +58,7 @@ var _prefix = _interopRequireDefault(require('../data/skill/prefix.json'));
 
 var _kind = _interopRequireDefault(require('../data/skill/kind.json'));
 
-var _postfix = _interopRequireDefault(require('../data/skill/postfix.json'));
+var _postfix = _interopRequireDefault(require('../data/skill/numfix.json'));
 
 var _prefix2 = _interopRequireDefault(require('../data/book/prefix.json'));
 

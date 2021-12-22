@@ -50,11 +50,11 @@ function generate() {
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
-            种类：{{ kind ?? '随机' }}
+            类别：{{ kind ?? '随机' }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
             <li v-for="item of kindOptions">
-              <a class="dropdown-item" @click="kind = item">{{ item }}</a>
+              <a class="dropdown-item" @click="kind = item == '随机' ? null : item">{{ item }}</a>
             </li>
           </ul>
         </div>

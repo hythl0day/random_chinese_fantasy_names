@@ -8,14 +8,15 @@ import daoTitleFemale from './data/dao/title_female.json';
 import common from './data/common.json';
 import skillPrefix from './data/skill/prefix.json';
 import skillKind from './data/skill/kind.json';
-import skillPostfix from './data/skill/postfix.json';
+import skillNumfix from './data/skill/numfix.json';
 import bookPrefix from './data/book/prefix.json';
 import bookKind from './data/book/kind.json';
 import bookPostfix from './data/book/postfix.json';
 import talismanKind from './data/talisman/kind.json';
 import talismanPrefix from './data/talisman/prefix.json';
+import clanKind from './data/clan/kind.json';
 
-export { skillPrefix, skillKind, skillPostfix, bookKind };
+export { skillPrefix, skillKind, skillNumfix, bookKind, clanKind };
 
 export const daoTitles = [
   ...new Set([
@@ -157,8 +158,9 @@ export function getDao(number, isFemale, title, firstCharacter) {
         ? daoTitleFemale
         : daoTitleMale;
     let t = title ?? '';
+    let rarity = 'common';
     if (!title) {
-      let rarity = _getRarity().rarity;
+      rarity = _getRarity().rarity;
       if (rarity == 'exotic') {
         t =
           titleGroup.exotic[
@@ -185,16 +187,17 @@ export function getDao(number, isFemale, title, firstCharacter) {
           ];
       }
     }
-    names.push(`${name}${t}`);
+    names.push({ name: `${name}${t}`, rarity });
   }
   return names;
 }
 
+const _kNumberBeginSupplement = '路';
 const _kNumberEndSupplement = '式';
 
-function _getSkillName(length, kind, prefix, postfix) {
+function _getSkillName(length, kind, prefix, numfix) {
   let l = length;
-  let rarity = 'handmade';
+  let rarity = 'common';
   if (!l) {
     let r = _getRarity();
     if (r.value < _rarityLevels.rare) {
@@ -208,7 +211,7 @@ function _getSkillName(length, kind, prefix, postfix) {
   }
   let name = '';
   let pre = prefix ?? '';
-  let post = postfix ?? '';
+  let n = numfix ?? '';
   let k = kind ?? skillKind[Math.floor(Math.random() * skillKind.length)];
   for (let i = 0; i < l; ++i) {
     name += common[Math.floor(Math.random() * common.length)];
@@ -217,12 +220,16 @@ function _getSkillName(length, kind, prefix, postfix) {
     pre = skillPrefix[Math.floor(Math.random() * skillPrefix.length)];
   }
   if (Math.random() < _rarityLevels.epic) {
-    post = skillPostfix[Math.floor(Math.random() * skillPostfix.length)];
+    n = skillNumfix[Math.floor(Math.random() * skillNumfix.length)];
   }
-  if (k.length > 1) {
-    name = `${pre}${name}${k}${post != '' ? post + _kNumberEndSupplement : ''}`;
+  if (Math.random() < 0.5) {
+    name = `${n != '' ? n + _kNumberBeginSupplement : ''}${pre}${name}${k}`;
   } else {
-    name = `${pre}${name}${post}${k}`;
+    if (k.length > 1) {
+      name = `${pre}${name}${k}${n != '' ? n + _kNumberEndSupplement : ''}`;
+    } else {
+      name = `${pre}${name}${n}${k}`;
+    }
   }
   return { name, rarity };
 }
@@ -239,7 +246,7 @@ export function getSkill(number, length, kind, prefix, postfix) {
 export function getBook(number, length, prefix, kind, postfix) {
   let names = [];
   for (let i = 0; i < number; ++i) {
-    let rarity = 'handmade';
+    let rarity = 'common';
     let skillname = _getSkillName(kind, length);
     let pre = prefix ?? '';
     let k = kind ?? '';
@@ -306,7 +313,7 @@ export function getTalisman(number, kind) {
   for (let i = 0; i < number; ++i) {
     let name = common[Math.floor(Math.random() * common.length)];
     let k = kind;
-    let rarity = 'handmade';
+    let rarity = 'common';
     let prefix = '';
     if (!k) {
       rarity = _getRarity().rarity;
@@ -358,6 +365,19 @@ export function getTalisman(number, kind) {
       }
     }
     names.push({ name: `${name}${prefix}${k}`, rarity: rarity });
+  }
+  return names;
+}
+
+export function getClan(number, kind) {
+  let names = [];
+  for (let i = 0; i < number; ++i) {
+    let name = common[Math.floor(Math.random() * common.length)];
+    let k = kind;
+    if (!k) {
+      k = clanKind[Math.floor(Math.random() * clanKind.length)];
+    }
+    names.push(`${name}${k}`);
   }
   return names;
 }

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getSkill, skillKind, skillPrefix, skillPostfix } from "../../random_names/index.js";
+import { getSkill, skillKind, skillPrefix, skillNumfix } from "../../random_names/index.js";
 import { numberValues, lengthValues, rarityColors } from '../shared/constants.js';
 
 defineProps({
@@ -16,9 +16,9 @@ const prefixOptions = ref([
   ...skillPrefix,
 ]);
 
-const postfixOptions = ref([
+const numfixOptions = ref([
   '随机',
-  ...skillPostfix,
+  ...skillNumfix,
 ]);
 
 const skillKindOptions = ref(['随机', ...skillKind]);

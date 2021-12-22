@@ -4,17 +4,19 @@ import Dao from './components/dao.vue';
 import Skill from './components/skill.vue';
 import Book from './components/book.vue';
 import Talisman from './components/talisman.vue';
+import Clan from './components/clan.vue';
 </script>
 
 <template>
   <h1>仙侠小说专有名词随机生成器</h1>
-  <p class="pt-3">随机生成人物、功法、秘籍名字。</p>
-  <p class="text-dark text-opacity-25">
-    目前项目还未完工，预计还将加入材料、丹药、地名的随机生成。
-  </p>
-  <div class="container col-xl-4 col-lg-6">
+  <div class="text-dark text-opacity-25 fs-5 pt-3">随机生成人物、功法、秘籍、法宝、地名等。</div>
+  <div class="text-dark text-opacity-25 pt-1">
+    <div>作者：阿莱四十二</div>
+    <div>联系我：<a href="mailto:chengfubeiming@live.com">chengfubeiming@live.com</a></div>
+  </div>
+  <div class="container col-xl-4 col-lg-6 mt-2">
     <!-- Tabs navs -->
-    <ul class="nav nav-tabs nav-justified mb-3" role="tablist">
+    <ul class="nav nav-tabs nav-justified mb-2" role="tablist">
       <li class="nav-item" role="presentation">
         <a
           class="nav-link active"
@@ -58,6 +60,15 @@ import Talisman from './components/talisman.vue';
           href="#ex3-tabs-5"
           role="tab"
           >法宝</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          data-mdb-toggle="tab"
+          href="#ex3-tabs-6"
+          role="tab"
+          >门派</a
         >
       </li>
     </ul>
@@ -105,8 +116,17 @@ import Talisman from './components/talisman.vue';
       >
         <Talisman />
       </div>
+      <div
+        class="tab-pane fade show active"
+        id="ex3-tabs-6"
+        role="tabpanel"
+        aria-labelledby="ex3-tab-6"
+      >
+        <Clan />
+      </div>
     </div>
     <!-- Tabs content -->
+
   </div>
 </template>
 
@@ -119,4 +139,8 @@ import Talisman from './components/talisman.vue';
   color: #2c3e50;
   margin-top: 60px;
 }
+
+a:link { 
+color:lightgray; 
+} 
 </style>
