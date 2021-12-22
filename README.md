@@ -23,3 +23,9 @@ import { getName } from "random_chinese_fantasy_names"
 
 console.log(getName(10))
 ```
+
+如果你想要使用 common js 版本的包：
+
+```
+const { getName } = require("random_chinese_fantasy_names/commonjs")
+```

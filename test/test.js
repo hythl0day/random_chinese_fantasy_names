@@ -1,3 +1,3 @@
-import { getName } from '../src/index.jsx.js';
+const { getName } = require('../commonjs');
 
 console.log(getName(10));
