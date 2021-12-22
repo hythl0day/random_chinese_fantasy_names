@@ -7,6 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "random_chinese_fantasy_names": "^0.1.0",
     "vue": "^3.2.25"
   },
   "devDependencies": {

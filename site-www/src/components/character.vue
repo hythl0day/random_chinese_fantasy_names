@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getName } from "../modules/index.js"
+import { getName } from "random_chinese_fantasy_names"
 
 defineProps({
   
