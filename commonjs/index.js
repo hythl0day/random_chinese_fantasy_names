@@ -9,70 +9,12 @@ Object.defineProperty(exports, "bookKind", {
     return _kind2["default"];
   }
 });
-Object.defineProperty(exports, "bookPostfix", {
-  enumerable: true,
-  get: function get() {
-    return _postfix2["default"];
-  }
-});
-Object.defineProperty(exports, "bookPrefix", {
-  enumerable: true,
-  get: function get() {
-    return _prefix2["default"];
-  }
-});
-Object.defineProperty(exports, "dao", {
-  enumerable: true,
-  get: function get() {
-    return _dao["default"];
-  }
-});
-Object.defineProperty(exports, "daoTitleFemale", {
-  enumerable: true,
-  get: function get() {
-    return _title_female["default"];
-  }
-});
-Object.defineProperty(exports, "daoTitleMale", {
-  enumerable: true,
-  get: function get() {
-    return _title_male["default"];
-  }
-});
-Object.defineProperty(exports, "family", {
-  enumerable: true,
-  get: function get() {
-    return _family["default"];
-  }
-});
-Object.defineProperty(exports, "female", {
-  enumerable: true,
-  get: function get() {
-    return _female["default"];
-  }
-});
+exports.daoTitles = exports.bookPrefixes = exports.bookPostfixes = void 0;
 exports.getBook = getBook;
 exports.getDao = getDao;
 exports.getName = getName;
 exports.getSkill = getSkill;
-Object.defineProperty(exports, "male", {
-  enumerable: true,
-  get: function get() {
-    return _male["default"];
-  }
-});
-Object.defineProperty(exports, "middle", {
-  enumerable: true,
-  get: function get() {
-    return _middle["default"];
-  }
-});
-Object.defineProperty(exports, "skill", {
-  enumerable: true,
-  get: function get() {
-    return _skill["default"];
-  }
-});
+exports.getTalisman = getTalisman;
 Object.defineProperty(exports, "skillKind", {
   enumerable: true,
   get: function get() {
@@ -120,8 +62,29 @@ var _kind2 = _interopRequireDefault(require("../data/book/kind.json"));
 
 var _postfix2 = _interopRequireDefault(require("../data/book/postfix.json"));
 
+var _kind3 = _interopRequireDefault(require("../data/talisman/kind.json"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var daoTitles = _toConsumableArray(new Set([_title_male["default"].uncommon, _title_male["default"].rare, _title_male["default"].epic, _title_male["default"].legendary, _title_male["default"].mythic, _title_male["default"].exotic, _title_female["default"].uncommon, _title_female["default"].rare, _title_female["default"].epic, _title_female["default"].legendary, _title_female["default"].mythic, _title_female["default"].exotic]));
+
+exports.daoTitles = daoTitles;
+var bookPrefixes = [].concat(_toConsumableArray(_prefix2["default"].epic), _toConsumableArray(_prefix2["default"].legendary), _toConsumableArray(_prefix2["default"].mythic), _toConsumableArray(_prefix2["default"].exotic));
+exports.bookPrefixes = bookPrefixes;
+var bookPostfixes = [].concat(_toConsumableArray(_postfix2["default"].uncommon), _toConsumableArray(_postfix2["default"].rare));
+exports.bookPostfixes = bookPostfixes;
 var _rarityLevels = {
   common: 1.0,
   // common 灰
@@ -287,11 +250,11 @@ function _getSkillName(length, kind, prefix, postfix) {
   var l = length;
 
   if (!l) {
-    var _rarity = _getRarity().value;
+    var rarity = _getRarity().value;
 
-    if (_rarity < _rarityLevels.rare) {
+    if (rarity < _rarityLevels.rare) {
       l = 3;
-    } else if (_rarity < _rarityLevels.common) {
+    } else if (rarity < _rarityLevels.uncommon) {
       l = 2;
     } else {
       l = 1;
@@ -316,7 +279,7 @@ function _getSkillName(length, kind, prefix, postfix) {
   }
 
   if (k.length > 1) {
-    name = "".concat(pre).concat(name).concat(k).concat(post).concat(_kNumberEndSupplement);
+    name = "".concat(pre).concat(name).concat(k).concat(post != '' ? post + _kNumberEndSupplement : '');
   } else {
     name = "".concat(pre).concat(name).concat(post).concat(k);
   }
@@ -340,31 +303,30 @@ function getBook(number, length, prefix, kind, postfix) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var _rarity2;
-
     var name = '';
 
     var skillname = _getSkillName(kind, length);
 
-    var r = (_rarity2 = rarity) !== null && _rarity2 !== void 0 ? _rarity2 : _getRarity().rarity;
     var pre = prefix !== null && prefix !== void 0 ? prefix : '';
     var k = kind !== null && kind !== void 0 ? kind : '';
     var post = postfix !== null && postfix !== void 0 ? postfix : '';
 
     if (!prefix) {
+      var r = _getRarity().rarity;
+
       if (r == 'exotic') {
-        pre = bookDef.exotic[Math.floor(Math.random() * bookDef.exotic.length)];
+        pre = _prefix2["default"].exotic[Math.floor(Math.random() * _prefix2["default"].exotic.length)];
       } else if (r == 'mythic') {
-        pre = bookDef.mythic[Math.floor(Math.random() * bookDef.mythic.length)];
+        pre = _prefix2["default"].mythic[Math.floor(Math.random() * _prefix2["default"].mythic.length)];
       } else if (r == 'legendary') {
-        pre = bookDef.legendary[Math.floor(Math.random() * bookDef.legendary.length)];
+        pre = _prefix2["default"].legendary[Math.floor(Math.random() * _prefix2["default"].legendary.length)];
       } else if (r == 'epic') {
-        pre = bookDef.epic[Math.floor(Math.random() * bookDef.epic.length)];
+        pre = _prefix2["default"].epic[Math.floor(Math.random() * _prefix2["default"].epic.length)];
       }
     }
 
-    if (!kind) {
-      k = bookEpicKind[Math.floor(Math.random() * bookEpicKind.length)];
+    if (pre && !kind) {
+      k = _kind2["default"][Math.floor(Math.random() * _kind2["default"].length)];
     }
 
     if (!prefix && !kind) {
@@ -372,15 +334,33 @@ function getBook(number, length, prefix, kind, postfix) {
         var r1 = Math.random();
         var r2 = Math.random();
 
-        if (r1 < _rarityLevels.uncommon && r2 < _rarityLevels.uncommon) {
-          post = bookDef.uncommon[Math.floor(Math.random() * bookDef.uncommon.length)];
-        } else if (r1 < _rarityLevels.common && r2 < _rarityLevels.common) {
-          post = bookDef.common[Math.floor(Math.random() * bookDef.uncommon.length)];
+        if (r1 < _rarityLevels.rare && r2 < _rarityLevels.rare) {
+          post = _postfix2["default"].rare[Math.floor(Math.random() * _postfix2["default"].rare.length)];
+        } else if (r1 < _rarityLevels.uncommon && r2 < _rarityLevels.uncommon) {
+          post = '（' + _postfix2["default"].uncommon[Math.floor(Math.random() * _postfix2["default"].uncommon.length)] + '）';
         }
       }
     }
 
     names.push("\u300A".concat(skillname).concat(pre).concat(k).concat(post, "\u300B"));
+  }
+
+  return names;
+}
+
+function getTalisman(number, kind) {
+  var names = [];
+
+  for (var i = 0; i < number; ++i) {
+    var name = _skill["default"][Math.floor(Math.random() * _skill["default"].length)];
+
+    var k = kind;
+
+    if (!k) {
+      k = _kind3["default"][Math.floor(Math.random() * _kind3["default"].length)];
+    }
+
+    names.push("\u300A".concat(name).concat(k, "\u300B"));
   }
 
   return names;

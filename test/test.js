@@ -1,3 +1,3 @@
-const { getName } = require('../commonjs');
+const { getTalisman } = require('../commonjs');
 
-console.log(getName(10));
+console.log(getTalisman(10));

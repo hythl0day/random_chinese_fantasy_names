@@ -12,6 +12,7 @@ import skillPostfix from './data/skill/postfix.json';
 import bookPrefix from './data/book/prefix.json';
 import bookKind from './data/book/kind.json';
 import bookPostfix from './data/book/postfix.json';
+import talismanKind from './data/talisman/kind.json';
 
 export { skillPrefix, skillKind, skillPostfix, bookKind };
 
@@ -282,6 +283,19 @@ export function getBook(number, length, prefix, kind, postfix) {
       }
     }
     names.push(`《${skillname}${pre}${k}${post}》`);
+  }
+  return names;
+}
+
+export function getTalisman(number, kind) {
+  let names = [];
+  for (let i = 0; i < number; ++i) {
+    let name = skillKind[Math.floor(Math.random() * skillKind.length)];
+    let k = kind;
+    if (!k) {
+      k = talismanKind[Math.floor(Math.random() * talismanKind.length)];
+    }
+    names.push(`《${name}${k}》`);
   }
   return names;
 }

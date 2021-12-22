@@ -1,17 +1,18 @@
-import family from './data/name/family.json';
-import female from './data/name/female.json';
-import male from './data/name/male.json';
-import middle from './data/name/middle.json';
-import dao from './data/dao/dao.json';
-import daoTitleMale from './data/dao/title_male.json';
-import daoTitleFemale from './data/dao/title_female.json';
-import skill from './data/skill/skill.json';
-import skillPrefix from './data/skill/prefix.json';
-import skillKind from './data/skill/kind.json';
-import skillPostfix from './data/skill/postfix.json';
-import bookPrefix from './data/book/prefix.json';
-import bookKind from './data/book/kind.json';
-import bookPostfix from './data/book/postfix.json';
+import family from '../data/name/family.json';
+import female from '../data/name/female.json';
+import male from '../data/name/male.json';
+import middle from '../data/name/middle.json';
+import dao from '../data/dao/dao.json';
+import daoTitleMale from '../data/dao/title_male.json';
+import daoTitleFemale from '../data/dao/title_female.json';
+import skill from '../data/skill/skill.json';
+import skillPrefix from '../data/skill/prefix.json';
+import skillKind from '../data/skill/kind.json';
+import skillPostfix from '../data/skill/postfix.json';
+import bookPrefix from '../data/book/prefix.json';
+import bookKind from '../data/book/kind.json';
+import bookPostfix from '../data/book/postfix.json';
+import talismanKind from '../data/talisman/kind.json';
 
 export { skillPrefix, skillKind, skillPostfix, bookKind };
 
@@ -282,6 +283,19 @@ export function getBook(number, length, prefix, kind, postfix) {
       }
     }
     names.push(`《${skillname}${pre}${k}${post}》`);
+  }
+  return names;
+}
+
+export function getTalisman(number, kind) {
+  let names = [];
+  for (let i = 0; i < number; ++i) {
+    let name = skill[Math.floor(Math.random() * skill.length)];
+    let k = kind;
+    if (!k) {
+      k = talismanKind[Math.floor(Math.random() * talismanKind.length)];
+    }
+    names.push(`《${name}${k}》`);
   }
   return names;
 }
