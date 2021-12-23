@@ -3,6 +3,7 @@ import Character from './components/character.vue';
 import Dao from './components/dao.vue';
 import Skill from './components/skill.vue';
 import Book from './components/book.vue';
+import Material from './components/material.vue';
 import Talisman from './components/talisman.vue';
 import Clan from './components/clan.vue';
 import Nation from './components/nation.vue';
@@ -13,6 +14,7 @@ import Continent from './components/continent.vue';
 
 <template>
   <h1>仙侠小说专有名词随机生成器</h1>
+  <p>版本号 0.1.12</p>
   <a title="NPM" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>&nbsp;
   <a title="Github" href="https://github.com/hetu-script/random_chinese_fantasy_names" ><img src="https://img.shields.io/badge/github-repository-green" /></a>
   <div class="text-dark text-opacity-25 pt-1">
@@ -64,7 +66,7 @@ import Continent from './components/continent.vue';
           data-mdb-toggle="tab"
           href="#ex3-tabs-5"
           role="tab"
-          >法宝</a
+          >材料</a
         >
       </li>
       <li class="nav-item" role="presentation">
@@ -73,7 +75,7 @@ import Continent from './components/continent.vue';
           data-mdb-toggle="tab"
           href="#ex3-tabs-6"
           role="tab"
-          >门派</a
+          >法宝</a
         >
       </li>
       <li class="nav-item" role="presentation">
@@ -82,7 +84,7 @@ import Continent from './components/continent.vue';
           data-mdb-toggle="tab"
           href="#ex3-tabs-7"
           role="tab"
-          >国家</a
+          >异兽</a
         >
       </li>
       <li class="nav-item" role="presentation">
@@ -91,7 +93,7 @@ import Continent from './components/continent.vue';
           data-mdb-toggle="tab"
           href="#ex3-tabs-8"
           role="tab"
-          >地点</a
+          >丹药</a
         >
       </li>
       <li class="nav-item" role="presentation">
@@ -99,6 +101,33 @@ import Continent from './components/continent.vue';
           class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-9"
+          role="tab"
+          >门派</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link fs-5"
+          data-mdb-toggle="tab"
+          href="#ex3-tabs-10"
+          role="tab"
+          >国家</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link fs-5"
+          data-mdb-toggle="tab"
+          href="#ex3-tabs-11"
+          role="tab"
+          >地点</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link fs-5"
+          data-mdb-toggle="tab"
+          href="#ex3-tabs-12"
           role="tab"
           >大陆</a
         >
@@ -146,7 +175,7 @@ import Continent from './components/continent.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-5"
       >
-        <Talisman />
+        <Material />
       </div>
       <div
         class="tab-pane fade"
@@ -154,7 +183,7 @@ import Continent from './components/continent.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-6"
       >
-        <Clan />
+        <Talisman />
       </div>
       <div
         class="tab-pane fade"
@@ -162,7 +191,7 @@ import Continent from './components/continent.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-7"
       >
-        <Nation />
+        异兽
       </div>
       <div
         class="tab-pane fade"
@@ -170,13 +199,37 @@ import Continent from './components/continent.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-8"
       >
-        <Location />
+        丹药
       </div>
       <div
         class="tab-pane fade"
         id="ex3-tabs-9"
         role="tabpanel"
         aria-labelledby="ex3-tab-9"
+      >
+        <Clan />
+      </div>
+      <div
+        class="tab-pane fade"
+        id="ex3-tabs-10"
+        role="tabpanel"
+        aria-labelledby="ex3-tab-10"
+      >
+        <Nation />
+      </div>
+      <div
+        class="tab-pane fade"
+        id="ex3-tabs-11"
+        role="tabpanel"
+        aria-labelledby="ex3-tab-11"
+      >
+        <Location />
+      </div>
+      <div
+        class="tab-pane fade"
+        id="ex3-tabs-12"
+        role="tabpanel"
+        aria-labelledby="ex3-tab-12"
       >
         <Continent />
       </div>

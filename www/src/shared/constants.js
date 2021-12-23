@@ -9,12 +9,21 @@ export const sexValues = [
 export const lengthValues = ['随机', 1, 2, 3];
 
 export const rarityColors = {
-  handmade: '#00cc1a',
-  common: '#a1bec1',
-  uncommon: '#f469b1',
-  rare: '#03aaf9',
-  epic: '#711c91',
-  legendary: '#e4e267',
-  mythic: '#ffd700',
-  exotic: '#ff4612',
+  common: '#222A35',
+  uncommon: '#DADADA',
+  rare: '#00A6A9',
+  epic: '#804DC8',
+  legendary: '#C5C660',
+  mythic: '#F28234',
+  exotic: '#C65043',
+};
+
+export const rarityLevelNames = {
+  common: '凡品',
+  uncommon: '良品',
+  rare: '上品',
+  epic: '极品',
+  legendary: '秘宝',
+  mythic: '灵宝',
+  exotic: '古宝',
 };

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getTalisman, talismanKind } from "../../random_names";
-import { numberValues, rarityColors } from '../shared/constants.js';
+import { getTalisman, talismanKind, rarityLevels } from "../../random_names";
+import { numberValues, rarityColors, rarityLevelNames } from '../shared/constants.js';
 
 defineProps({
   
@@ -13,14 +13,20 @@ const kindOptions = ref([
   '随机',
   ...talismanKind]);
 
+const rarityOptions = ref([
+  '随机',
+  ...rarityLevels]);
+
 const nameList = ref([]);
 const number = ref(10);
 const kind = ref(null);
+const rarity = ref(null);
 
 function generate() {
   let list = getTalisman(
     number.value,
     kind.value,
+    rarity.value,
   )
   nameList.value.splice(0, nameList.value.length)
   for (let name of list) {
@@ -46,7 +52,7 @@ function generate() {
           </ul>
         </div>
       </div>
-      <div class="col-4 text-start">
+      <div class="col-4">
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
@@ -55,6 +61,19 @@ function generate() {
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
             <li v-for="item of kindOptions">
               <a class="dropdown-item" @click="kind = item == '随机' ? null : item">{{ item }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-4 text-start">
+        <div class="btn-group mb-3 dropup">
+          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
+            aria-expanded="false">
+            等级：{{ rarity == null ? '随机' : rarityLevelNames[rarity] }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end force-scroll">
+            <li v-for="item of rarityOptions">
+              <a class="dropdown-item" @click="rarity = item == '随机' ? null : item" :style="{color: rarityColors[item]}">{{ item != '随机' ? rarityLevelNames[item] : item }}</a>
             </li>
           </ul>
         </div>

@@ -68,7 +68,7 @@ function generate() {
 
   <div class="pt-3">
     <div v-for="item of nameList">
-      <p style="color: #a1bec1">{{ item }}</p>
+      <p :style="{color: rarityColors.common}">{{ item }}</p>
     </div>
   </div>
 </template>
