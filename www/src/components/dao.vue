@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getDao, daoTitles } from "../../random_names/index.js";
+import { getDao, daoTitles } from "../../random_names";
 import { numberValues, sexValues, rarityColors } from '../shared/constants.js';
 
 defineProps({

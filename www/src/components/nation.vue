@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getClan, clanKind } from "../../random_names";
+import { getNation, nationKind } from "../../random_names";
 import { numberValues, rarityColors } from '../shared/constants.js';
 
 defineProps({
@@ -11,14 +11,14 @@ const numberOptions = ref(numberValues);
 
 const kindOptions = ref([
   '随机',
-  ...clanKind]);
+  ...nationKind]);
 
 const nameList = ref([]);
 const number = ref(10);
 const kind = ref(null);
 
 function generate() {
-  let list = getClan(
+  let list = getNation(
     number.value,
     kind.value,
   )
@@ -68,7 +68,7 @@ function generate() {
 
   <div class="pt-3">
     <div v-for="item of nameList">
-      <p style="color: #a1bec1">{{ item }}</p>
+      <p :style="{color: rarityColors[item.rarity]}">{{ item.name }}</p>
     </div>
   </div>
 </template>

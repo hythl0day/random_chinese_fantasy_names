@@ -1,22 +1,37 @@
-import family from './data/name/family.json';
-import female from './data/name/female.json';
-import male from './data/name/male.json';
-import middle from './data/name/middle.json';
-import dao from './data/dao/dao.json';
-import daoTitleMale from './data/dao/title_male.json';
-import daoTitleFemale from './data/dao/title_female.json';
-import common from './data/common.json';
-import skillPrefix from './data/skill/prefix.json';
-import skillKind from './data/skill/kind.json';
-import skillNumfix from './data/skill/numfix.json';
-import bookPrefix from './data/book/prefix.json';
-import bookKind from './data/book/kind.json';
-import bookPostfix from './data/book/postfix.json';
-import talismanKind from './data/talisman/kind.json';
-import talismanPrefix from './data/talisman/prefix.json';
-import clanKind from './data/clan/kind.json';
+import family from '../data/name/family.json';
+import female from '../data/name/female.json';
+import male from '../data/name/male.json';
+import middle from '../data/name/middle.json';
+import dao from '../data/dao/dao.json';
+import daoTitleMale from '../data/dao/title_male.json';
+import daoTitleFemale from '../data/dao/title_female.json';
+import common from '../data/shared/common.json';
+import strange from '../data/shared/strange.json';
+import skillKind from '../data/skill/kind.json';
+import skillPrefix from '../data/skill/prefix.json';
+import skillNumfix from '../data/skill/numfix.json';
+import bookPrefix from '../data/book/prefix.json';
+import bookKind from '../data/book/kind.json';
+import bookPostfix from '../data/book/postfix.json';
+import talisman from '../data/talisman/kind.json';
+import talismanPrefix from '../data/talisman/prefix.json';
+import clanKind from '../data/organization/clan_kind.json';
+import nationKind from '../data/organization/nation_kind.json';
+import placePrefix from '../data/place/prefix.json';
+import locationKind from '../data/place/location_kind.json';
+import continentKind from '../data/place/continent_kind.json';
 
-export { skillPrefix, skillKind, skillNumfix, bookKind, clanKind };
+export {
+  skillKind,
+  skillPrefix,
+  skillNumfix,
+  bookKind,
+  clanKind,
+  nationKind,
+  placePrefix,
+  locationKind,
+  continentKind,
+};
 
 export const daoTitles = [
   ...new Set([
@@ -42,14 +57,14 @@ export const bookPrefixes = [
   ...bookPrefix.exotic,
 ];
 
-export const talismanKinds = [
-  ...talismanKind.common,
-  ...talismanKind.uncommon,
-  ...talismanKind.rare,
-  ...talismanKind.epic,
-  ...talismanKind.legendary,
-  ...talismanKind.mythic,
-  ...talismanKind.exotic,
+export const talismanKind = [
+  ...talisman.common,
+  ...talisman.uncommon,
+  ...talisman.rare,
+  ...talisman.epic,
+  ...talisman.legendary,
+  ...talisman.mythic,
+  ...talisman.exotic,
 ];
 
 export const bookPostfixes = [...bookPostfix.uncommon, ...bookPostfix.rare];
@@ -320,48 +335,33 @@ export function getTalisman(number, kind) {
       if (rarity == 'exotic') {
         prefix =
           talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
-        k =
-          talismanKind.exotic[
-            Math.floor(Math.random() * talismanKind.exotic.length)
-          ];
+        k = talisman.exotic[Math.floor(Math.random() * talisman.exotic.length)];
       } else if (rarity == 'mythic') {
         prefix =
           talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
-        k =
-          talismanKind.mythic[
-            Math.floor(Math.random() * talismanKind.mythic.length)
-          ];
+        k = talisman.mythic[Math.floor(Math.random() * talisman.mythic.length)];
       } else if (rarity == 'legendary') {
         prefix =
           talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
         k =
-          talismanKind.legendary[
-            Math.floor(Math.random() * talismanKind.legendary.length)
+          talisman.legendary[
+            Math.floor(Math.random() * talisman.legendary.length)
           ];
       } else if (rarity == 'epic') {
         prefix =
           talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
-        k =
-          talismanKind.epic[
-            Math.floor(Math.random() * talismanKind.epic.length)
-          ];
+        k = talisman.epic[Math.floor(Math.random() * talisman.epic.length)];
       } else if (rarity == 'rare') {
         prefix =
           talismanPrefix[Math.floor(Math.random() * talismanPrefix.length)];
-        k =
-          talismanKind.rare[
-            Math.floor(Math.random() * talismanKind.rare.length)
-          ];
+        k = talisman.rare[Math.floor(Math.random() * talisman.rare.length)];
       } else if (rarity == 'uncommon') {
         k =
-          talismanKind.uncommon[
-            Math.floor(Math.random() * talismanKind.uncommon.length)
+          talisman.uncommon[
+            Math.floor(Math.random() * talisman.uncommon.length)
           ];
       } else if (rarity == 'common') {
-        k =
-          talismanKind.common[
-            Math.floor(Math.random() * talismanKind.common.length)
-          ];
+        k = talisman.common[Math.floor(Math.random() * talisman.common.length)];
       }
     }
     names.push({ name: `${name}${prefix}${k}`, rarity: rarity });
@@ -378,6 +378,97 @@ export function getClan(number, kind) {
       k = clanKind[Math.floor(Math.random() * clanKind.length)];
     }
     names.push(`${name}${k}`);
+  }
+  return names;
+}
+
+const _kContry = '国';
+
+export function getNation(number, kind) {
+  let names = [];
+  for (let i = 0; i < number; ++i) {
+    let r = Math.random();
+    let pre = '';
+    let k = kind ?? '';
+    let rarity = 'common';
+    if (r < _rarityLevels.rare) {
+      let index = Math.floor(Math.random() * strange.length);
+      pre = strange[index];
+      rarity = 'rare';
+      if (Math.random() < 0.5 || pre.length == 1) {
+        if (!kind) {
+          if (pre.length == 1) {
+            k = _kContry;
+          } else {
+            k = nationKind[Math.floor(Math.random() * nationKind.length)];
+          }
+        }
+      }
+    } else if (r < _rarityLevels.uncommon) {
+      let index = Math.floor(Math.random() * common.length);
+      pre = common[index];
+      rarity = 'uncommon';
+      if (Math.random() < 0.5 || pre.length == 1) {
+        if (!kind) {
+          if (pre.length == 1) {
+            k = _kContry;
+          } else {
+            k = nationKind[Math.floor(Math.random() * nationKind.length)];
+          }
+        }
+      }
+    } else {
+      let index = Math.floor(Math.random() * family.length);
+      pre = family[index];
+      if (!kind) {
+        k = _kContry;
+      }
+    }
+    names.push({ name: `${pre}${k}`, rarity });
+  }
+  return names;
+}
+
+export function getLocation(number, kind) {
+  let names = [];
+  for (let i = 0; i < number; ++i) {
+    let r = Math.random();
+    let pre = '';
+    let k = kind ?? '';
+    if (r < _rarityLevels.rare) {
+      let index = Math.floor(Math.random() * strange.length);
+      pre = strange[index];
+      rarity = 'rare';
+      if (Math.random() < 0.5 || pre.length == 1) {
+        if (!kind) {
+          if (pre.length == 1) {
+            k = _kContry;
+          } else {
+            k = nationKind[Math.floor(Math.random() * nationKind.length)];
+          }
+        }
+      }
+    } else if (r < _rarityLevels.uncommon) {
+      let index = Math.floor(Math.random() * common.length);
+      pre = common[index];
+      rarity = 'uncommon';
+      if (Math.random() < 0.5 || pre.length == 1) {
+        if (!kind) {
+          if (pre.length == 1) {
+            k = _kContry;
+          } else {
+            k = nationKind[Math.floor(Math.random() * nationKind.length)];
+          }
+        }
+      }
+    } else {
+      let index = Math.floor(Math.random() * family.length);
+      pre = family[index];
+      if (!kind) {
+        k = _kContry;
+      }
+    }
+    names.push(`${pre}${k}`);
   }
   return names;
 }

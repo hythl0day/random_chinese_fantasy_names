@@ -1,5 +1,7 @@
 # 仙侠小说专有名词随机生成器
 
+<a title="Pub" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>
+
 随机生成仙侠风格的人名、法号、功法、秘籍、法宝、门派。
 
 尚在开发中的功能包括：材料、丹药、地名……

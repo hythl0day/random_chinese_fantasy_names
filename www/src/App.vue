@@ -5,16 +5,17 @@ import Skill from './components/skill.vue';
 import Book from './components/book.vue';
 import Talisman from './components/talisman.vue';
 import Clan from './components/clan.vue';
+import Nation from './components/nation.vue';
 </script>
 
 <template>
   <h1>仙侠小说专有名词随机生成器</h1>
-  <div class="text-dark text-opacity-25 fs-5 pt-3">随机生成人物、功法、秘籍、法宝、地名等。</div>
+  <div class="text-dark text-opacity-25 fs-5 pt-3">随机生成人物、功法、秘籍、法宝、门派、地名等。</div>
   <div class="text-dark text-opacity-25 pt-1">
     <div>作者：阿莱四十二</div>
     <div>联系我：<a href="mailto:chengfubeiming@live.com">chengfubeiming@live.com</a></div>
   </div>
-  <div class="container col-xl-4 col-lg-6 mt-2">
+  <div class="container col-xl-5 mt-2">
     <!-- Tabs navs -->
     <ul class="nav nav-tabs nav-justified mb-2" role="tablist">
       <li class="nav-item" role="presentation">
@@ -71,6 +72,33 @@ import Clan from './components/clan.vue';
           >门派</a
         >
       </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          data-mdb-toggle="tab"
+          href="#ex3-tabs-7"
+          role="tab"
+          >国家</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          data-mdb-toggle="tab"
+          href="#ex3-tabs-8"
+          role="tab"
+          >地点</a
+        >
+      </li>
+      <li class="nav-item" role="presentation">
+        <a
+          class="nav-link"
+          data-mdb-toggle="tab"
+          href="#ex3-tabs-9"
+          role="tab"
+          >大陆</a
+        >
+      </li>
     </ul>
     <!-- Tabs navs -->
 
@@ -123,6 +151,30 @@ import Clan from './components/clan.vue';
         aria-labelledby="ex3-tab-6"
       >
         <Clan />
+      </div>
+      <div
+        class="tab-pane fade"
+        id="ex3-tabs-7"
+        role="tabpanel"
+        aria-labelledby="ex3-tab-7"
+      >
+        <Nation />
+      </div>
+      <div
+        class="tab-pane fade"
+        id="ex3-tabs-8"
+        role="tabpanel"
+        aria-labelledby="ex3-tab-8"
+      >
+        地点
+      </div>
+      <div
+        class="tab-pane fade"
+        id="ex3-tabs-9"
+        role="tabpanel"
+        aria-labelledby="ex3-tab-9"
+      >
+        大陆
       </div>
     </div>
     <!-- Tabs content -->

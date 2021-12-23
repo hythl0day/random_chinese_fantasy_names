@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getSkill, skillKind, skillPrefix, skillNumfix } from "../../random_names/index.js";
+import { getSkill, skillKind, skillPrefix, skillNumfix } from "../../random_names";
 import { numberValues, lengthValues, rarityColors } from '../shared/constants.js';
 
 defineProps({

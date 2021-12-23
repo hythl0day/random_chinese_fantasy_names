@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getName } from "../../random_names/index.js";
+import { getName } from "../../random_names";
 import { numberValues, sexValues } from '../shared/constants.js';
 
 defineProps({
