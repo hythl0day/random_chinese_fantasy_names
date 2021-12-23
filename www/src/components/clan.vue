@@ -46,7 +46,7 @@ function generate() {
           </ul>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-4 text-start">
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">

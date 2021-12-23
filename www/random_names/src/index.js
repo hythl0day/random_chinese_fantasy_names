@@ -17,7 +17,9 @@ import talisman from '../data/talisman/kind.json';
 import talismanPrefix from '../data/talisman/prefix.json';
 import clanKind from '../data/organization/clan_kind.json';
 import nationKind from '../data/organization/nation_kind.json';
+import place from '../data/place/place.json';
 import placePrefix from '../data/place/prefix.json';
+import placePostfix from '../data/place/postfix.json';
 import locationKind from '../data/place/location_kind.json';
 import continentKind from '../data/place/continent_kind.json';
 
@@ -29,6 +31,7 @@ export {
   clanKind,
   nationKind,
   placePrefix,
+  placePostfix,
   locationKind,
   continentKind,
 };
@@ -387,88 +390,116 @@ const _kContry = '国';
 export function getNation(number, kind) {
   let names = [];
   for (let i = 0; i < number; ++i) {
-    let r = Math.random();
-    let pre = '';
+    let name = '';
     let k = kind ?? '';
     let rarity = 'common';
+    let r = Math.random();
     if (r < _rarityLevels.rare) {
       let index = Math.floor(Math.random() * strange.length);
-      pre = strange[index];
+      name = strange[index];
       rarity = 'rare';
-      if (Math.random() < 0.5 || pre.length == 1) {
-        if (!kind) {
-          if (pre.length == 1) {
-            k = _kContry;
-          } else {
-            k = nationKind[Math.floor(Math.random() * nationKind.length)];
-          }
+      if (!kind) {
+        if (name.length == 1) {
+          k = _kContry;
+        } else {
+          k = nationKind[Math.floor(Math.random() * nationKind.length)];
         }
       }
     } else if (r < _rarityLevels.uncommon) {
       let index = Math.floor(Math.random() * common.length);
-      pre = common[index];
+      name = common[index];
       rarity = 'uncommon';
-      if (Math.random() < 0.5 || pre.length == 1) {
-        if (!kind) {
-          if (pre.length == 1) {
-            k = _kContry;
-          } else {
-            k = nationKind[Math.floor(Math.random() * nationKind.length)];
-          }
+      if (!kind) {
+        if (name.length == 1) {
+          k = _kContry;
+        } else {
+          k = nationKind[Math.floor(Math.random() * nationKind.length)];
         }
       }
     } else {
-      let index = Math.floor(Math.random() * family.length);
-      pre = family[index];
+      let prefix = '';
+      if (Math.random() < _rarityLevels.rare) {
+        let index = Math.floor(Math.random() * placePrefix.length);
+        prefix = placePrefix[index];
+      }
+      let index = Math.floor(Math.random() * place.length);
+      name = prefix + place[index];
       if (!kind) {
         k = _kContry;
       }
     }
-    names.push({ name: `${pre}${k}`, rarity });
+    names.push({ name: `${name}${k}`, rarity });
   }
   return names;
 }
 
+const _kFamily = '家';
+
 export function getLocation(number, kind) {
   let names = [];
   for (let i = 0; i < number; ++i) {
-    let r = Math.random();
-    let pre = '';
+    let name = '';
     let k = kind ?? '';
+    let rarity = 'common';
+    let r = Math.random();
     if (r < _rarityLevels.rare) {
       let index = Math.floor(Math.random() * strange.length);
-      pre = strange[index];
+      name = strange[index];
       rarity = 'rare';
-      if (Math.random() < 0.5 || pre.length == 1) {
-        if (!kind) {
-          if (pre.length == 1) {
-            k = _kContry;
-          } else {
-            k = nationKind[Math.floor(Math.random() * nationKind.length)];
-          }
-        }
-      }
     } else if (r < _rarityLevels.uncommon) {
       let index = Math.floor(Math.random() * common.length);
-      pre = common[index];
+      name = common[index];
       rarity = 'uncommon';
-      if (Math.random() < 0.5 || pre.length == 1) {
-        if (!kind) {
-          if (pre.length == 1) {
-            k = _kContry;
-          } else {
-            k = nationKind[Math.floor(Math.random() * nationKind.length)];
-          }
-        }
-      }
     } else {
-      let index = Math.floor(Math.random() * family.length);
-      pre = family[index];
-      if (!kind) {
-        k = _kContry;
+      let placeIndex = Math.floor(Math.random() * place.length);
+      let postfix = '';
+      if (Math.random() < _rarityLevels.uncommon) {
+        let postfixIndex = Math.floor(Math.random() * placePostfix.length);
+        postfix = placePostfix[postfixIndex];
+      }
+      name = place[placeIndex] + postfix;
+    }
+    if (!kind) {
+      k = locationKind[Math.floor(Math.random() * locationKind.length)];
+    }
+    names.push({ name: `${name}${k}`, rarity });
+  }
+  return names;
+}
+
+const _kContinent = '洲';
+
+export function getContinent(number, kind) {
+  let names = [];
+  for (let i = 0; i < number; ++i) {
+    let name = '';
+    let k = kind ?? '';
+    if (!kind) {
+      k = continentKind[Math.floor(Math.random() * continentKind.length)];
+    }
+    let rarity = 'common';
+    let r = Math.random();
+    if (r < _rarityLevels.rare) {
+      let index = Math.floor(Math.random() * strange.length);
+      name = strange[index];
+      rarity = 'rare';
+    } else if (r < _rarityLevels.uncommon) {
+      let index = Math.floor(Math.random() * common.length);
+      name = common[index];
+      rarity = 'uncommon';
+    } else {
+      let prefix = '';
+      if (Math.random() < _rarityLevels.rare) {
+        let index = Math.floor(Math.random() * placePrefix.length);
+        prefix = placePrefix[index];
+      }
+      let index = Math.floor(Math.random() * place.length);
+      name = prefix + place[index];
+      if (name.length == 1) {
+        k = _kContinent;
       }
     }
-    names.push(`${pre}${k}`);
+    names.push({ name: `${name}${k}`, rarity });
   }
   return names;
 }

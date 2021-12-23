@@ -1,10 +1,10 @@
 # 仙侠小说专有名词随机生成器
 
-<a title="Pub" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>
+<a title="NPM" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>
 
-随机生成仙侠风格的人名、法号、功法、秘籍、法宝、门派。
+随机生成仙侠风格的人名、法号、功法、秘籍、法宝、门派、国家、地点、大陆。
 
-尚在开发中的功能包括：材料、丹药、地名……
+尚在开发中的功能包括：材料、丹药……
 
 ## 在线版本
 
@@ -33,21 +33,31 @@ const { getName } = require('random_chinese_fantasy_names/commonjs');
 ### 接口
 
 ```javascript
-// 获取人名
+// 人名
 export function getName(number, isFemale, style, familyName, middleCharacter)
 
-// 获取法号
+// 法号
 export function getDao(number, isFemale, title, firstCharacter)
 
-// 获取功法
+// 功法
 export function getSkill(number, length, kind, prefix, postfix)
 
-// 获取秘籍
+// 秘籍
 export function getBook(number, length, prefix, kind, postfix)
 
-// 获取法宝
+// 法宝
 export function getTalisman(number, kind)
 
-// 获取门派
+// 门派
 export function getClan(number, kind)
+
+// 国家
+export function getNation(number, kind)
+
+// 地点
+export function getLocation(number, kind)
+
+// 大陆
+export function getContinent(number, kind)
+
 ```

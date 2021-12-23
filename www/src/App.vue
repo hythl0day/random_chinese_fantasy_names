@@ -6,21 +6,25 @@ import Book from './components/book.vue';
 import Talisman from './components/talisman.vue';
 import Clan from './components/clan.vue';
 import Nation from './components/nation.vue';
+import Location from './components/location.vue';
+import Continent from './components/continent.vue';
+
 </script>
 
 <template>
   <h1>仙侠小说专有名词随机生成器</h1>
-  <div class="text-dark text-opacity-25 fs-5 pt-3">随机生成人物、功法、秘籍、法宝、门派、地名等。</div>
+  <a title="NPM" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>&nbsp;
+  <a title="Github" href="https://github.com/hetu-script/random_chinese_fantasy_names" ><img src="https://img.shields.io/badge/github-repository-green" /></a>
   <div class="text-dark text-opacity-25 pt-1">
     <div>作者：阿莱四十二</div>
     <div>联系我：<a href="mailto:chengfubeiming@live.com">chengfubeiming@live.com</a></div>
   </div>
-  <div class="container col-xl-5 mt-2">
+  <div class="container col-xxl-6 mt-2">
     <!-- Tabs navs -->
     <ul class="nav nav-tabs nav-justified mb-2" role="tablist">
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link active"
+          class="nav-link fs-5 active"
           data-mdb-toggle="tab"
           href="#ex3-tabs-1"
           role="tab"
@@ -29,7 +33,7 @@ import Nation from './components/nation.vue';
       </li>
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link"
+          class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-2"
           role="tab"
@@ -38,7 +42,7 @@ import Nation from './components/nation.vue';
       </li>
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link"
+          class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-3"
           role="tab"
@@ -47,7 +51,7 @@ import Nation from './components/nation.vue';
       </li>
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link"
+          class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-4"
           role="tab"
@@ -56,7 +60,7 @@ import Nation from './components/nation.vue';
       </li>
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link"
+          class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-5"
           role="tab"
@@ -65,7 +69,7 @@ import Nation from './components/nation.vue';
       </li>
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link"
+          class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-6"
           role="tab"
@@ -74,7 +78,7 @@ import Nation from './components/nation.vue';
       </li>
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link"
+          class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-7"
           role="tab"
@@ -83,7 +87,7 @@ import Nation from './components/nation.vue';
       </li>
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link"
+          class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-8"
           role="tab"
@@ -92,7 +96,7 @@ import Nation from './components/nation.vue';
       </li>
       <li class="nav-item" role="presentation">
         <a
-          class="nav-link"
+          class="nav-link fs-5"
           data-mdb-toggle="tab"
           href="#ex3-tabs-9"
           role="tab"
@@ -166,7 +170,7 @@ import Nation from './components/nation.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-8"
       >
-        地点
+        <Location />
       </div>
       <div
         class="tab-pane fade"
@@ -174,7 +178,7 @@ import Nation from './components/nation.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-9"
       >
-        大陆
+        <Continent />
       </div>
     </div>
     <!-- Tabs content -->

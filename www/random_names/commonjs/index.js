@@ -13,16 +13,49 @@ exports.bookPrefixes = exports.bookPostfixes = void 0;
 Object.defineProperty(exports, "clanKind", {
   enumerable: true,
   get: function get() {
-    return _kind4["default"];
+    return _clan_kind["default"];
+  }
+});
+Object.defineProperty(exports, "continentKind", {
+  enumerable: true,
+  get: function get() {
+    return _continent_kind["default"];
   }
 });
 exports.daoTitles = void 0;
 exports.getBook = getBook;
 exports.getClan = getClan;
+exports.getContinent = getContinent;
 exports.getDao = getDao;
+exports.getLocation = getLocation;
 exports.getName = getName;
+exports.getNation = getNation;
 exports.getSkill = getSkill;
 exports.getTalisman = getTalisman;
+Object.defineProperty(exports, "locationKind", {
+  enumerable: true,
+  get: function get() {
+    return _location_kind["default"];
+  }
+});
+Object.defineProperty(exports, "nationKind", {
+  enumerable: true,
+  get: function get() {
+    return _nation_kind["default"];
+  }
+});
+Object.defineProperty(exports, "placePostfix", {
+  enumerable: true,
+  get: function get() {
+    return _postfix2["default"];
+  }
+});
+Object.defineProperty(exports, "placePrefix", {
+  enumerable: true,
+  get: function get() {
+    return _prefix4["default"];
+  }
+});
 Object.defineProperty(exports, "skillKind", {
   enumerable: true,
   get: function get() {
@@ -41,41 +74,55 @@ Object.defineProperty(exports, "skillPrefix", {
     return _prefix["default"];
   }
 });
-exports.talismanKinds = void 0;
+exports.talismanKind = void 0;
 
-var _family = _interopRequireDefault(require("./data/name/family.json"));
+var _family = _interopRequireDefault(require("../data/name/family.json"));
 
-var _female = _interopRequireDefault(require("./data/name/female.json"));
+var _female = _interopRequireDefault(require("../data/name/female.json"));
 
-var _male = _interopRequireDefault(require("./data/name/male.json"));
+var _male = _interopRequireDefault(require("../data/name/male.json"));
 
-var _middle = _interopRequireDefault(require("./data/name/middle.json"));
+var _middle = _interopRequireDefault(require("../data/name/middle.json"));
 
-var _dao = _interopRequireDefault(require("./data/dao/dao.json"));
+var _dao = _interopRequireDefault(require("../data/dao/dao.json"));
 
-var _title_male = _interopRequireDefault(require("./data/dao/title_male.json"));
+var _title_male = _interopRequireDefault(require("../data/dao/title_male.json"));
 
-var _title_female = _interopRequireDefault(require("./data/dao/title_female.json"));
+var _title_female = _interopRequireDefault(require("../data/dao/title_female.json"));
 
-var _common = _interopRequireDefault(require("./data/common.json"));
+var _common = _interopRequireDefault(require("../data/shared/common.json"));
 
-var _prefix = _interopRequireDefault(require("./data/skill/prefix.json"));
+var _strange = _interopRequireDefault(require("../data/shared/strange.json"));
 
-var _kind = _interopRequireDefault(require("./data/skill/kind.json"));
+var _kind = _interopRequireDefault(require("../data/skill/kind.json"));
 
-var _numfix = _interopRequireDefault(require("./data/skill/numfix.json"));
+var _prefix = _interopRequireDefault(require("../data/skill/prefix.json"));
 
-var _prefix2 = _interopRequireDefault(require("./data/book/prefix.json"));
+var _numfix = _interopRequireDefault(require("../data/skill/numfix.json"));
 
-var _kind2 = _interopRequireDefault(require("./data/book/kind.json"));
+var _prefix2 = _interopRequireDefault(require("../data/book/prefix.json"));
 
-var _postfix = _interopRequireDefault(require("./data/book/postfix.json"));
+var _kind2 = _interopRequireDefault(require("../data/book/kind.json"));
 
-var _kind3 = _interopRequireDefault(require("./data/talisman/kind.json"));
+var _postfix = _interopRequireDefault(require("../data/book/postfix.json"));
 
-var _prefix3 = _interopRequireDefault(require("./data/talisman/prefix.json"));
+var _kind3 = _interopRequireDefault(require("../data/talisman/kind.json"));
 
-var _kind4 = _interopRequireDefault(require("./data/clan/kind.json"));
+var _prefix3 = _interopRequireDefault(require("../data/talisman/prefix.json"));
+
+var _clan_kind = _interopRequireDefault(require("../data/organization/clan_kind.json"));
+
+var _nation_kind = _interopRequireDefault(require("../data/organization/nation_kind.json"));
+
+var _place = _interopRequireDefault(require("../data/place/place.json"));
+
+var _prefix4 = _interopRequireDefault(require("../data/place/prefix.json"));
+
+var _postfix2 = _interopRequireDefault(require("../data/place/postfix.json"));
+
+var _location_kind = _interopRequireDefault(require("../data/place/location_kind.json"));
+
+var _continent_kind = _interopRequireDefault(require("../data/place/continent_kind.json"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -96,8 +143,8 @@ var daoTitles = _toConsumableArray(new Set([].concat(_toConsumableArray(_title_m
 exports.daoTitles = daoTitles;
 var bookPrefixes = [].concat(_toConsumableArray(_prefix2["default"].epic), _toConsumableArray(_prefix2["default"].legendary), _toConsumableArray(_prefix2["default"].mythic), _toConsumableArray(_prefix2["default"].exotic));
 exports.bookPrefixes = bookPrefixes;
-var talismanKinds = [].concat(_toConsumableArray(_kind3["default"].common), _toConsumableArray(_kind3["default"].uncommon), _toConsumableArray(_kind3["default"].rare), _toConsumableArray(_kind3["default"].epic), _toConsumableArray(_kind3["default"].legendary), _toConsumableArray(_kind3["default"].mythic), _toConsumableArray(_kind3["default"].exotic));
-exports.talismanKinds = talismanKinds;
+var talismanKind = [].concat(_toConsumableArray(_kind3["default"].common), _toConsumableArray(_kind3["default"].uncommon), _toConsumableArray(_kind3["default"].rare), _toConsumableArray(_kind3["default"].epic), _toConsumableArray(_kind3["default"].legendary), _toConsumableArray(_kind3["default"].mythic), _toConsumableArray(_kind3["default"].exotic));
+exports.talismanKind = talismanKind;
 var bookPostfixes = [].concat(_toConsumableArray(_postfix["default"].uncommon), _toConsumableArray(_postfix["default"].rare));
 exports.bookPostfixes = bookPostfixes;
 var _rarityLevels = {
@@ -434,10 +481,170 @@ function getClan(number, kind) {
     var k = kind;
 
     if (!k) {
-      k = _kind4["default"][Math.floor(Math.random() * _kind4["default"].length)];
+      k = _clan_kind["default"][Math.floor(Math.random() * _clan_kind["default"].length)];
     }
 
     names.push("".concat(name).concat(k));
+  }
+
+  return names;
+}
+
+var _kContry = '国';
+
+function getNation(number, kind) {
+  var names = [];
+
+  for (var i = 0; i < number; ++i) {
+    var name = '';
+    var k = kind !== null && kind !== void 0 ? kind : '';
+    var rarity = 'common';
+    var r = Math.random();
+
+    if (r < _rarityLevels.rare) {
+      var index = Math.floor(Math.random() * _strange["default"].length);
+      name = _strange["default"][index];
+      rarity = 'rare';
+
+      if (!kind) {
+        if (name.length == 1) {
+          k = _kContry;
+        } else {
+          k = _nation_kind["default"][Math.floor(Math.random() * _nation_kind["default"].length)];
+        }
+      }
+    } else if (r < _rarityLevels.uncommon) {
+      var _index = Math.floor(Math.random() * _common["default"].length);
+
+      name = _common["default"][_index];
+      rarity = 'uncommon';
+
+      if (!kind) {
+        if (name.length == 1) {
+          k = _kContry;
+        } else {
+          k = _nation_kind["default"][Math.floor(Math.random() * _nation_kind["default"].length)];
+        }
+      }
+    } else {
+      var prefix = '';
+
+      if (Math.random() < _rarityLevels.rare) {
+        var _index3 = Math.floor(Math.random() * _prefix4["default"].length);
+
+        prefix = _prefix4["default"][_index3];
+      }
+
+      var _index2 = Math.floor(Math.random() * _place["default"].length);
+
+      name = prefix + _place["default"][_index2];
+
+      if (!kind) {
+        k = _kContry;
+      }
+    }
+
+    names.push({
+      name: "".concat(name).concat(k),
+      rarity: rarity
+    });
+  }
+
+  return names;
+}
+
+var _kFamily = '家';
+
+function getLocation(number, kind) {
+  var names = [];
+
+  for (var i = 0; i < number; ++i) {
+    var name = '';
+    var k = kind !== null && kind !== void 0 ? kind : '';
+    var rarity = 'common';
+    var r = Math.random();
+
+    if (r < _rarityLevels.rare) {
+      var index = Math.floor(Math.random() * _strange["default"].length);
+      name = _strange["default"][index];
+      rarity = 'rare';
+    } else if (r < _rarityLevels.uncommon) {
+      var _index4 = Math.floor(Math.random() * _common["default"].length);
+
+      name = _common["default"][_index4];
+      rarity = 'uncommon';
+    } else {
+      var placeIndex = Math.floor(Math.random() * _place["default"].length);
+      var postfix = '';
+
+      if (Math.random() < _rarityLevels.uncommon) {
+        var postfixIndex = Math.floor(Math.random() * _postfix2["default"].length);
+        postfix = _postfix2["default"][postfixIndex];
+      }
+
+      name = _place["default"][placeIndex] + postfix;
+    }
+
+    if (!kind) {
+      k = _location_kind["default"][Math.floor(Math.random() * _location_kind["default"].length)];
+    }
+
+    names.push({
+      name: "".concat(name).concat(k),
+      rarity: rarity
+    });
+  }
+
+  return names;
+}
+
+var _kContinent = '洲';
+
+function getContinent(number, kind) {
+  var names = [];
+
+  for (var i = 0; i < number; ++i) {
+    var name = '';
+    var k = kind !== null && kind !== void 0 ? kind : '';
+
+    if (!kind) {
+      k = _continent_kind["default"][Math.floor(Math.random() * _continent_kind["default"].length)];
+    }
+
+    var rarity = 'common';
+    var r = Math.random();
+
+    if (r < _rarityLevels.rare) {
+      var index = Math.floor(Math.random() * _strange["default"].length);
+      name = _strange["default"][index];
+      rarity = 'rare';
+    } else if (r < _rarityLevels.uncommon) {
+      var _index5 = Math.floor(Math.random() * _common["default"].length);
+
+      name = _common["default"][_index5];
+      rarity = 'uncommon';
+    } else {
+      var prefix = '';
+
+      if (Math.random() < _rarityLevels.rare) {
+        var _index7 = Math.floor(Math.random() * _prefix4["default"].length);
+
+        prefix = _prefix4["default"][_index7];
+      }
+
+      var _index6 = Math.floor(Math.random() * _place["default"].length);
+
+      name = prefix + _place["default"][_index6];
+
+      if (name.length == 1) {
+        k = _kContinent;
+      }
+    }
+
+    names.push({
+      name: "".concat(name).concat(k),
+      rarity: rarity
+    });
   }
 
   return names;

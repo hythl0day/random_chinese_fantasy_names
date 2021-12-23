@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getTalisman, talismanKind } from "../../random_names";
+import { getLocation, locationKind } from "../../random_names/src/index.js";
 import { numberValues, rarityColors } from '../shared/constants.js';
 
 defineProps({
@@ -11,14 +11,14 @@ const numberOptions = ref(numberValues);
 
 const kindOptions = ref([
   '随机',
-  ...talismanKind]);
+  ...locationKind]);
 
 const nameList = ref([]);
 const number = ref(10);
 const kind = ref(null);
 
 function generate() {
-  let list = getTalisman(
+  let list = getLocation(
     number.value,
     kind.value,
   )
