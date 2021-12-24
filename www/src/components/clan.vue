@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getClan, clanKind } from "../../random_names";
-import { numberValues, rarityColors } from '../shared/constants.js';
+import { getClan, clanKind, rarityColors} from "../../random_names";
+import { numberValues } from '../shared/constants.js';
 
 defineProps({
   

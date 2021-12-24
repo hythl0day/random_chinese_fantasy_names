@@ -2,9 +2,7 @@
 
 <a title="NPM" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>
 
-随机生成仙侠风格的人名、法号、功法、秘籍、法宝、门派、国家、地点、大陆。
-
-尚在开发中的功能包括：材料、丹药……
+随机生成仙侠风格的人名、法号、功法、秘籍、生灵、材料、丹药、法宝、门派、国家、地点、大陆。
 
 ## 在线版本
 
@@ -45,6 +43,15 @@ export function getSkill(number, length, kind, prefix, postfix)
 // 秘籍
 export function getBook(number, length, prefix, kind, postfix)
 
+// 生灵
+export function getCreature(number, category, rarity)
+
+// 材料
+export function getMaterial(number, kind, rarity)
+
+// 丹药
+export function getAlchemy(number, kind)
+
 // 法宝
 export function getTalisman(number, kind)
 
@@ -59,5 +66,4 @@ export function getLocation(number, kind)
 
 // 大陆
 export function getContinent(number, kind)
-
 ```

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getNation, nationKind, rarityColors } from "../../random_names";
+import { getCreature, creatureCategory, creatureCategoryNames, rarityLevels, rarityColors, rarityNames } from "../../random_names/src";
 import { numberValues } from '../shared/constants.js';
 
 defineProps({
@@ -9,18 +9,24 @@ defineProps({
 
 const numberOptions = ref(numberValues);
 
-const kindOptions = ref([
+const categoryOptions = ref([
   '随机',
-  ...nationKind]);
+  ...creatureCategory]);
+
+const rarityOptions = ref([
+  '随机',
+  ...rarityLevels]);
 
 const nameList = ref([]);
 const number = ref(10);
-const kind = ref(null);
+const category = ref(null);
+const rarity = ref(null);
 
 function generate() {
-  let list = getNation(
+  let list = getCreature(
     number.value,
-    kind.value,
+    category.value,
+    rarity.value,
   )
   nameList.value.splice(0, nameList.value.length)
   for (let name of list) {
@@ -46,15 +52,28 @@ function generate() {
           </ul>
         </div>
       </div>
+      <div class="col-4">
+        <div class="btn-group mb-3 dropup">
+          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
+            aria-expanded="false">
+            类别：{{ category == null ? '随机' : creatureCategoryNames[category] }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end force-scroll">
+            <li v-for="item of categoryOptions">
+              <a class="dropdown-item" @click="category = item == '随机' ? null : item">{{ item != '随机' ? creatureCategoryNames[item] : item }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
       <div class="col-4 text-start">
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
-            类别：{{ kind ?? '随机' }}
+            等级：{{ rarity == null ? '随机' : rarityNames[rarity] }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
-            <li v-for="item of kindOptions">
-              <a class="dropdown-item" @click="kind = item == '随机' ? null : item">{{ item }}</a>
+            <li v-for="item of rarityOptions">
+              <a class="dropdown-item" @click="rarity = item == '随机' ? null : item" :style="{color: rarityColors[item]}">{{ item != '随机' ? rarityNames[item] : item }}</a>
             </li>
           </ul>
         </div>

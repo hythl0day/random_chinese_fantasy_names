@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getMaterial, materialKind, rarityLevels } from "../../random_names";
-import { numberValues, rarityColors, rarityLevelNames } from '../shared/constants.js';
+import { getMaterial, materialKind, rarityLevels, materialPostfixes, rarityColors, rarityNames } from "../../random_names";
+import { numberValues } from '../shared/constants.js';
 
 defineProps({
   
@@ -17,16 +17,22 @@ const rarityOptions = ref([
   '随机',
   ...rarityLevels]);
 
+const postfixOptions = ref([
+  '随机',
+  ...materialPostfixes]);
+
 const nameList = ref([]);
 const number = ref(10);
 const kind = ref(null);
 const rarity = ref(null);
+const postfix = ref(null);
 
 function generate() {
   let list = getMaterial(
     number.value,
     kind.value,
     rarity.value,
+    postfix.value,
   )
   nameList.value.splice(0, nameList.value.length)
   for (let name of list) {
@@ -69,11 +75,24 @@ function generate() {
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
-            等级：{{ rarity == null ? '随机' : rarityLevelNames[rarity] }}
+            等级：{{ rarity == null ? '随机' : rarityNames[rarity] }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
             <li v-for="item of rarityOptions">
-              <a class="dropdown-item" @click="rarity = item == '随机' ? null : item" :style="{color: rarityColors[item]}">{{ item != '随机' ? rarityLevelNames[item] : item }}</a>
+              <a class="dropdown-item" @click="rarity = item == '随机' ? null : item" :style="{color: rarityColors[item]}">{{ item != '随机' ? rarityNames[item] : item }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="btn-group mb-3 dropup">
+          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
+            aria-expanded="false">
+            后缀：{{ postfix ?? '随机' }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li v-for="item of postfixOptions">
+              <a class="dropdown-item" @click="postfix = item == '随机' ? null : item">{{ item }}</a>
             </li>
           </ul>
         </div>

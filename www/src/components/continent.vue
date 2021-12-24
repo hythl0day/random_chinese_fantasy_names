@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getContinent, continentKind } from "../../random_names";
-import { numberValues, rarityColors } from '../shared/constants.js';
+import { getContinent, continentKind, rarityColors } from "../../random_names";
+import { numberValues } from '../shared/constants.js';
 
 defineProps({
   

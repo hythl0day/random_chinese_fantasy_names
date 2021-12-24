@@ -4,7 +4,9 @@ import Dao from './components/dao.vue';
 import Skill from './components/skill.vue';
 import Book from './components/book.vue';
 import Material from './components/material.vue';
+import Alchemy from './components/alchemy.vue';
 import Talisman from './components/talisman.vue';
+import Creature from './components/creature.vue';
 import Clan from './components/clan.vue';
 import Nation from './components/nation.vue';
 import Location from './components/location.vue';
@@ -14,7 +16,7 @@ import Continent from './components/continent.vue';
 
 <template>
   <h1>仙侠小说专有名词随机生成器</h1>
-  <p>版本号 0.1.12</p>
+  <p class="text-dark text-opacity-50">版本号 0.1.12 最后更新于2021年12月24日</p>
   <a title="NPM" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>&nbsp;
   <a title="Github" href="https://github.com/hetu-script/random_chinese_fantasy_names" ><img src="https://img.shields.io/badge/github-repository-green" /></a>
   <div class="text-dark text-opacity-25 pt-1">
@@ -66,7 +68,7 @@ import Continent from './components/continent.vue';
           data-mdb-toggle="tab"
           href="#ex3-tabs-5"
           role="tab"
-          >材料</a
+          >生灵</a
         >
       </li>
       <li class="nav-item" role="presentation">
@@ -75,7 +77,7 @@ import Continent from './components/continent.vue';
           data-mdb-toggle="tab"
           href="#ex3-tabs-6"
           role="tab"
-          >法宝</a
+          >材料</a
         >
       </li>
       <li class="nav-item" role="presentation">
@@ -84,7 +86,7 @@ import Continent from './components/continent.vue';
           data-mdb-toggle="tab"
           href="#ex3-tabs-7"
           role="tab"
-          >异兽</a
+          >丹药</a
         >
       </li>
       <li class="nav-item" role="presentation">
@@ -93,7 +95,7 @@ import Continent from './components/continent.vue';
           data-mdb-toggle="tab"
           href="#ex3-tabs-8"
           role="tab"
-          >丹药</a
+          >法宝</a
         >
       </li>
       <li class="nav-item" role="presentation">
@@ -175,7 +177,7 @@ import Continent from './components/continent.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-5"
       >
-        <Material />
+        <Creature />
       </div>
       <div
         class="tab-pane fade"
@@ -183,7 +185,7 @@ import Continent from './components/continent.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-6"
       >
-        <Talisman />
+        <Material />
       </div>
       <div
         class="tab-pane fade"
@@ -191,7 +193,7 @@ import Continent from './components/continent.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-7"
       >
-        异兽
+        <Alchemy />
       </div>
       <div
         class="tab-pane fade"
@@ -199,7 +201,7 @@ import Continent from './components/continent.vue';
         role="tabpanel"
         aria-labelledby="ex3-tab-8"
       >
-        丹药
+        <Talisman />
       </div>
       <div
         class="tab-pane fade"

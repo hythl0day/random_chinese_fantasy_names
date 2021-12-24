@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getTalisman, talismanKind, rarityLevels } from "../../random_names";
-import { numberValues, rarityColors, rarityLevelNames } from '../shared/constants.js';
+import { getTalisman, talismanKind, rarityLevels, rarityColors, rarityNames } from "../../random_names";
+import { numberValues } from '../shared/constants.js';
 
 defineProps({
   
@@ -69,11 +69,11 @@ function generate() {
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
-            等级：{{ rarity == null ? '随机' : rarityLevelNames[rarity] }}
+            等级：{{ rarity == null ? '随机' : rarityNames[rarity] }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
             <li v-for="item of rarityOptions">
-              <a class="dropdown-item" @click="rarity = item == '随机' ? null : item" :style="{color: rarityColors[item]}">{{ item != '随机' ? rarityLevelNames[item] : item }}</a>
+              <a class="dropdown-item" @click="rarity = item == '随机' ? null : item" :style="{color: rarityColors[item]}">{{ item != '随机' ? rarityNames[item] : item }}</a>
             </li>
           </ul>
         </div>

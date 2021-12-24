@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getBook, bookKind, bookPrefixes, bookPostfixes } from "../../random_names";
-import { numberValues, lengthValues, rarityColors } from '../shared/constants.js';
+import { getBook, bookKind, bookPrefixes, bookPostfixes, rarityColors } from "../../random_names";
+import { numberValues, lengthValues } from '../shared/constants.js';
 
 defineProps({
   

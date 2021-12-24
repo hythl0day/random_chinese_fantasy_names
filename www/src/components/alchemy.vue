@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import { getNation, nationKind, rarityColors } from "../../random_names";
-import { numberValues } from '../shared/constants.js';
+import { getAlchemy, alchemyKind, rarityColors } from "../../random_names/src";
+import { numberValues, lengthValues } from '../shared/constants.js';
 
 defineProps({
   
@@ -9,17 +9,22 @@ defineProps({
 
 const numberOptions = ref(numberValues);
 
+const lengthOptions = ref(lengthValues);
+
 const kindOptions = ref([
   '随机',
-  ...nationKind]);
+  ...alchemyKind,
+]);
 
 const nameList = ref([]);
 const number = ref(10);
+const length = ref(null);
 const kind = ref(null);
 
 function generate() {
-  let list = getNation(
+  let list = getAlchemy(
     number.value,
+    length.value,
     kind.value,
   )
   nameList.value.splice(0, nameList.value.length)
@@ -42,6 +47,19 @@ function generate() {
           <ul class="dropdown-menu dropdown-menu-end">
             <li v-for="item of numberOptions">
               <a class="dropdown-item" @click="number = item">{{ item }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="btn-group mb-3 dropup">
+          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
+            aria-expanded="false">
+            长度：{{ length ?? '随机' }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li v-for="item of lengthOptions">
+              <a class="dropdown-item" @click="length = item == '随机' ? null : item">{{ item }}</a>
             </li>
           </ul>
         </div>
@@ -75,13 +93,9 @@ function generate() {
 
 <style scoped>
 .fixed-width120 {
-  width: 120px !important;
+    width: 120px !important;
 }
 .fixed-width140 {
-  width: 140px !important;
-}
-.force-scroll {
-  overflow-y: scroll;
-  height: 200px;
+    width: 140px !important;
 }
 </style>
