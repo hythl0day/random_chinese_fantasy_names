@@ -98,4 +98,8 @@ function generate() {
 .fixed-width140 {
     width: 140px !important;
 }
+.force-scroll {
+  overflow-y: scroll;
+  height: 200px;
+}
 </style>
