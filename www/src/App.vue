@@ -5,7 +5,6 @@ import Footer from './components/footer.vue';
 
 <template>
   <Main />
-  <div class="spacer"></div>
   <Footer />
 </template>
 
@@ -20,9 +19,5 @@ import Footer from './components/footer.vue';
 
 html {
   height: 100%;
-}
-
-.spacer {
-  height: 100px;
 }
 </style>

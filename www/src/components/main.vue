@@ -15,6 +15,7 @@ import Continent from './continent.vue';
 </script>
 
 <template>
+<div class="spacer">
   <h1>仙侠小说专有名词随机生成器</h1>
   <p class="text-dark text-opacity-50">版本号 0.1.12 最后更新于2021年12月24日</p>
   <a title="NPM" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>&nbsp;
@@ -239,7 +240,7 @@ import Continent from './continent.vue';
     <!-- Tabs content -->
 
   </div>
-
+  </div>
 </template>
 
 <style scoped>
@@ -247,4 +248,7 @@ a:link {
   color:lightgray; 
 }
 
+.spacer {
+  min-height: 60vh;
+}
 </style>
