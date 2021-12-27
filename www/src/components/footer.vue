@@ -17,8 +17,8 @@
 
     <!-- Copyright -->
     <div class="text-center p-3 mb-0" style="background-color: rgba(0, 0, 0, 0.05)">
-      © 2021 保留所有权利
-      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">hetu.dev</a>
+      保留所有权利 © 2021
+      <a class="text-reset" href="https://mdbootstrap.com/">hetu.dev</a>
     </div>
     <!-- Copyright -->
   </div>
