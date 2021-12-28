@@ -357,7 +357,7 @@ export function getBook(number, length, prefix, kind, postfix) {
       rarity = 'rare';
     }
     names.push({
-      name: `《${skillname.name}${pre}${k}${post}》`,
+      name: '《' + skillname.name + pre + k + post + '》',
       rarity: rarity,
     });
   }

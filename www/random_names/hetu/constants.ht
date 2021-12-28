@@ -28,7 +28,7 @@ final kRarity = {
     probability: 0.075,
     text: '极品',
   },
-  legendary {
+  legendary: {
     // legendary 橙
     color: '#C5C660',
     probability: 0.012,
