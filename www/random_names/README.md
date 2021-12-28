@@ -30,6 +30,8 @@ const { getName } = require('random_chinese_fantasy_names/commonjs');
 
 ### 接口
 
+number 是生成数量，必填，其他的参数可以省略，如果省略会进行随机。
+
 ```javascript
 // 人名
 export function getName(number, isFemale, style, familyName, middleCharacter)
@@ -41,7 +43,7 @@ export function getDao(number, isFemale, title, firstCharacter)
 export function getSkill(number, length, kind, prefix, postfix)
 
 // 秘籍
-export function getBook(number, length, prefix, kind, postfix)
+export function getBook(number, length, prefix, mainkind, postkind, postfix)
 
 // 生灵
 export function getCreature(number, category, rarity)

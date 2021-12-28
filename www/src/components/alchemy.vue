@@ -1,20 +1,16 @@
 <script setup>
 import { ref } from "vue";
 import { getAlchemy, alchemyKind, rarityColors } from "../../random_names/src";
-import { numberValues, lengthValues } from '../shared/constants.js';
+import { numberValues as numberOptions, lengthValues as lengthOptions } from '../shared/constants.js';
 
 defineProps({
   
 });
 
-const numberOptions = ref(numberValues);
-
-const lengthOptions = ref(lengthValues);
-
-const kindOptions = ref([
+const kindOptions = [
   '随机',
   ...alchemyKind,
-]);
+];
 
 const nameList = ref([]);
 const number = ref(10);

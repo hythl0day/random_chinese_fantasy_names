@@ -234,7 +234,7 @@ import Continent from './continent.vue';
           role="tabpanel"
           aria-labelledby="ex3-tab-12"
         >
-          <Continent class="footer" />
+          <Continent />
         </div>
       </div>
       <!-- Tabs content -->

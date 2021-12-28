@@ -1,26 +1,22 @@
 <script setup>
 import { ref } from "vue";
-import { getName, sexValues, rarityColors } from "../../random_names";
-import { numberValues } from '../shared/constants.js';
+import { getName, sexValues as sexOptions, rarityColors } from "../../random_names";
+import { numberValues as numberOptions } from '../shared/constants.js';
 
 defineProps({
   
 });
 
-const numberOptions = ref(numberValues);
-
-const sexOptions = ref(sexValues);
-
-const styleOptions = ref([
+const styleOptions = [
   {text: '随机', value: null},
   {text: '一个实字', value: 'single'},
   {text: '两个实字', value: 'double'},
   {text: '虚字+实字', value: 'combine'},
-]);
+];
 
 const nameList = ref([]);
 const number = ref(10);
-const sex = ref(sexValues[0])
+const sex = ref(sexOptions[0])
 const nameStyle = ref({})
 const familyName = ref('')
 const middleCharacter = ref('')

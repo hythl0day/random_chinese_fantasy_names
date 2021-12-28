@@ -1,21 +1,19 @@
 <script setup>
 import { ref } from "vue";
 import { getCreature, creatureCategory, creatureCategoryNames, rarityLevels, rarityColors, rarityNames } from "../../random_names/src";
-import { numberValues } from '../shared/constants.js';
+import { numberValues as numberOptions } from '../shared/constants.js';
 
 defineProps({
   
 });
 
-const numberOptions = ref(numberValues);
-
-const categoryOptions = ref([
+const categoryOptions = [
   '随机',
-  ...creatureCategory]);
+  ...creatureCategory];
 
-const rarityOptions = ref([
+const rarityOptions = [
   '随机',
-  ...rarityLevels]);
+  ...rarityLevels];
 
 const nameList = ref([]);
 const number = ref(10);

@@ -1,25 +1,23 @@
 <script setup>
 import { ref } from "vue";
 import { getMaterial, materialKind, rarityLevels, materialPostfixes, rarityColors, rarityNames } from "../../random_names";
-import { numberValues } from '../shared/constants.js';
+import { numberValues as numberOptions } from '../shared/constants.js';
 
 defineProps({
   
 });
 
-const numberOptions = ref(numberValues);
-
-const kindOptions = ref([
+const kindOptions = [
   '随机',
-  ...materialKind]);
+  ...materialKind];
 
-const rarityOptions = ref([
+const rarityOptions = [
   '随机',
-  ...rarityLevels]);
+  ...rarityLevels];
 
-const postfixOptions = ref([
+const postfixOptions = [
   '随机',
-  ...materialPostfixes]);
+  ...materialPostfixes];
 
 const nameList = ref([]);
 const number = ref(10);

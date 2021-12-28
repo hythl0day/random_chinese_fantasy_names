@@ -1,21 +1,15 @@
 <script setup>
 import { ref } from "vue";
-import { getDao, daoTitles, sexValues, rarityColors } from "../../random_names";
-import { numberValues } from '../shared/constants.js';
+import { getDao, daoTitles as titleOptions, sexValues as sexOptions, rarityColors } from "../../random_names";
+import { numberValues as numberOptions } from '../shared/constants.js';
 
 defineProps({
   
 });
 
-const numberOptions = ref(numberValues);
-
-const sexOptions = ref(sexValues);
-
-const titleOptions = ref(daoTitles);
-
 const nameList = ref([]);
 const number = ref(10);
-const sex = ref(sexValues[0])
+const sex = ref(sexOptions[0])
 const title = ref('')
 const firstCharacter = ref('')
 

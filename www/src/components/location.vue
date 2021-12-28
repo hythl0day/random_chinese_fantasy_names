@@ -1,17 +1,15 @@
 <script setup>
 import { ref } from "vue";
 import { getLocation, locationKind, rarityColors } from "../../random_names/src/index.js";
-import { numberValues } from '../shared/constants.js';
+import { numberValues as numberOptions } from '../shared/constants.js';
 
 defineProps({
   
 });
 
-const numberOptions = ref(numberValues);
-
-const kindOptions = ref([
+const kindOptions = [
   '随机',
-  ...locationKind]);
+  ...locationKind];
 
 const nameList = ref([]);
 const number = ref(10);

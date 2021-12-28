@@ -299,65 +299,55 @@ export function getSkill(number, length, kind, prefix, numfix) {
   return names;
 }
 
-export function getBook(number, length, prefix, kind, postfix) {
+export function getBook(number, length, prefix, mainkind, postkind, postfix) {
   let names = [];
   for (let i = 0; i < number; ++i) {
-    let skillname = _getSkillName(length);
+    let skillname = _getSkillName(length, mainkind);
     let rarity = skillname.rarity;
     let pre = prefix || '';
-    let k = kind || '';
+    let pk = postkind || '';
     let post = postfix || '';
     if (!prefix) {
-      if (skillname.rarity == 'exotic') {
+      if (rarity == 'exotic') {
         pre =
           bookPrefix.exotic[
             Math.floor(Math.random() * bookPrefix.exotic.length)
           ];
-      } else if (skillname.rarity == 'mythic') {
+      } else if (rarity == 'mythic') {
         pre =
           bookPrefix.mythic[
             Math.floor(Math.random() * bookPrefix.mythic.length)
           ];
-      } else if (skillname.rarity == 'legendary') {
+      } else if (rarity == 'legendary') {
         pre =
           bookPrefix.legendary[
             Math.floor(Math.random() * bookPrefix.legendary.length)
           ];
-      } else if (skillname.rarity == 'epic') {
+      } else if (rarity == 'epic') {
         pre =
           bookPrefix.epic[Math.floor(Math.random() * bookPrefix.epic.length)];
       }
     }
-    if (pre && !kind) {
-      k = book[Math.floor(Math.random() * book.length)];
+    if (pre && !postkind) {
+      pk = book[Math.floor(Math.random() * book.length)];
     }
-    if (!prefix && !kind) {
-      if (!postfix) {
-        let r1 = Math.random();
-        let r2 = Math.random();
-        if (r1 < rarityValues.rare && r2 < rarityValues.rare) {
-          rarity = 'handmade';
-          post =
-            _kParenthesisLeft +
-            bookPostfix.rare[
-              Math.floor(Math.random() * bookPostfix.rare.length)
-            ] +
-            _kParenthesisRight;
-        } else if (r1 < rarityValues.uncommon && r2 < rarityValues.uncommon) {
-          rarity = 'broken';
-          post =
-            _kParenthesisLeft +
-            bookPostfix.uncommon[
-              Math.floor(Math.random() * bookPostfix.uncommon.length)
-            ] +
-            _kParenthesisRight;
-        }
-      }
-    } else {
-      rarity = 'rare';
+    let r1 = Math.random();
+    let r2 = Math.random();
+    if (r1 < rarityValues.rare && r2 < rarityValues.rare) {
+      post =
+        _kParenthesisLeft +
+        bookPostfix.rare[Math.floor(Math.random() * bookPostfix.rare.length)] +
+        _kParenthesisRight;
+    } else if (r1 < rarityValues.uncommon && r2 < rarityValues.uncommon) {
+      post =
+        _kParenthesisLeft +
+        bookPostfix.uncommon[
+          Math.floor(Math.random() * bookPostfix.uncommon.length)
+        ] +
+        _kParenthesisRight;
     }
     names.push({
-      name: `《${skillname.name}${pre}${k}${post}》`,
+      name: `《${skillname.name}${pre}${pk}${post}》`,
       rarity: rarity,
     });
   }

@@ -1,35 +1,37 @@
 <script setup>
 import { ref } from "vue";
-import { getBook, bookKind, bookPrefixes, bookPostfixes, rarityColors } from "../../random_names";
-import { numberValues, lengthValues } from '../shared/constants.js';
+import { getBook, skillKind, bookKind, bookPrefixes, bookPostfixes, rarityColors } from "../../random_names";
+import { numberValues as numberOptions, lengthValues as lengthOptions } from '../shared/constants.js';
 
 defineProps({
   
 });
 
-const numberOptions = ref(numberValues);
+const mainKindOptions = [
+  '随机',
+  ...skillKind,
+];
 
-const lengthOptions = ref(lengthValues);
-
-const kindOptions = ref([
+const postKindOptions = [
   '随机',
   ...bookKind,
-]);
+];
 
-const prefixOptions = ref([
+const prefixOptions = [
   '随机',
   ...bookPrefixes,
-]);
+];
 
-const postfixOptions = ref([
+const postfixOptions = [
   '随机',
   ...bookPostfixes,
-]);
+];
 
 const nameList = ref([]);
 const number = ref(10);
 const length = ref(null);
-const kind = ref(null);
+const mainKind = ref(null);
+const postKind = ref(null);
 const prefix = ref(null);
 const postfix = ref(null);
 
@@ -38,7 +40,8 @@ function generate() {
     number.value,
     length.value,
     prefix.value,
-    kind.value,
+    mainKind.value,
+    postKind.value,
     postfix.value,
   )
   nameList.value.splice(0, nameList.value.length)
@@ -95,11 +98,24 @@ function generate() {
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
             aria-expanded="false">
-            类别：{{ kind ?? '随机' }}
+            主类别：{{ mainKind ?? '随机' }}
           </button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
-            <li v-for="item of kindOptions">
-              <a class="dropdown-item" @click="kind = item == '随机' ? null : item">{{ item }}</a>
+            <li v-for="item of mainKindOptions">
+              <a class="dropdown-item" @click="mainKind = item == '随机' ? null : item">{{ item }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="btn-group mb-3 dropup">
+          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
+            aria-expanded="false">
+            副类别：{{ postKind ?? '随机' }}
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end force-scroll">
+            <li v-for="item of postKindOptions">
+              <a class="dropdown-item" @click="postKind = item == '随机' ? null : item">{{ item }}</a>
             </li>
           </ul>
         </div>
