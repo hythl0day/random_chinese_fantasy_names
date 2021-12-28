@@ -347,7 +347,7 @@ export function getBook(number, length, prefix, mainkind, postkind, postfix) {
         _kParenthesisRight;
     }
     names.push({
-      name: `《${skillname.name}${pre}${pk}${post}》`,
+      name: '《' + skillname.name + pre + pk + post + '》',
       rarity: rarity,
     });
   }
