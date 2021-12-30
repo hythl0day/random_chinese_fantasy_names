@@ -1,27 +1,27 @@
 export const sexValues = [
-  { text: '随机', value: null },
-  { text: '女', value: true },
-  { text: '男', value: false },
+  { text: "随机", value: null },
+  { text: "女", value: true },
+  { text: "男", value: false },
 ];
 
 export const rarityColors = {
-  common: '#222A35',
-  uncommon: '#CCCCCC',
-  rare: '#00A6A9',
-  epic: '#804DC8',
-  legendary: '#C5C660',
-  mythic: '#F28234',
-  exotic: '#C65043',
+  common: "#CCCCCC",
+  uncommon: "#222A35",
+  rare: "#00A6A9",
+  epic: "#804DC8",
+  legendary: "#C5C660",
+  mythic: "#F28234",
+  exotic: "#C65043",
 };
 
 export const rarityLevels = [
-  'common',
-  'uncommon',
-  'rare',
-  'epic',
-  'legendary',
-  'mythic',
-  'exotic',
+  "common",
+  "uncommon",
+  "rare",
+  "epic",
+  "legendary",
+  "mythic",
+  "exotic",
 ];
 
 export const rarityValues = {
@@ -35,31 +35,31 @@ export const rarityValues = {
 };
 
 export const rarityNames = {
-  common: '凡品',
-  uncommon: '良品',
-  rare: '上品',
-  epic: '极品',
-  legendary: '秘宝',
-  mythic: '灵宝',
-  exotic: '古宝',
+  common: "凡品",
+  uncommon: "良品",
+  rare: "上品",
+  epic: "极品",
+  legendary: "秘宝",
+  mythic: "灵宝",
+  exotic: "古宝",
 };
 
 export const creatureCategory = [
-  'plant',
-  'worm',
-  'fish',
-  'beast',
-  'bird',
-  'reptile',
-  'insect',
+  "plant",
+  "worm",
+  "fish",
+  "beast",
+  "bird",
+  "reptile",
+  "insect",
 ];
 
 export const creatureCategoryNames = {
-  plant: '草木',
-  worm: '赢虫',
-  fish: '鱼',
-  beast: '兽',
-  bird: '鸟',
-  reptile: '爬虫',
-  insect: '甲虫',
+  plant: "草木",
+  worm: "赢虫",
+  fish: "鱼",
+  beast: "兽",
+  bird: "鸟",
+  reptile: "爬虫",
+  insect: "甲虫",
 };

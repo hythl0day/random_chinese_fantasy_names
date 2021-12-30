@@ -4,7 +4,7 @@ import { getMaterial, materialKind, rarityLevels, materialPostfixes, rarityColor
 import { numberValues as numberOptions } from '../shared/constants.js';
 
 defineProps({
-  
+
 });
 
 const kindOptions = [
@@ -28,9 +28,11 @@ const postfix = ref(null);
 function generate() {
   let list = getMaterial(
     number.value,
-    kind.value,
-    rarity.value,
-    postfix.value,
+    {
+      kind: kind.value,
+      rarity: rarity.value,
+      postfix: postfix.value,
+    }
   )
   nameList.value.splice(0, nameList.value.length)
   for (let name of list) {
@@ -45,10 +47,12 @@ function generate() {
     <div class="row justify-content-center">
       <div class="col-4 text-end">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            数量：{{ number }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >数量：{{ number }}</button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li v-for="item of numberOptions">
               <a class="dropdown-item" @click="number = item">{{ item }}</a>
@@ -58,10 +62,12 @@ function generate() {
       </div>
       <div class="col-4">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            类别：{{ kind ?? '随机' }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >类别：{{ kind ?? '随机' }}</button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
             <li v-for="item of kindOptions">
               <a class="dropdown-item" @click="kind = item == '随机' ? null : item">{{ item }}</a>
@@ -71,23 +77,31 @@ function generate() {
       </div>
       <div class="col-4 text-start">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            等级：{{ rarity == null ? '随机' : rarityNames[rarity] }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >等级：{{ rarity == null ? '随机' : rarityNames[rarity] }}</button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
             <li v-for="item of rarityOptions">
-              <a class="dropdown-item" @click="rarity = item == '随机' ? null : item" :style="{color: rarityColors[item]}">{{ item != '随机' ? rarityNames[item] : item }}</a>
+              <a
+                class="dropdown-item"
+                @click="rarity = item == '随机' ? null : item"
+                :style="{ color: rarityColors[item] }"
+              >{{ item != '随机' ? rarityNames[item] : item }}</a>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-4">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            后缀：{{ postfix ?? '随机' }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >后缀：{{ postfix ?? '随机' }}</button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li v-for="item of postfixOptions">
               <a class="dropdown-item" @click="postfix = item == '随机' ? null : item">{{ item }}</a>
@@ -97,14 +111,19 @@ function generate() {
       </div>
     </div>
   </div>
-  
+
   <div class="pt-3">
-    <button data-mdb-ripple-color="primary" type="button" class="btn btn-success fs-6" @click="generate">生成</button>
+    <button
+      data-mdb-ripple-color="primary"
+      type="button"
+      class="btn btn-success fs-6"
+      @click="generate"
+    >生成</button>
   </div>
 
   <div class="pt-3">
     <div v-for="item of nameList">
-      <p :style="{color: rarityColors[item.rarity]}">{{ item.name }}</p>
+      <p :style="{ color: rarityColors[item.rarity] }">{{ item.name }}</p>
     </div>
   </div>
 </template>

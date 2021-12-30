@@ -11,7 +11,7 @@ const {
   getNation,
   getLocation,
   getContinent,
-} = require('../commonjs');
+} = require("../commonjs/index");
 
 console.log(getName(10));
 console.log(getDao(10));

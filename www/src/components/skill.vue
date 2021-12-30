@@ -4,7 +4,7 @@ import { getSkill, skillKind, skillPrefix, skillNumfix, rarityColors } from "../
 import { numberValues as numberOptions, lengthValues as lengthOptions } from '../shared/constants.js';
 
 defineProps({
-  
+
 });
 
 const prefixOptions = [
@@ -32,10 +32,12 @@ const numfix = ref(null);
 function generate() {
   let list = getSkill(
     number.value,
-    length.value,
-    kind.value,
-    prefix.value,
-    numfix.value,
+    {
+      length: length.value,
+      kind: kind.value,
+      prefix: prefix.value,
+      numfix: numfix.value,
+    }
   )
   nameList.value.splice(0, nameList.value.length)
   for (let name of list) {
@@ -50,10 +52,12 @@ function generate() {
     <div class="row justify-content-center">
       <div class="col-4 text-end">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            数量：{{ number }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >数量：{{ number }}</button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li v-for="item of numberOptions">
               <a class="dropdown-item" @click="number = item">{{ item }}</a>
@@ -63,10 +67,12 @@ function generate() {
       </div>
       <div class="col-4">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            长度：{{ length ?? '随机' }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >长度：{{ length ?? '随机' }}</button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li v-for="item of lengthOptions">
               <a class="dropdown-item" @click="length = item == '随机' ? null : item">{{ item }}</a>
@@ -76,10 +82,12 @@ function generate() {
       </div>
       <div class="col-4 text-start">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            类别：{{ kind ?? '随机' }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >类别：{{ kind ?? '随机' }}</button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
             <li v-for="item of skillKindOptions">
               <a class="dropdown-item" @click="kind = item == '随机' ? null : item">{{ item }}</a>
@@ -89,10 +97,12 @@ function generate() {
       </div>
       <div class="col-4 text-end">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            前缀：{{ prefix ?? '随机' }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >前缀：{{ prefix ?? '随机' }}</button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li v-for="item of prefixOptions">
               <a class="dropdown-item" @click="prefix = item == '随机' ? null : item">{{ item }}</a>
@@ -102,10 +112,12 @@ function generate() {
       </div>
       <div class="col-4 text-start">
         <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            后缀：{{ numfix ?? '随机' }}
-          </button>
+          <button
+            class="btn btn-info dropdown-toggle fixed-width120 text-start"
+            type="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >后缀：{{ numfix ?? '随机' }}</button>
           <ul class="dropdown-menu dropdown-menu-end force-scroll">
             <li v-for="item of numfixOptions">
               <a class="dropdown-item" @click="numfix = item == '随机' ? null : item">{{ item }}</a>
@@ -115,24 +127,29 @@ function generate() {
       </div>
     </div>
   </div>
-  
+
   <div class="pt-3">
-    <button data-mdb-ripple-color="primary" type="button" class="btn btn-success fs-6" @click="generate">生成</button>
+    <button
+      data-mdb-ripple-color="primary"
+      type="button"
+      class="btn btn-success fs-6"
+      @click="generate"
+    >生成</button>
   </div>
 
   <div class="pt-3">
     <div v-for="item of nameList">
-      <p :style="{color: rarityColors[item.rarity]}">{{ item.name }}</p>
+      <p :style="{ color: rarityColors[item.rarity] }">{{ item.name }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
 .fixed-width120 {
-    width: 120px !important;
+  width: 120px !important;
 }
 .fixed-width140 {
-    width: 140px !important;
+  width: 140px !important;
 }
 .force-scroll {
   overflow-y: scroll;

@@ -126,7 +126,7 @@ Object.defineProperty(exports, "skillPrefix", {
     return _prefix["default"];
   }
 });
-exports.talismanKind = void 0;
+exports.talismanPostfixes = exports.talismanKind = void 0;
 
 var _constants = require("./constants.js");
 
@@ -221,6 +221,8 @@ var materialKind = [].concat(_toConsumableArray(_material2["default"].common), _
 exports.materialKind = materialKind;
 var materialPostfixes = [].concat(_toConsumableArray(_postfix4["default"].broken), _toConsumableArray(_postfix4["default"].handmade));
 exports.materialPostfixes = materialPostfixes;
+var talismanPostfixes = [].concat(_toConsumableArray(_postfix2["default"].broken), _toConsumableArray(_postfix2["default"].handmade));
+exports.talismanPostfixes = talismanPostfixes;
 var bookPostfixes = [].concat(_toConsumableArray(_postfix["default"].uncommon), _toConsumableArray(_postfix["default"].rare));
 exports.bookPostfixes = bookPostfixes;
 
@@ -229,19 +231,19 @@ function _getRarity(max) {
   var value = Math.random() * (max || 1.0);
 
   if (value < _constants.rarityValues.exotic) {
-    rarity = 'exotic';
+    rarity = "exotic";
   } else if (value < _constants.rarityValues.mythic) {
-    rarity = 'mythic';
+    rarity = "mythic";
   } else if (value < _constants.rarityValues.legendary) {
-    rarity = 'legendary';
+    rarity = "legendary";
   } else if (value < _constants.rarityValues.epic) {
-    rarity = 'epic';
+    rarity = "epic";
   } else if (value < _constants.rarityValues.rare) {
-    rarity = 'rare';
+    rarity = "rare";
   } else if (value < _constants.rarityValues.uncommon) {
-    rarity = 'uncommon';
+    rarity = "uncommon";
   } else {
-    rarity = 'common';
+    rarity = "common";
   }
 
   return {
@@ -250,48 +252,50 @@ function _getRarity(max) {
   };
 }
 
-var _kParenthesisLeft = '（';
-var _kParenthesisRight = '）';
+var _kParenthesisLeft = "（";
+var _kParenthesisRight = "）";
+var _kBookLeft = "《";
+var _kBookRight = "》";
 var common = [].concat(_toConsumableArray(_common["default"].dao), _toConsumableArray(_common["default"].element), _toConsumableArray(_common["default"].creature), _toConsumableArray(_common["default"].thing), _toConsumableArray(_common["default"].color), _toConsumableArray(_common["default"].place), _toConsumableArray(_common["default"].adj), _toConsumableArray(_common["default"].number), _toConsumableArray(_common["default"].gesture), _toConsumableArray(_common["default"].action));
 
-function getName(number, isFemale, style, familyName, middleCharacter) {
+function getName(number, options) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
+    var _options$isFemale;
+
     var theFamilyName = void 0;
 
-    if (!familyName) {
+    if (!(options !== null && options !== void 0 && options.familyName)) {
       var familyIndex = Math.floor(Math.random() * _family["default"].length);
       theFamilyName = _family["default"][familyIndex];
     } else {
       theFamilyName = familyName;
     }
 
-    var f = isFemale !== null && isFemale !== void 0 ? isFemale : Math.floor(Math.random() * 10) % 2 == 0;
+    var f = (_options$isFemale = options === null || options === void 0 ? void 0 : options.isFemale) !== null && _options$isFemale !== void 0 ? _options$isFemale : Math.floor(Math.random() * 10) % 2 == 0;
     var namesOfASex = f ? _female["default"] : _male["default"];
     var r = Math.random();
-    var s = void 0;
+    var s = options === null || options === void 0 ? void 0 : options.style;
 
-    if (style == null || style == 'random') {
-      s = r < 0.33333333 ? 'single' : r < 0.66666666 ? 'double' : 'combine';
-    } else {
-      s = style;
+    if (!s) {
+      s = r < 0.33333333 ? "single" : r < 0.66666666 ? "double" : "combine";
     }
 
-    var name = '';
+    var name = "";
 
-    if (s == 'single') {
-      if (middleCharacter) {
-        name = middleCharacter;
+    if (s == "single") {
+      if (options !== null && options !== void 0 && options.middleCharacter) {
+        name = options.middleCharacter;
       } else {
         var nameIndex = Math.floor(Math.random() * namesOfASex.length);
         name = namesOfASex[nameIndex];
       }
-    } else if (s == 'double') {
+    } else if (s == "double") {
       var theMiddleCharacter = void 0;
 
-      if (middleCharacter) {
-        theMiddleCharacter = middleCharacter;
+      if (options !== null && options !== void 0 && options.middleCharacter) {
+        theMiddleCharacter = options.middleCharacter;
       } else {
         var _nameIndex2 = Math.floor(Math.random() * namesOfASex.length);
 
@@ -305,8 +309,8 @@ function getName(number, isFemale, style, familyName, middleCharacter) {
     } else {
       var _theMiddleCharacter = void 0;
 
-      if (middleCharacter) {
-        _theMiddleCharacter = middleCharacter;
+      if (options !== null && options !== void 0 && options.middleCharacter) {
+        _theMiddleCharacter = options.middleCharacter;
       } else {
         var _nameIndex4 = Math.floor(Math.random() * _middle["default"].length);
 
@@ -325,14 +329,16 @@ function getName(number, isFemale, style, familyName, middleCharacter) {
   return names;
 }
 
-function getDao(number, isFemale, title, firstCharacter) {
+function getDao(number, options) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
+    var _options$isFemale2;
+
     var theFirstCharacter = void 0;
 
-    if (firstCharacter) {
-      theFirstCharacter = firstCharacter;
+    if (options !== null && options !== void 0 && options.firstCharacter) {
+      theFirstCharacter = options.firstCharacter;
     } else {
       var nameIndex1 = Math.floor(Math.random() * _dao["default"].length);
       theFirstCharacter = _dao["default"][nameIndex1];
@@ -340,25 +346,47 @@ function getDao(number, isFemale, title, firstCharacter) {
 
     var nameIndex2 = Math.floor(Math.random() * _dao["default"].length);
     var name = theFirstCharacter + _dao["default"][nameIndex2];
-    var titleGroup = (isFemale !== null && isFemale !== void 0 ? isFemale : Math.floor(Math.random() * 10) % 2 == 0) ? _title_female["default"] : _title_male["default"];
-    var t = '';
-    var rarity = 'common';
+    var titleGroup = ((_options$isFemale2 = options === null || options === void 0 ? void 0 : options.isFemale) !== null && _options$isFemale2 !== void 0 ? _options$isFemale2 : Math.floor(Math.random() * 10) % 2 == 0) ? _title_female["default"] : _title_male["default"];
+    var t = (options === null || options === void 0 ? void 0 : options.title) || "";
+    var rarity = "common";
 
-    if (!title) {
+    if (!t) {
       rarity = _getRarity().rarity;
 
-      if (rarity == 'exotic') {
+      if (rarity == "exotic") {
         t = titleGroup.exotic[Math.floor(Math.random() * titleGroup.exotic.length)];
-      } else if (rarity == 'mythic') {
+      } else if (rarity == "mythic") {
         t = titleGroup.mythic[Math.floor(Math.random() * titleGroup.mythic.length)];
-      } else if (rarity == 'legendary') {
+      } else if (rarity == "legendary") {
         t = titleGroup.legendary[Math.floor(Math.random() * titleGroup.legendary.length)];
-      } else if (rarity == 'epic') {
+      } else if (rarity == "epic") {
         t = titleGroup.epic[Math.floor(Math.random() * titleGroup.epic.length)];
-      } else if (rarity == 'rare') {
+      } else if (rarity == "rare") {
         t = titleGroup.rare[Math.floor(Math.random() * titleGroup.rare.length)];
-      } else if (rarity == 'uncommon') {
+      } else if (rarity == "uncommon") {
         t = titleGroup.uncommon[Math.floor(Math.random() * titleGroup.uncommon.length)];
+      }
+    } else {
+      if (_title_female["default"].exotic.includes(t) || _title_male["default"].exotic.includes(t)) {
+        rarity = "exotic";
+      } else if (_title_female["default"].mythic.includes(t) || _title_male["default"].mythic.includes(t)) {
+        rarity = "mythic";
+      }
+
+      if (_title_female["default"].legendary.includes(t) || _title_male["default"].legendary.includes(t)) {
+        rarity = "legendary";
+      }
+
+      if (_title_female["default"].epic.includes(t) || _title_male["default"].epic.includes(t)) {
+        rarity = "epic";
+      }
+
+      if (_title_female["default"].rare.includes(t) || _title_male["default"].rare.includes(t)) {
+        rarity = "rare";
+      }
+
+      if (_title_female["default"].uncommon.includes(t) || _title_male["default"].uncommon.includes(t)) {
+        rarity = "uncommon";
       }
     }
 
@@ -371,12 +399,12 @@ function getDao(number, isFemale, title, firstCharacter) {
   return names;
 }
 
-var _kNumberBeginSupplement = '路';
-var _kNumberEndSupplement = '式';
+var _kNumberBeginSupplement = "路";
+var _kNumberEndSupplement = "式";
 
 function _getSkillName(length, kind, prefix, numfix) {
   var l = length || 1;
-  var rarity = 'common';
+  var rarity = "common";
 
   if (!length) {
     var r = _getRarity();
@@ -388,31 +416,39 @@ function _getSkillName(length, kind, prefix, numfix) {
     }
 
     rarity = r.rarity;
+  } else {
+    if (length > 2) {
+      rarity = "rare";
+    } else if (length > 1) {
+      rare = "uncommon";
+    }
   }
 
-  var name = '';
-  var pre = prefix || '';
-  var n = numfix || '';
-
-  var k = kind || _skill["default"][Math.floor(Math.random() * _skill["default"].length)];
+  var name = "";
 
   for (var i = 0; i < l; ++i) {
     name += common[Math.floor(Math.random() * common.length)];
   }
 
-  if (!prefix && Math.random() < _constants.rarityValues.epic) {
+  var pre = prefix || "";
+
+  if (!pre && Math.random() < _constants.rarityValues.epic) {
     pre = _prefix["default"][Math.floor(Math.random() * _prefix["default"].length)];
   }
 
-  if (!numfix && Math.random() < _constants.rarityValues.epic) {
+  var n = numfix || "";
+
+  if (!n && Math.random() < _constants.rarityValues.epic) {
     n = _numfix["default"][Math.floor(Math.random() * _numfix["default"].length)];
   }
 
+  var k = kind || _skill["default"][Math.floor(Math.random() * _skill["default"].length)];
+
   if (Math.random() < 0.5) {
-    name = (n != '' ? n + _kNumberBeginSupplement : '') + pre + name + k;
+    name = (n != "" ? n + _kNumberBeginSupplement : "") + pre + name + k;
   } else {
     if (k.length > 1) {
-      name = pre + name + k + (n != '' ? n + _kNumberEndSupplement : '');
+      name = pre + name + k + (n != "" ? n + _kNumberEndSupplement : "");
     } else {
       name = pre + name + n + k;
     }
@@ -424,11 +460,11 @@ function _getSkillName(length, kind, prefix, numfix) {
   };
 }
 
-function getSkill(number, length, kind, prefix, numfix) {
+function getSkill(number, options) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = _getSkillName(length, kind, prefix, numfix);
+    var name = _getSkillName(options === null || options === void 0 ? void 0 : options.length, options === null || options === void 0 ? void 0 : options.kind, options === null || options === void 0 ? void 0 : options.prefix, options === null || options === void 0 ? void 0 : options.numfix);
 
     names.push(name);
   }
@@ -436,52 +472,50 @@ function getSkill(number, length, kind, prefix, numfix) {
   return names;
 }
 
-function getBook(number, length, prefix, kind, postfix) {
+function getBook(number, options) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var skillname = _getSkillName(length);
+    var skillname = _getSkillName(options === null || options === void 0 ? void 0 : options.length, options === null || options === void 0 ? void 0 : options.mainkind);
 
     var rarity = skillname.rarity;
-    var pre = prefix || '';
-    var k = kind || '';
-    var post = postfix || '';
+    var pre = (options === null || options === void 0 ? void 0 : options.prefix) || "";
 
-    if (!prefix) {
-      if (skillname.rarity == 'exotic') {
+    if (!pre) {
+      if (rarity == "exotic") {
         pre = _prefix2["default"].exotic[Math.floor(Math.random() * _prefix2["default"].exotic.length)];
-      } else if (skillname.rarity == 'mythic') {
+      } else if (rarity == "mythic") {
         pre = _prefix2["default"].mythic[Math.floor(Math.random() * _prefix2["default"].mythic.length)];
-      } else if (skillname.rarity == 'legendary') {
+      } else if (rarity == "legendary") {
         pre = _prefix2["default"].legendary[Math.floor(Math.random() * _prefix2["default"].legendary.length)];
-      } else if (skillname.rarity == 'epic') {
+      } else if (rarity == "epic") {
         pre = _prefix2["default"].epic[Math.floor(Math.random() * _prefix2["default"].epic.length)];
       }
     }
 
-    if (pre && !kind) {
-      k = _book["default"][Math.floor(Math.random() * _book["default"].length)];
+    var pk = (options === null || options === void 0 ? void 0 : options.postkind) || "";
+
+    if (pre && !pk) {
+      pk = _book["default"][Math.floor(Math.random() * _book["default"].length)];
     }
 
-    if (!prefix && !kind) {
-      if (!postfix) {
-        var r1 = Math.random();
-        var r2 = Math.random();
+    var post = (options === null || options === void 0 ? void 0 : options.postfix) || "";
 
-        if (r1 < _constants.rarityValues.rare && r2 < _constants.rarityValues.rare) {
-          rarity = 'handmade';
-          post = _kParenthesisLeft + _postfix["default"].rare[Math.floor(Math.random() * _postfix["default"].rare.length)] + _kParenthesisRight;
-        } else if (r1 < _constants.rarityValues.uncommon && r2 < _constants.rarityValues.uncommon) {
-          rarity = 'broken';
-          post = _kParenthesisLeft + _postfix["default"].uncommon[Math.floor(Math.random() * _postfix["default"].uncommon.length)] + _kParenthesisRight;
-        }
+    if (!post) {
+      var r1 = Math.random();
+      var r2 = Math.random();
+
+      if (r1 < _constants.rarityValues.rare && r2 < _constants.rarityValues.rare) {
+        post = _kParenthesisLeft + _postfix["default"].rare[Math.floor(Math.random() * _postfix["default"].rare.length)] + _kParenthesisRight;
+      } else if (r1 < _constants.rarityValues.uncommon && r2 < _constants.rarityValues.uncommon) {
+        post = _kParenthesisLeft + _postfix["default"].uncommon[Math.floor(Math.random() * _postfix["default"].uncommon.length)] + _kParenthesisRight;
       }
     } else {
-      rarity = 'rare';
+      post = _kParenthesisLeft + post + _kParenthesisRight;
     }
 
     names.push({
-      name: "\u300A".concat(skillname.name).concat(pre).concat(k).concat(post, "\u300B"),
+      name: _kBookLeft + skillname.name + pre + pk + post + _kBookRight,
       rarity: rarity
     });
   }
@@ -491,41 +525,41 @@ function getBook(number, length, prefix, kind, postfix) {
 
 var commonCreatureNames = [].concat(_toConsumableArray(_common["default"].dao), _toConsumableArray(_common["default"].element), _toConsumableArray(_common["default"].thing), _toConsumableArray(_common["default"].color), _toConsumableArray(_common["default"].number), _toConsumableArray(_common["default"].action));
 
-function getCreature(number, category, rarity) {
+function getCreature(number, options) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = '';
+    var name = "";
     var pre = commonCreatureNames[Math.floor(Math.random() * commonCreatureNames.length)];
 
     var c = _color["default"][Math.floor(Math.random() * _color["default"].length)];
 
     var s = _prefix4["default"][Math.floor(Math.random() * _prefix4["default"].length)];
 
-    var cat = category;
-    var k = '';
+    var cat = options === null || options === void 0 ? void 0 : options.category;
+    var k = "";
 
-    if (!category) {
+    if (!cat) {
       cat = _constants.creatureCategory[Math.floor(Math.random() * _constants.creatureCategory.length)];
     }
 
     k = _creature["default"][cat][Math.floor(Math.random() * _creature["default"][cat].length)];
 
-    var r = rarity || _getRarity(_constants.rarityValues.uncommon).rarity;
+    var r = (options === null || options === void 0 ? void 0 : options.rarity) || _getRarity(_constants.rarityValues.uncommon).rarity;
 
-    if (r == 'exotic') {
+    if (r == "exotic") {
       name = _strange2["default"][Math.floor(Math.random() * _strange2["default"].length)];
-    } else if (r == 'mythic') {
+    } else if (r == "mythic") {
       name = pre + c + s + k;
-    } else if (r == 'legendary') {
+    } else if (r == "legendary") {
       name = pre + s + k;
-    } else if (r == 'epic') {
+    } else if (r == "epic") {
       name = pre + c + k;
-    } else if (r == 'rare') {
+    } else if (r == "rare") {
       name = pre + k;
-    } else if (r == 'uncommon') {
+    } else if (r == "uncommon") {
       name = c + s + k;
-    } else if (r == 'common') {
+    } else if (r == "common") {
       name = c + k;
     }
 
@@ -539,35 +573,34 @@ function getCreature(number, category, rarity) {
   return names;
 }
 
-var _kAge1 = '百年';
-var _kAge10 = '千年';
-var _kAge100 = '万年';
+var _kAge1 = "百年";
+var _kAge10 = "千年";
+var _kAge100 = "万年";
 
-function getMaterial(number, kind, rarity, postfix) {
+function getMaterial(number, options) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = '';
-    var age = '';
+    var name = "";
+    var age = "";
     var pre = common[Math.floor(Math.random() * common.length)];
 
     var c = _color["default"][Math.floor(Math.random() * _color["default"].length)];
 
     var s = _spirit["default"][Math.floor(Math.random() * _spirit["default"].length)];
 
-    var k = kind;
-    var post = postfix || '';
+    var k = options === null || options === void 0 ? void 0 : options.kind;
 
-    var r = rarity || _getRarity(_constants.rarityValues.uncommon).rarity;
+    var r = (options === null || options === void 0 ? void 0 : options.rarity) || _getRarity(_constants.rarityValues.uncommon).rarity;
 
-    if (r == 'exotic') {
+    if (r == "exotic") {
       var _k;
 
       var t = [].concat(_toConsumableArray(_material2["default"].exotic), _toConsumableArray(_material2["default"].mythic), _toConsumableArray(_material2["default"].legendary), _toConsumableArray(_material2["default"].epic), _toConsumableArray(_material2["default"].rare), _toConsumableArray(_material2["default"].uncommon), _toConsumableArray(_material2["default"].common));
       (_k = k) !== null && _k !== void 0 ? _k : k = t[Math.floor(Math.random() * t.length)];
       age = _kAge100;
       name = age + pre + c + s + k;
-    } else if (r == 'mythic') {
+    } else if (r == "mythic") {
       var _k2;
 
       var _t = [].concat(_toConsumableArray(_material2["default"].mythic), _toConsumableArray(_material2["default"].legendary), _toConsumableArray(_material2["default"].epic), _toConsumableArray(_material2["default"].rare), _toConsumableArray(_material2["default"].uncommon), _toConsumableArray(_material2["default"].common));
@@ -575,7 +608,7 @@ function getMaterial(number, kind, rarity, postfix) {
       (_k2 = k) !== null && _k2 !== void 0 ? _k2 : k = _t[Math.floor(Math.random() * _t.length)];
       age = _kAge10;
       name = age + pre + c + s + k;
-    } else if (r == 'legendary') {
+    } else if (r == "legendary") {
       var _k3;
 
       var _t2 = [].concat(_toConsumableArray(_material2["default"].legendary), _toConsumableArray(_material2["default"].epic), _toConsumableArray(_material2["default"].rare), _toConsumableArray(_material2["default"].uncommon), _toConsumableArray(_material2["default"].common));
@@ -583,35 +616,37 @@ function getMaterial(number, kind, rarity, postfix) {
       (_k3 = k) !== null && _k3 !== void 0 ? _k3 : k = _t2[Math.floor(Math.random() * _t2.length)];
       age = _kAge1;
       name = age + pre + c + s + k;
-    } else if (r == 'epic') {
+    } else if (r == "epic") {
       var _k4;
 
       var _t3 = [].concat(_toConsumableArray(_material2["default"].epic), _toConsumableArray(_material2["default"].rare), _toConsumableArray(_material2["default"].uncommon), _toConsumableArray(_material2["default"].common));
 
       (_k4 = k) !== null && _k4 !== void 0 ? _k4 : k = _t3[Math.floor(Math.random() * _t3.length)];
       name = pre + c + s + k;
-    } else if (r == 'rare') {
+    } else if (r == "rare") {
       var _k5;
 
       var _t4 = [].concat(_toConsumableArray(_material2["default"].rare), _toConsumableArray(_material2["default"].uncommon), _toConsumableArray(_material2["default"].common));
 
       (_k5 = k) !== null && _k5 !== void 0 ? _k5 : k = _t4[Math.floor(Math.random() * _t4.length)];
       name = pre + s + k;
-    } else if (r == 'uncommon') {
+    } else if (r == "uncommon") {
       var _k6;
 
       var _t5 = [].concat(_toConsumableArray(_material2["default"].uncommon), _toConsumableArray(_material2["default"].common));
 
       (_k6 = k) !== null && _k6 !== void 0 ? _k6 : k = _t5[Math.floor(Math.random() * _t5.length)];
       name = c + s + k;
-    } else if (r == 'common') {
+    } else if (r == "common") {
       var _k7;
 
       (_k7 = k) !== null && _k7 !== void 0 ? _k7 : k = _material2["default"].common[Math.floor(Math.random() * _material2["default"].common.length)];
       name = c + k;
     }
 
-    if (!postfix) {
+    var post = (options === null || options === void 0 ? void 0 : options.postfix) || "";
+
+    if (!post) {
       var r1 = Math.random();
       var r2 = Math.random();
 
@@ -635,41 +670,13 @@ function getMaterial(number, kind, rarity, postfix) {
 
 var commonAlchemyNames = [].concat(_toConsumableArray(_common["default"].dao), _toConsumableArray(_common["default"].element), _toConsumableArray(_common["default"].color), _toConsumableArray(_common["default"].number), _toConsumableArray(_common["default"].action));
 
-function getAlchemy(number, kind) {
+function getTalisman(number, options) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var rarity = 'common';
-    var pre = commonAlchemyNames[Math.floor(Math.random() * commonAlchemyNames.length)];
-    var s = '';
+    var _options$rarity;
 
-    var r = _getRarity();
-
-    if (r.value < _constants.rarityValues.rare) {
-      s = _spirit["default"][Math.floor(Math.random() * _spirit["default"].length)];
-    }
-
-    rarity = r.rarity;
-    var k = kind || '';
-
-    if (!kind) {
-      k = _alchemy["default"][Math.floor(Math.random() * _alchemy["default"].length)];
-    }
-
-    names.push({
-      name: pre + s + k,
-      rarity: rarity
-    });
-  }
-
-  return names;
-}
-
-function getTalisman(number, kind, rarity) {
-  var names = [];
-
-  for (var i = 0; i < number; ++i) {
-    var name = '';
+    var name = "";
     var prefix = common[Math.floor(Math.random() * common.length)];
 
     var c = _color["default"][Math.floor(Math.random() * _color["default"].length)];
@@ -678,70 +685,105 @@ function getTalisman(number, kind, rarity) {
 
     var s = _spirit["default"][Math.floor(Math.random() * _spirit["default"].length)];
 
-    var k = kind;
-    var r = rarity !== null && rarity !== void 0 ? rarity : _getRarity(_constants.rarityValues.uncommon).rarity;
+    var k = options === null || options === void 0 ? void 0 : options.kind;
+    var r = (_options$rarity = options === null || options === void 0 ? void 0 : options.rarity) !== null && _options$rarity !== void 0 ? _options$rarity : _getRarity(_constants.rarityValues.uncommon).rarity;
 
-    if (r == 'exotic') {
+    if (r == "exotic") {
       var _k8;
 
       var t = [].concat(_toConsumableArray(_talisman["default"].exotic), _toConsumableArray(_talisman["default"].mythic), _toConsumableArray(_talisman["default"].legendary), _toConsumableArray(_talisman["default"].epic), _toConsumableArray(_talisman["default"].rare), _toConsumableArray(_talisman["default"].uncommon), _toConsumableArray(_talisman["default"].common));
       (_k8 = k) !== null && _k8 !== void 0 ? _k8 : k = t[Math.floor(Math.random() * t.length)];
       name = prefix + s + k;
-    } else if (r == 'mythic') {
+    } else if (r == "mythic") {
       var _k9;
 
       var _t6 = [].concat(_toConsumableArray(_talisman["default"].mythic), _toConsumableArray(_talisman["default"].legendary), _toConsumableArray(_talisman["default"].epic), _toConsumableArray(_talisman["default"].rare), _toConsumableArray(_talisman["default"].uncommon), _toConsumableArray(_talisman["default"].common));
 
       (_k9 = k) !== null && _k9 !== void 0 ? _k9 : k = _t6[Math.floor(Math.random() * _t6.length)];
       name = prefix + s + k;
-    } else if (r == 'legendary') {
+    } else if (r == "legendary") {
       var _k10;
 
       var _t7 = [].concat(_toConsumableArray(_talisman["default"].legendary), _toConsumableArray(_talisman["default"].epic), _toConsumableArray(_talisman["default"].rare), _toConsumableArray(_talisman["default"].uncommon), _toConsumableArray(_talisman["default"].common));
 
       (_k10 = k) !== null && _k10 !== void 0 ? _k10 : k = _t7[Math.floor(Math.random() * _t7.length)];
       name = prefix + c + m + k;
-    } else if (r == 'epic') {
+    } else if (r == "epic") {
       var _k11;
 
       var _t8 = [].concat(_toConsumableArray(_talisman["default"].epic), _toConsumableArray(_talisman["default"].rare), _toConsumableArray(_talisman["default"].uncommon), _toConsumableArray(_talisman["default"].common));
 
       (_k11 = k) !== null && _k11 !== void 0 ? _k11 : k = _t8[Math.floor(Math.random() * _t8.length)];
       name = prefix + m + k;
-    } else if (r == 'rare') {
+    } else if (r == "rare") {
       var _k12;
 
       var _t9 = [].concat(_toConsumableArray(_talisman["default"].rare), _toConsumableArray(_talisman["default"].uncommon), _toConsumableArray(_talisman["default"].common));
 
       (_k12 = k) !== null && _k12 !== void 0 ? _k12 : k = _t9[Math.floor(Math.random() * _t9.length)];
       name = prefix + k;
-    } else if (r == 'uncommon') {
+    } else if (r == "uncommon") {
       var _k13;
 
       var _t10 = [].concat(_toConsumableArray(_talisman["default"].uncommon), _toConsumableArray(_talisman["default"].common));
 
       (_k13 = k) !== null && _k13 !== void 0 ? _k13 : k = _t10[Math.floor(Math.random() * _t10.length)];
       name = c + m + k;
-    } else if (r == 'common') {
+    } else if (r == "common") {
       var _k14;
 
       (_k14 = k) !== null && _k14 !== void 0 ? _k14 : k = _talisman["default"].common[Math.floor(Math.random() * _talisman["default"].common.length)];
       name = m + k;
     }
 
-    var post = '';
-    var r1 = Math.random();
-    var r2 = Math.random();
+    var post = (options === null || options === void 0 ? void 0 : options.postfix) || "";
 
-    if (r1 < _constants.rarityValues.rare && r2 < _constants.rarityValues.rare) {
-      post = _kParenthesisLeft + _postfix2["default"].broken[Math.floor(Math.random() * _postfix2["default"].broken.length)] + _kParenthesisRight;
-    } else if (r1 < _constants.rarityValues.uncommon && r2 < _constants.rarityValues.uncommon) {
-      post = _kParenthesisLeft + _postfix2["default"].handmade[Math.floor(Math.random() * _postfix2["default"].handmade.length)] + _kParenthesisRight;
+    if (!post) {
+      var r1 = Math.random();
+      var r2 = Math.random();
+
+      if (r1 < _constants.rarityValues.rare && r2 < _constants.rarityValues.rare) {
+        post = _kParenthesisLeft + _postfix2["default"].broken[Math.floor(Math.random() * _postfix2["default"].broken.length)] + _kParenthesisRight;
+      } else if (r1 < _constants.rarityValues.uncommon && r2 < _constants.rarityValues.uncommon) {
+        post = _kParenthesisLeft + _postfix2["default"].handmade[Math.floor(Math.random() * _postfix2["default"].handmade.length)] + _kParenthesisRight;
+      }
+    } else {
+      post = _kParenthesisLeft + post + _kParenthesisRight;
     }
 
     names.push({
       name: name + post,
       rarity: r
+    });
+  }
+
+  return names;
+}
+
+function getAlchemy(number, kind) {
+  var names = [];
+
+  for (var i = 0; i < number; ++i) {
+    var rarity = "common";
+    var pre = commonAlchemyNames[Math.floor(Math.random() * commonAlchemyNames.length)];
+    var s = "";
+
+    var r = _getRarity();
+
+    if (r.value < _constants.rarityValues.rare) {
+      s = _spirit["default"][Math.floor(Math.random() * _spirit["default"].length)];
+    }
+
+    rarity = r.rarity;
+    var k = kind || "";
+
+    if (!kind) {
+      k = _alchemy["default"][Math.floor(Math.random() * _alchemy["default"].length)];
+    }
+
+    names.push({
+      name: pre + s + k,
+      rarity: rarity
     });
   }
 
@@ -765,20 +807,20 @@ function getClan(number, kind) {
   return names;
 }
 
-var _kContry = '国';
+var _kContry = "国";
 
 function getNation(number, kind) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = '';
-    var k = kind !== null && kind !== void 0 ? kind : '';
-    var rarity = 'common';
+    var name = "";
+    var k = kind !== null && kind !== void 0 ? kind : "";
+    var rarity = "common";
     var r = Math.random();
 
     if (r < _constants.rarityValues.rare) {
       name = _strange["default"][Math.floor(Math.random() * _strange["default"].length)];
-      rarity = 'rare';
+      rarity = "rare";
 
       if (!kind) {
         if (name.length == 1) {
@@ -789,7 +831,7 @@ function getNation(number, kind) {
       }
     } else if (r < _constants.rarityValues.uncommon) {
       name = common[Math.floor(Math.random() * common.length)];
-      rarity = 'uncommon';
+      rarity = "uncommon";
 
       if (!kind) {
         if (name.length == 1) {
@@ -799,7 +841,7 @@ function getNation(number, kind) {
         }
       }
     } else {
-      var prefix = '';
+      var prefix = "";
 
       if (Math.random() < _constants.rarityValues.rare) {
         prefix = _prefix3["default"][Math.floor(Math.random() * _prefix3["default"].length)];
@@ -825,20 +867,20 @@ function getLocation(number, kind) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = '';
-    var k = kind !== null && kind !== void 0 ? kind : '';
-    var rarity = 'common';
+    var name = "";
+    var k = kind !== null && kind !== void 0 ? kind : "";
+    var rarity = "common";
     var r = Math.random();
 
     if (r < _constants.rarityValues.rare) {
       name = _strange["default"][Math.floor(Math.random() * _strange["default"].length)];
-      rarity = 'rare';
+      rarity = "rare";
     } else if (r < _constants.rarityValues.uncommon) {
       name = common[Math.floor(Math.random() * common.length)];
-      rarity = 'uncommon';
+      rarity = "uncommon";
     } else {
       var placeIndex = Math.floor(Math.random() * _place["default"].length);
-      var postfix = '';
+      var postfix = "";
 
       if (Math.random() < _constants.rarityValues.uncommon) {
         var postfixIndex = Math.floor(Math.random() * _postfix3["default"].length);
@@ -861,30 +903,30 @@ function getLocation(number, kind) {
   return names;
 }
 
-var _kContinent = '洲';
+var _kContinent = "洲";
 
 function getContinent(number, kind) {
   var names = [];
 
   for (var i = 0; i < number; ++i) {
-    var name = '';
-    var k = kind !== null && kind !== void 0 ? kind : '';
+    var name = "";
+    var k = kind !== null && kind !== void 0 ? kind : "";
 
     if (!kind) {
       k = _continent["default"][Math.floor(Math.random() * _continent["default"].length)];
     }
 
-    var rarity = 'common';
+    var rarity = "common";
     var r = Math.random();
 
     if (r < _constants.rarityValues.rare) {
       name = _strange["default"][Math.floor(Math.random() * _strange["default"].length)];
-      rarity = 'rare';
+      rarity = "rare";
     } else if (r < _constants.rarityValues.uncommon) {
       name = common[Math.floor(Math.random() * common.length)];
-      rarity = 'uncommon';
+      rarity = "uncommon";
     } else {
-      var prefix = '';
+      var prefix = "";
 
       if (Math.random() < _constants.rarityValues.rare) {
         prefix = _prefix3["default"][Math.floor(Math.random() * _prefix3["default"].length)];

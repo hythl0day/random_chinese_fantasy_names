@@ -13,7 +13,7 @@
       "name": "pnpm",
       "message": "random_chinese_fantasy_names@0.1.0 dev: `vite`\nExit status 1",
       "code": "ELIFECYCLE",
-      "stack": "pnpm: random_chinese_fantasy_names@0.1.0 dev: `vite`\nExit status 1\n    at EventEmitter.<anonymous> (C:\\Users\\aleph42\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:103854:20)\n    at EventEmitter.emit (events.js:315:20)\n    at ChildProcess.<anonymous> (C:\\Users\\aleph42\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:91783:18)\n    at ChildProcess.emit (events.js:315:20)\n    at maybeClose (internal/child_process.js:1048:16)\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)"
+      "stack": "pnpm: random_chinese_fantasy_names@0.1.0 dev: `vite`\nExit status 1\n    at EventEmitter.<anonymous> (C:\\Users\\cheng\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:103873:20)\n    at EventEmitter.emit (node:events:390:28)\n    at ChildProcess.<anonymous> (C:\\Users\\cheng\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:91802:18)\n    at ChildProcess.emit (node:events:390:28)\n    at maybeClose (node:internal/child_process:1064:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:301:5)"
     }
   },
   "2 warn pnpm:global": " Local package.json exists, but node_modules missing, did you mean to install?"

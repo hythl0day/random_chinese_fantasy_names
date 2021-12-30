@@ -5,27 +5,27 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.sexValues = exports.rarityValues = exports.rarityNames = exports.rarityLevels = exports.rarityColors = exports.creatureCategoryNames = exports.creatureCategory = void 0;
 var sexValues = [{
-  text: '随机',
+  text: "随机",
   value: null
 }, {
-  text: '女',
+  text: "女",
   value: true
 }, {
-  text: '男',
+  text: "男",
   value: false
 }];
 exports.sexValues = sexValues;
 var rarityColors = {
-  common: '#222A35',
-  uncommon: '#CCCCCC',
-  rare: '#00A6A9',
-  epic: '#804DC8',
-  legendary: '#C5C660',
-  mythic: '#F28234',
-  exotic: '#C65043'
+  common: "#CCCCCC",
+  uncommon: "#222A35",
+  rare: "#00A6A9",
+  epic: "#804DC8",
+  legendary: "#C5C660",
+  mythic: "#F28234",
+  exotic: "#C65043"
 };
 exports.rarityColors = rarityColors;
-var rarityLevels = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'mythic', 'exotic'];
+var rarityLevels = ["common", "uncommon", "rare", "epic", "legendary", "mythic", "exotic"];
 exports.rarityLevels = rarityLevels;
 var rarityValues = {
   common: 1.0,
@@ -45,24 +45,24 @@ var rarityValues = {
 };
 exports.rarityValues = rarityValues;
 var rarityNames = {
-  common: '凡品',
-  uncommon: '良品',
-  rare: '上品',
-  epic: '极品',
-  legendary: '秘宝',
-  mythic: '灵宝',
-  exotic: '古宝'
+  common: "凡品",
+  uncommon: "良品",
+  rare: "上品",
+  epic: "极品",
+  legendary: "秘宝",
+  mythic: "灵宝",
+  exotic: "古宝"
 };
 exports.rarityNames = rarityNames;
-var creatureCategory = ['plant', 'worm', 'fish', 'beast', 'bird', 'reptile', 'insect'];
+var creatureCategory = ["plant", "worm", "fish", "beast", "bird", "reptile", "insect"];
 exports.creatureCategory = creatureCategory;
 var creatureCategoryNames = {
-  plant: '草木',
-  worm: '赢虫',
-  fish: '鱼',
-  beast: '兽',
-  bird: '鸟',
-  reptile: '爬虫',
-  insect: '甲虫'
+  plant: "草木",
+  worm: "赢虫",
+  fish: "鱼",
+  beast: "兽",
+  bird: "鸟",
+  reptile: "爬虫",
+  insect: "甲虫"
 };
 exports.creatureCategoryNames = creatureCategoryNames;
