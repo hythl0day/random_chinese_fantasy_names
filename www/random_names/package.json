@@ -1,8 +1,13 @@
 {
   "name": "random_chinese_fantasy_names",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "A Generator for random Chinese Fantasy Name to be used in internet novels.",
-  "main": "src/index.js",
+  "main": "./commonjs/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./commonjs/index.js"
+  },
   "type": "module",
   "scripts": {
     "build": "npx babel src --out-dir commonjs",

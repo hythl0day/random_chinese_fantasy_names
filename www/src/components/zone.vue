@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { getContinent, continentKind, rarityColors } from "../../random_names";
+import { getZone, zoneKind, rarityColors } from "../../random_names/src";
 import { numberValues as numberOptions } from '../shared/constants.js';
 
 defineProps({
@@ -9,14 +9,14 @@ defineProps({
 
 const kindOptions = [
   '随机',
-  ...continentKind];
+  ...zoneKind];
 
 const nameList = ref([]);
 const number = ref(10);
 const kind = ref(null);
 
 function generate() {
-  let list = getContinent(
+  let list = getZone(
     number.value,
     kind.value,
   )

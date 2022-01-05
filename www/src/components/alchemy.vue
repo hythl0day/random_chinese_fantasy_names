@@ -47,19 +47,6 @@ function generate() {
           </ul>
         </div>
       </div>
-      <div class="col-4">
-        <div class="btn-group mb-3 dropup">
-          <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            长度：{{ length ?? '随机' }}
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li v-for="item of lengthOptions">
-              <a class="dropdown-item" @click="length = item == '随机' ? null : item">{{ item }}</a>
-            </li>
-          </ul>
-        </div>
-      </div>
       <div class="col-4 text-start">
         <div class="btn-group mb-3 dropup">
           <button class="btn btn-info dropdown-toggle fixed-width120 text-start" type="button" data-mdb-toggle="dropdown"

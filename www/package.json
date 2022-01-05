@@ -1,6 +1,5 @@
 {
   "name": "random_chinese_fantasy_names",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "vite",

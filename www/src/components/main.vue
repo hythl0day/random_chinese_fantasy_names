@@ -10,14 +10,14 @@ import Creature from './creature.vue';
 import Clan from './clan.vue';
 import Nation from './nation.vue';
 import Location from './location.vue';
-import Continent from './continent.vue';
+import Zone from './zone.vue';
 
 </script>
 
 <template>
   <div class="spacer">
     <h1>仙侠小说专有名词随机生成器</h1>
-    <p class="text-dark text-opacity-50">版本号 0.1.14 最后更新于2021年12月30日</p>
+    <p class="text-dark text-opacity-50">版本号 0.1.15 最后更新于2022年1月5日</p>
     <a title="NPM" href="https://www.npmjs.com/package/random_chinese_fantasy_names" ><img src="https://img.shields.io/npm/v/random_chinese_fantasy_names" /></a>&nbsp;
     <a title="Github" href="https://github.com/hetu-script/random_chinese_fantasy_names" ><img src="https://img.shields.io/badge/github-repository-green" /></a>
     <div class="text-dark text-opacity-25 pt-1">
@@ -123,7 +123,7 @@ import Continent from './continent.vue';
             data-mdb-toggle="tab"
             href="#ex3-tabs-11"
             role="tab"
-            >地点</a
+            >据点</a
           >
         </li>
         <li class="nav-item" role="presentation">
@@ -132,7 +132,7 @@ import Continent from './continent.vue';
             data-mdb-toggle="tab"
             href="#ex3-tabs-12"
             role="tab"
-            >大陆</a
+            >地域</a
           >
         </li>
       </ul>
@@ -234,7 +234,7 @@ import Continent from './continent.vue';
           role="tabpanel"
           aria-labelledby="ex3-tab-12"
         >
-          <Continent />
+          <Zone />
         </div>
       </div>
       <!-- Tabs content -->
