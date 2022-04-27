@@ -270,11 +270,11 @@ function getName(number, options) {
 
     var theFamilyName = void 0;
 
-    if (!(options !== null && options !== void 0 && options.familyName)) {
+    if (options !== null && options !== void 0 && options.familyName) {
+      theFamilyName = options.familyName;
+    } else {
       var familyIndex = Math.floor(Math.random() * _family["default"].length);
       theFamilyName = _family["default"][familyIndex];
-    } else {
-      theFamilyName = familyName;
     }
 
     var f = (_options$isFemale = options === null || options === void 0 ? void 0 : options.isFemale) !== null && _options$isFemale !== void 0 ? _options$isFemale : Math.floor(Math.random() * 10) % 2 == 0;

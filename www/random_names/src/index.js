@@ -160,11 +160,11 @@ export function getName(number, options) {
   let names = [];
   for (let i = 0; i < number; ++i) {
     let theFamilyName;
-    if (!options?.familyName) {
+    if (options?.familyName) {
+      theFamilyName = options.familyName;
+    } else {
       let familyIndex = Math.floor(Math.random() * family.length);
       theFamilyName = family[familyIndex];
-    } else {
-      theFamilyName = familyName;
     }
     let f = options?.isFemale ?? Math.floor(Math.random() * 10) % 2 == 0;
     let namesOfASex = f ? female : male;
