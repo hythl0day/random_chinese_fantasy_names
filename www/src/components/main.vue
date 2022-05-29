@@ -24,7 +24,7 @@ import Zone from './zone.vue';
       <div>作者：阿莱四十二</div>
       <div>联系我：<a href="mailto:chengfubeiming@live.com">chengfubeiming@live.com</a></div>
     </div>
-    <div class="container col-xxl-7 mt-2">
+    <div class="container mt-2">
       <!-- Tabs navs -->
       <ul class="nav nav-tabs nav-justified mb-2" role="tablist">
         <li class="nav-item" role="presentation">
