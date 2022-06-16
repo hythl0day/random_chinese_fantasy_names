@@ -308,7 +308,7 @@ function _getSkillName(length, kind, prefix, numfix) {
     if (length > 2) {
       rarity = 'rare';
     } else if (length > 1) {
-      rare = 'uncommon';
+      rarity = 'uncommon';
     }
   }
   let name = '';
