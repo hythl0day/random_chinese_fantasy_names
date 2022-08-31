@@ -18,7 +18,9 @@ const kind = ref(null);
 function generate() {
   let list = getZone(
     number.value,
-    kind.value,
+    {
+      kind: kind.value,
+    },
   )
   nameList.value.splice(0, nameList.value.length)
   for (let name of list) {

@@ -14,13 +14,11 @@ const kindOptions = [
 
 const nameList = ref([]);
 const number = ref(10);
-const length = ref(null);
 const kind = ref(null);
 
 function generate() {
   let list = getAlchemy(
     number.value,
-    length.value,
     kind.value,
   )
   nameList.value.splice(0, nameList.value.length)
