@@ -197,7 +197,7 @@ export function getLocation(
 /**
  * 大陆
  */
-export function getContinent(
+export function getZone(
   number: number,
   kind?: string
 ): {

@@ -10,7 +10,7 @@ const {
   getClan,
   getNation,
   getLocation,
-  getContinent,
+  getZone,
 } = require("../commonjs/index");
 
 console.log(getName(10));
@@ -24,4 +24,4 @@ console.log(getTalisman(10));
 console.log(getClan(10));
 console.log(getNation(10));
 console.log(getLocation(10));
-console.log(getContinent(10));
+console.log(getZone(10));
